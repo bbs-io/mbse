@@ -4,7 +4,7 @@
  * Shadow Suite (c) ......: Julianne Frances Haugh
  *
  *****************************************************************************
- * Copyright (C) 1997-2011
+ * Copyright (C) 1997-2012
  *   
  * Michiel Broek	FIDO:		2:280/2802
  * Beekmansbos 10
@@ -901,7 +901,7 @@ int main(int argc, char *argv[])
      * We don't log into MBSE BBS logfiles but to the system logfiles,
      * because we are modifying system files not belonging to MBSE BBS.
      */
-    openlog("mbpasswd", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTH);
+    openlog("mbpasswd", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTHPRIV);
 
     /*
      * Find out the name of our parent.

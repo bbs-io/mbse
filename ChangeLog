@@ -1,3 +1,15 @@
+v0.95.15	26-Dec-2012
+
+	mblogin
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbuseradd
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbpasswd
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+
 v0.95.14	01-Dec-2011
 
 	general:
