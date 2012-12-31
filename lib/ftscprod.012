@@ -24,7 +24,7 @@
 0017,FidoPcb,MS-DOS,Packer,Matjaz_Koce,2:380/100
 0018,WimpLink,Archimedes,Packer/mailer,Remco_de_Vreugd,2:283/307
 0019,BinkScan,MS-DOS,Packer,Shawn_Stoddard,1:362/101
-001A,D'Bridge,MS-DOS,Packer/mailer,Chris_Irwin,1:18/68
+001A,D'Bridge,MS-DOS,Packer/mailer,Nick Andre,1:1/130,20110725
 001B,BinkleyTerm,MS-DOS,Mailer,Vince_Perriello,1:343/491
 001C,Yankee,MS-DOS,Packer,Randy_Edwards,????
 001D,uuGate,MS-DOS,Packer,Geoff_Watts,3:690/710
@@ -235,7 +235,7 @@
 00EA,DeltaEcho,MS-DOS,Packer,Mikael_Staldal,2:201/337
 00EB,ALLFIX,MS-DOS,Packer,Harald_Harms,2:512/145
 00EC,NetWay,Archimedes,Mailer,Steve_Haslam,2:250/116.3
-00ED,MARSmail,Atari_ST,Packer,Folkert_val_Heusden,2:285/750.2,,19940122
+00ED,MARSmail,Atari_ST,Packer,Folkert_van_Heusden,2:285/750.2,,19940122
 00EE,ITRACK,MS-DOS/OS2,Packer,Frank_Prade,2:2480/55,,19990119
 00EF,GateUtil,MS-DOS,Packer,Michael_Skurka,1:397/2.1
 00F0,Bert,MS-DOS,Packer/mailer,Arnim_Wiezer,2:241/2104.9
@@ -294,3 +294,5 @@
 14FF,Mail-ennium/32,Win32,Mailer/Packer,Chris_Cranford,1:379/1200,20031231
 15FF,Radius,Win32,Mailer,Denis_Voituk,2:5012/38,20040115
 16FF,RNtrack,Linux/BSD/AIX/Solaris/MacOSX/OS2/DOS/Win32,Packer,Alex_Soukhotine,2:5030/1157,20050115
+17FF,Msg2Pkt,DOS/OS2/Win32,Packer/Tools/ClpLib,Ulrich_Schroeter,2:244/1120,20080607
+18FF,Marena,DOS,Repacker/Echotag_renamer,Michiel_van_der_Vlist,2:280/5555,20080608 
