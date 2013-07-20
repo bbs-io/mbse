@@ -1,16 +1,18 @@
-	libmbse.a
+This is the last version of mbsebbs submitted by me, Michiel.
+
+	libmbse.a:
 		Updated to ftscprod.012.
 
 
 v0.95.15	26-Dec-2012
 
-	mblogin
+	mblogin:
 		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
 
-	mbuseradd
+	mbuseradd:
 		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
 
-	mbpasswd
+	mbpasswd:
 		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
 
 
