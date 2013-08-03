@@ -1,6 +1,6 @@
 
-			MBSE BBS V0.95.15 TODO list.
-			----------------------------
+			MBSE BBS V1.0.0 TODO list.
+			--------------------------
 
 	These are a list of things that must be implemented one way or
 	another. Some things are urgent and necessary to operate the bbs
@@ -12,7 +12,6 @@
 		 N = Normal, second priority.
                  L = Cosmetic or nice to have.
 	         W = Feature request.
-		 X = Will not be done unless it's really needed.
 
 everything:
 	N: In BSO the i flavor should have been d flavor.
@@ -35,14 +34,7 @@ mbsebbs:
 
 	N: Only count posted messages in local mail areas.
 
-	X: OLR: include private email area in download packets. See also global
-           wish for private mail areas.
-
-	X: OLR: implement some global settings from the offline configuration.
-
 	N: OLR: qwk, check netmail entered from reader, fido address missing?
-
-	X: Implement kermit protocol, external versions don't work right.
 
 
 mbfido:
@@ -65,8 +57,6 @@ mbfido:
 	N: Investigate a method to scan and filter messages using the gateway.
 
 	W: Add macro's for stats of all months.
-
-	X: Implement file requests for directory nodes.
 
 	W: Add %from command to areamgr/filemgr.
 

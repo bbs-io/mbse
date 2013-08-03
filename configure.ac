@@ -10,12 +10,12 @@ AC_SUBST(SUBDIRS)
 # After changeing the version number, run autoconf!
 #
 PACKAGE="mbsebbs"
-MAJOR="0"
-MINOR="95"
-REVISION="15"
+MAJOR="1"
+MINOR="0"
+REVISION="0"
 VERSION="$MAJOR.$MINOR.$REVISION"
-COPYRIGHT="Copyright (C) 1997-2012 Michiel Broek, All Rights Reserved"
-SHORTRIGHT="Copyright (C) 1997-2012 M. Broek"
+COPYRIGHT="Copyright (C) 1997-2013 Michiel Broek, All Rights Reserved"
+SHORTRIGHT="Copyright (C) 1997-2013 M. Broek"
 GROUP="bbs"
 OWNER="mbse"
 ROWNER="`id -un root`"
