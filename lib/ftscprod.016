@@ -296,3 +296,7 @@
 16FF,RNtrack,Linux/BSD/AIX/Solaris/MacOSX/OS2/DOS/Win32,Packer,Alex_Soukhotine,2:5030/1157,20050115
 17FF,Msg2Pkt,DOS/OS2/Win32,Packer/Tools/ClpLib,Ulrich_Schroeter,2:244/1120,20080607
 18FF,Marena,DOS,Repacker/Echotag_renamer,Michiel_van_der_Vlist,2:280/5555,20080608 
+19FF,jNode,Java_Virtual_Machine,Binkp_mailer/tosser/tracker,Ivan_Agarkov,2:5020/848,20120921
+1AFF,mfreq,Linux,File_Request_Processor,Markus_Reschke,2:240/1661,20131116
+1BFF,AfterShock,Android_>=V2.3,Binkp_Mailer/Tosser/Editor,Anatoly_Vdovichev,2:5000/26.180,20131128
+1CFF,FTN::Packet,Perl,Tosser,Robert_James_Clay,1:120/419,20131219

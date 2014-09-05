@@ -54,7 +54,7 @@ void ProgName(void)
 	return;
 
     mbse_colour(WHITE, BLACK);
-    printf("\nMBAFF: MBSE BBS %s Announce new files and FileFind\n", VERSION);
+    printf("\nMBAFF: MBSE BBS %s Announce New Files and FileFind\n", VERSION);
     mbse_colour(YELLOW, BLACK);
     printf("       %s\n", COPYRIGHT);
 }

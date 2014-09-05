@@ -11,7 +11,7 @@ SRCS		= zmmisc.c zmrle.c zmrecv.c zmsend.c binkp.c md5b.c \
 		  recvbark.c respfreq.c sendbark.c tcp.c tcpproto.c wazoo.c \
 		  filetime.c ftsc.c atoul.c portsel.c telnet.c bopenfile.c \
 		  ttyio.c lutil.c scanout.c emsi.c ulock.c dirlock.c \
-		  callstat.c session.c call.c mbcico.c \
+		  callstat.c session.c call.c htoul.c mbcico.c \
 		  outstat.c nlinfo.c mbout.c
 HDRS		= zmodem.h binkp.h config.h statetbl.h md5b.h \
 		  xmsend.h xmrecv.h m7recv.h m7send.h hydra.h inbound.h \
@@ -20,7 +20,7 @@ HDRS		= zmodem.h binkp.h config.h statetbl.h md5b.h \
 		  recvbark.h respfreq.h sendbark.h tcp.h tcpproto.h wazoo.h \
 		  filetime.h ftsc.h atoul.h portsel.h telnet.h bopenfile.h \
 		  ttyio.h lutil.h scanout.h emsi.h ulock.h dirlock.h \
-		  callstat.h session.h call.h mbcico.h \
+		  callstat.h session.h call.h htoul.h mbcico.h \
 		  outstat.h nlinfo.h
 MBCICO_OBJS	= zmmisc.o zmrle.o zmrecv.o zmsend.o binkp.o md5b.o \
 		  xmsend.o xmrecv.o m7recv.o m7send.o hydra.o inbound.o \
@@ -29,7 +29,7 @@ MBCICO_OBJS	= zmmisc.o zmrle.o zmrecv.o zmsend.o binkp.o md5b.o \
 		  recvbark.o respfreq.o sendbark.o tcp.o tcpproto.o wazoo.o \
 		  filetime.o ftsc.o atoul.o portsel.o telnet.o bopenfile.o \
 		  ttyio.o lutil.o scanout.o emsi.o ulock.o dirlock.o \
-		  callstat.o session.o call.o mbcico.o
+		  callstat.o session.o call.o htoul.o mbcico.o
 MBOUT_OBJS	= outstat.o nlinfo.o mbout.o scanout.o callstat.o
 SLIBS		= ../lib/libmbse.a ../lib/libmsgbase.a ../lib/libdbase.a ../lib/libnodelist.a
 OTHER		= Makefile README
@@ -130,6 +130,7 @@ dirlock.o: ../config.h ../lib/mbselib.h dirlock.h
 callstat.o: ../config.h ../lib/mbselib.h callstat.h
 session.o: ../config.h ../lib/mbselib.h ../lib/nodelist.h ttyio.h statetbl.h emsi.h ftsc.h session.h yoohoo.h mbcico.h binkp.h callstat.h inbound.h opentcp.h telnet.h
 call.o: ../config.h ../lib/mbselib.h ../lib/users.h ../lib/nodelist.h ../lib/mbsedb.h session.h callstat.h call.h config.h dial.h lutil.h portsel.h openport.h opentcp.h rdoptions.h inbound.h
+htoul.o: ../config.h ../lib/mbselib.h htoul.h
 mbcico.o: ../config.h ../lib/mbselib.h ../lib/nodelist.h ../lib/users.h ../lib/mbsedb.h config.h answer.h call.h lutil.h mbcico.h session.h binkp.h
 outstat.o: ../config.h ../lib/mbselib.h ../lib/nodelist.h ../lib/users.h ../lib/mbsedb.h scanout.h callstat.h outstat.h
 nlinfo.o: ../config.h ../lib/mbselib.h ../lib/nodelist.h nlinfo.h

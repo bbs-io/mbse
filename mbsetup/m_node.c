@@ -807,32 +807,32 @@ void SessionScreen(void)
 {
     clr_index();
     set_color(WHITE, BLACK);
-    mbse_mvprintw( 5, 6, "7.3  EDIT NODE SESSION");
+    mbse_mvprintw( 5, 2, "7.3  EDIT NODE SESSION");
     set_color(CYAN, BLACK);
 
-    mbse_mvprintw( 7, 6, "1.   Session passwd");
-    mbse_mvprintw( 8, 6, "2.   Dial command");
-    mbse_mvprintw( 9, 6, "3.   Phone number 1");
-    mbse_mvprintw(10, 6, "4.   Phone number 2");
-    mbse_mvprintw(11, 6, "5.   Nodelist flags");
-    mbse_mvprintw(12, 6, "6.   Inet hostname");
-    mbse_mvprintw(13, 6, "7.   Outbound sess.");
-    mbse_mvprintw(14, 6, "8.   Inbound sess.");
-    mbse_mvprintw(15, 6, "9.   No EMSI");
-    mbse_mvprintw(16, 6, "10.  No YooHoo/2U2");
-    mbse_mvprintw(17, 6, "11.  No Filerequest");
-    mbse_mvprintw(18, 6, "12.  Don't call");
-    mbse_mvprintw(19, 6, "13.  8.3 names");
-    mbse_mvprintw(20, 6, "14.  NR mode");
-
-    mbse_mvprintw(13,41, "15.  No PLZ");
-    mbse_mvprintw(14,41, "16.  No GZ/BZ2");
-    mbse_mvprintw(15,41, "17.  No Zmodem");
-    mbse_mvprintw(16,41, "18.  No Zedzap");
-    mbse_mvprintw(17,41, "19.  No Hydra");
-    mbse_mvprintw(18,41, "20.  Binkp old esc");
-    mbse_mvprintw(19,41, "21.  No binkp/1.1");
-    mbse_mvprintw(20,41, "22.  Ign. Hold");
+    mbse_mvprintw( 7, 2, "1.   Session passwd");
+    mbse_mvprintw( 8, 2, "2.   Dial command");
+    mbse_mvprintw( 9, 2, "3.   Phone number 1");
+    mbse_mvprintw(10, 2, "4.   Phone number 2");
+    mbse_mvprintw(11, 2, "5.   Nodelist flags");
+    mbse_mvprintw(12, 2, "6.   Inet hostname");
+    mbse_mvprintw(13, 2, "7.   Outbound sess.");
+    mbse_mvprintw(14, 2, "8.   Inbound sess.");
+    mbse_mvprintw(15, 2, "9.   No EMSI");
+    mbse_mvprintw(16, 2, "10.  No YooHoo/2U2");
+    mbse_mvprintw(17, 2, "11.  No Filerequest");
+    mbse_mvprintw(18, 2, "12.  Don't call");
+    mbse_mvprintw(19, 2, "13.  8.3 names");
+    mbse_mvprintw(13,33, "14.  NR mode");
+    mbse_mvprintw(14,33, "15.  CRC mode");
+    mbse_mvprintw(15,33, "16.  No PLZ");
+    mbse_mvprintw(16,33, "17.  No GZ/BZ2");
+    mbse_mvprintw(17,33, "18.  No Zmodem");
+    mbse_mvprintw(18,33, "19.  No Zedzap");
+    mbse_mvprintw(19,33, "20.  No Hydra");
+    mbse_mvprintw(17,57, "21.  Binkp old esc");
+    mbse_mvprintw(18,57, "22.  No binkp/1.1");
+    mbse_mvprintw(19,57, "23.  Ign. Hold");
 }
 
 
@@ -850,25 +850,25 @@ void SessionEdit(void)
 	show_str( 10,26,20, nodes.phone[1]);
 	show_str( 11,26,54, nodes.Nl_flags);
 	show_str( 12,26,40, nodes.Nl_hostname);
-	show_sessiontype(13,26,nodes.Session_out);
-	show_sessiontype(14,26,nodes.Session_in);
-	show_bool(15,26,    nodes.NoEMSI);
-	show_bool(16,26,    nodes.NoWaZOO);
-	show_bool(17,26,    nodes.NoFreqs);
-	show_bool(18,26,    nodes.NoCall);
-	show_bool(19,26,    nodes.FNC);
-	show_bool(20,26,    nodes.DoNR);
+	show_sessiontype(13,23,nodes.Session_out);
+	show_sessiontype(14,23,nodes.Session_in);
+	show_bool(15,23,    nodes.NoEMSI);
+	show_bool(16,23,    nodes.NoWaZOO);
+	show_bool(17,23,    nodes.NoFreqs);
+	show_bool(18,23,    nodes.NoCall);
+	show_bool(19,23,    nodes.FNC);
+	show_bool(13,52,    nodes.DoNR);
+        show_bool(14,52,    nodes.DoCRC);
+	show_bool(15,52,    nodes.NoPLZ);
+	show_bool(16,52,    nodes.NoGZ);
+	show_bool(17,52,    nodes.NoZmodem);
+	show_bool(18,52,    nodes.NoZedzap);
+	show_bool(19,52,    nodes.NoHydra);
+	show_bool(17,76,    nodes.WrongEscape);
+	show_bool(18,76,    nodes.NoBinkp11);
+	show_bool(19,76,    nodes.IgnHold);
 
-	show_bool(13,61,    nodes.NoPLZ);
-	show_bool(14,61,    nodes.NoGZ);
-	show_bool(15,61,    nodes.NoZmodem);
-	show_bool(16,61,    nodes.NoZedzap);
-	show_bool(17,61,    nodes.NoHydra);
-	show_bool(18,61,    nodes.WrongEscape);
-	show_bool(19,61,    nodes.NoBinkp11);
-	show_bool(20,61,    nodes.IgnHold);
-
-	switch(select_menu(22)) {
+	switch(select_menu(23)) {
 	case 0: return;
 	case 1: E_STR(  7,26,15, nodes.Spasswd,     "The ^Session password^ for this node")
 	case 2: E_STR(  8,26,40, nodes.dial,        "If needed, give a special modem ^dial command^ for this node")
@@ -876,25 +876,25 @@ void SessionEdit(void)
 	case 4: E_STR( 10,26,20, nodes.phone[1],    "Enter ^phone number^ to override the nodelist")
 	case 5: E_STR( 11,26,54, nodes.Nl_flags,    "^Nodelist flags^ override")
 	case 6: E_STR( 12,26,40, nodes.Nl_hostname, "Node internet ^hostname/IP address^ override")
-	case 7: nodes.Session_out = edit_sessiontype(13,26, nodes.Session_out);
+	case 7: nodes.Session_out = edit_sessiontype(13,23, nodes.Session_out);
 		break;
-	case 8: nodes.Session_in =  edit_sessiontype(14,26, nodes.Session_in);
+	case 8: nodes.Session_in =  edit_sessiontype(14,23, nodes.Session_in);
 		break;
-	case 9: E_BOOL(15,26,    nodes.NoEMSI,      "Disable ^EMSI handshake^ with this node")
-	case 10:E_BOOL(16,26,    nodes.NoWaZOO,     "Disable ^YooHoo/2U2 handshake^ (FTSC-0006) with this node")
-	case 11:E_BOOL(17,26,    nodes.NoFreqs,     "Disallow ^file requests^ from this node")
-	case 12:E_BOOL(18,26,    nodes.NoCall,      "Don't ^call^ this node")
-	case 13:E_BOOL(19,26,    nodes.FNC,         "Node needs ^DOS 8.3^ filenames")
-	case 14:E_BOOL(20,26,    nodes.DoNR,	    "Use ^NR-mode^ in outgoing binkp sessions")
-		
-	case 15:E_BOOL(13,61,    nodes.NoPLZ,       "Disable ^Binkp PLZ^ compression with this node")
-	case 16:E_BOOL(14,61,    nodes.NoGZ,        "Disable ^Binkp GZ and BZ2^ compression with this node")
-	case 17:E_BOOL(15,61,    nodes.NoZmodem,    "Disable ^Zmodem^ protocol with this node")
-	case 18:E_BOOL(16,61,    nodes.NoZedzap,    "Disable ^Zedzap^ protocol with this node")
-	case 19:E_BOOL(17,61,    nodes.NoHydra,     "Disable ^Hydra^ protocol with this node")
-	case 20:E_BOOL(18,61,    nodes.WrongEscape, "Use the ^old escape^ for long filenames (Argus, Irex)")
-	case 21:E_BOOL(19,61,    nodes.NoBinkp11,   "Disable ^binkp/1.1^ (fallback to binkp/1.0) mode for this node")
-	case 22:E_BOOL(20,61,    nodes.IgnHold,     "Ignore node ^Hold or Down^ nodelist status")
+	case 9: E_BOOL(15,23,    nodes.NoEMSI,      "Disable ^EMSI handshake^ with this node")
+	case 10:E_BOOL(16,23,    nodes.NoWaZOO,     "Disable ^YooHoo/2U2 handshake^ (FTSC-0006) with this node")
+	case 11:E_BOOL(17,23,    nodes.NoFreqs,     "Disallow ^file requests^ from this node")
+	case 12:E_BOOL(18,23,    nodes.NoCall,      "Don't ^call^ this node")
+	case 13:E_BOOL(19,23,    nodes.FNC,         "Node needs ^DOS 8.3^ filenames")
+	case 14:E_BOOL(13,52,    nodes.DoNR,	    "Use ^NR-mode^ in outgoing binkp sessions")
+	case 15:E_BOOL(14,52,    nodes.DoCRC,       "Use ^Binkp CRC^ error checking")	
+	case 16:E_BOOL(15,52,    nodes.NoPLZ,       "Disable ^Binkp PLZ^ compression with this node")
+	case 17:E_BOOL(16,52,    nodes.NoGZ,        "Disable ^Binkp GZ and BZ2^ compression with this node")
+	case 18:E_BOOL(17,52,    nodes.NoZmodem,    "Disable ^Zmodem^ protocol with this node")
+	case 19:E_BOOL(18,52,    nodes.NoZedzap,    "Disable ^Zedzap^ protocol with this node")
+	case 20:E_BOOL(19,52,    nodes.NoHydra,     "Disable ^Hydra^ protocol with this node")
+	case 21:E_BOOL(17,76,    nodes.WrongEscape, "Use the ^old escape^ for long filenames (Argus, Irex)")
+	case 22:E_BOOL(18,76,    nodes.NoBinkp11,   "Disable ^binkp/1.1^ (fallback to binkp/1.0) mode for this node")
+	case 23:E_BOOL(19,76,    nodes.IgnHold,     "Ignore node ^Hold or Down^ nodelist status")
 	}
     }
 }

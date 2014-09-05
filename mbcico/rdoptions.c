@@ -53,6 +53,7 @@ static struct _ktab {
     {(char *)"PLZ",	NOPLZ},
     {(char *)"GZ/BZ2",	NOGZBZ2},
     {(char *)"NR",	NONR},
+    {(char *)"CRC",     NOCRC},
     {NULL,		0}
 };
 
@@ -93,6 +94,8 @@ void rdoptions(int Loaded)
 	localoptions |= NOZEDZAP;
     if (CFG.NoHydra)
 	localoptions |= NOHYDRA;
+    if (CFG.NoCRC32)
+        localoptions |= NOCRC;
     localoptions |= NONR;
 
 #ifndef	HAVE_ZLIB_H
@@ -131,6 +134,8 @@ void rdoptions(int Loaded)
 	localoptions |= NOGZBZ2;
     if (nodes.DoNR)
 	localoptions &= ~NONR;
+    if (nodes.DoCRC)
+        localoptions &= ~NOCRC;
 
     logoptions();
 }

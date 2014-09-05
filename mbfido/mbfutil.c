@@ -52,7 +52,7 @@ void ProgName(void)
 		return;
 
 	mbse_colour(WHITE, BLACK);
-	printf("\nMBFILE: MBSE BBS %s File maintenance utility\n", VERSION);
+	printf("\nMBFILE: MBSE BBS %s File Maintenance Utility\n", VERSION);
 	mbse_colour(YELLOW, BLACK);
 	printf("        %s\n", COPYRIGHT);
 }

@@ -127,16 +127,17 @@ FILE *bopenfile(char *fname, time_t remtime, off_t remsize, off_t *resofs)
  *  file so that in a next session we know we must append to that file instead of
  *  trying to get the file again.
  */
-int bclosefile(int success)
+int bclosefile(int success, int CRCflag, int crc)
 {
     int		    rc = 0;
+    int	            tmpcrc;
     struct utimbuf  ut;
     char	    *temp;
     
     Syslog('b', "Binkp: closefile(), for file \"%s\"", MBSE_SS(infpath));
 
     if ((infp == NULL) || (infpath == NULL)) {
-	Syslog('+', "Binkp: closefile(), nothing to close");
+	Syslog('+', "Binkp: bclosefile(), nothing to close");
 	return 1;
     }
 
@@ -169,9 +170,24 @@ int bclosefile(int success)
     else
 	Syslog('b', "Binkp: unlinked %s", temp);
 
+    /* If CRC mode is active, check the CRC of the received file. */
+    
+    if (CRCflag) {
+        tmpcrc = file_crc(infpath, FALSE);
+        if (tmpcrc != crc) { /* CRC check failed. */
+            Syslog('!', "Binkp: CRC error %s Expected %x Got %x", infpath, crc, tmpcrc);
+            unlink(infpath); /* Remove file with incorrect CRC. */
+            isfreq = FALSE;
+            free(infpath);
+            infpath = NULL;            
+            return 2;
+        }
+    }
+         
     /*
      * Move file from extra tmp to normal tempinbound.
      */
+
     snprintf(temp, PATH_MAX, "%s/%s", tempinbound, basename(infpath));
 
     if (rc == 0) {

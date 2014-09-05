@@ -1302,19 +1302,19 @@ void s_mailer(void)
 	mbse_mvprintw(15, 2, "9.   No callout");
 	mbse_mvprintw(16, 2, "10.  No EMSI session");
 	mbse_mvprintw(17, 2, "11.  No Yooho/2U2");
+	mbse_mvprintw(12,31, "12.  No CRC");
+	mbse_mvprintw(13,31, "13.  No Zmodem");
+	mbse_mvprintw(14,31, "14.  No Zedzap");
+	mbse_mvprintw(15,31, "15.  No Hydra");
+	mbse_mvprintw(16,31, "16.  No MD5");
+	mbse_mvprintw(17,31, "17.  Zero Locks OK");
 
-	mbse_mvprintw(13,31, "12.  No Zmodem");
-	mbse_mvprintw(14,31, "13.  No Zedzap");
-	mbse_mvprintw(15,31, "14.  No Hydra");
-	mbse_mvprintw(16,31, "15.  No MD5");
-	mbse_mvprintw(17,31, "16.  Zero Locks OK");
-
-	mbse_mvprintw(12,59, "17.  Phonetrans  1-10");
-	mbse_mvprintw(13,59, "18.  Phonetrans 11-20");
-	mbse_mvprintw(14,59, "19.  Phonetrans 21-30");
-	mbse_mvprintw(15,59, "20.  Phonetrans 31-40");
-	mbse_mvprintw(16,59, "21.  Max. files");
-	mbse_mvprintw(17,59, "22.  Max. MB.");
+	mbse_mvprintw(12,59, "18.  Phonetrans  1-10");
+	mbse_mvprintw(13,59, "19.  Phonetrans 11-20");
+	mbse_mvprintw(14,59, "20.  Phonetrans 21-30");
+	mbse_mvprintw(15,59, "21.  Phonetrans 31-40");
+	mbse_mvprintw(16,59, "22.  Max. files");
+	mbse_mvprintw(17,59, "23.  Max. MB.");
 }
 
 
@@ -1368,7 +1368,7 @@ void e_mailer(void)
 	show_bool(15,23,   CFG.NoCall);
 	show_bool(16,23,   CFG.NoEMSI);
 	show_bool(17,23,   CFG.NoWazoo);
-
+	show_bool(12,52, CFG.NoCRC32);
 	show_bool(13,52, CFG.NoZmodem);
 	show_bool(14,52, CFG.NoZedzap);
 	show_bool(15,52, CFG.NoHydra);
@@ -1378,7 +1378,7 @@ void e_mailer(void)
 	show_int( 16,75, CFG.Req_Files);
 	show_int( 17,75, CFG.Req_MBytes);
 
-	switch(select_menu(22)) {
+	switch(select_menu(23)) {
 	    case 0: return;
 	    case 1: E_LOGL(CFG.cico_loglevel, "1.14.1", s_mailer)
 	    case 2: E_STR(  8,23,20,CFG.IP_Phone,       "The mailer ^TCP/IP \"phone\" number^ for this system, empty is no TCP/IP")
@@ -1389,21 +1389,21 @@ void e_mailer(void)
 	    case 7: E_INT( 13,23,   CFG.dialdelay,      "The ^random dialdelay^ in seconds ((^n^ <= delay) and (^n^ > (delay / 10)))")
 	    case 8: E_BOOL(14,23,   CFG.NoFreqs,        "Set to true if ^No Filerequests^ are allowed")
 	    case 9: E_BOOL(15,23,   CFG.NoCall,         "Set to true if ^No Calls^ are allowed")
-	    case 10:E_BOOL(16,23,   CFG.NoEMSI,         "If set then ^EMSI handshake^ is diabled")
+	    case 10:E_BOOL(16,23,   CFG.NoEMSI,         "If set then ^EMSI handshake^ is disabled")
 	    case 11:E_BOOL(17,23,   CFG.NoWazoo,        "If set then ^YooHoo/2U2^ (FTSC-0006) is disabled")
+	    case 12:E_BOOL(12,52,   CFG.NoCRC32,        "If set then ^CRC32^ in binkp sessions is disabled")
+	    case 13:E_BOOL(13,52,   CFG.NoZmodem,       "If set then the ^Zmodem^ protocol is disabled")
+	    case 14:E_BOOL(14,52,   CFG.NoZedzap,       "If set then the ^Zedzap^ protocol is disabled")
+	    case 15:E_BOOL(15,52,   CFG.NoHydra,        "If set then the ^Hydra^ protocol is disabled")
+	    case 16:E_BOOL(16,52,   CFG.NoMD5,          "Disable ^MD5 crypted^ passwords with binkp sessions")
+	    case 17:E_BOOL(17,52,   CFG.ZeroLocks,	"Allow ^zero byte node lockfiles^ created by another OS")
 
-	    case 12:E_BOOL(13,52,   CFG.NoZmodem,       "If set then the ^Zmodem^ protocol is disabled")
-	    case 13:E_BOOL(14,52,   CFG.NoZedzap,       "If set then the ^Zedzap^ protocol is disabled")
-	    case 14:E_BOOL(15,52,   CFG.NoHydra,        "If set then the ^Hydra^ protocol is disabled")
-	    case 15:E_BOOL(16,52,   CFG.NoMD5,          "Disable ^MD5 crypted^ passwords with binkp sessions")
-	    case 16:E_BOOL(17,52,   CFG.ZeroLocks,	"Allow ^zero byte node lockfiles^ created by another OS")
-
-	    case 17:e_trans(0, 17);  break;
-	    case 18:e_trans(10, 18); break;
-	    case 19:e_trans(20, 19); break;
-	    case 20:e_trans(30, 20); break;
-	    case 21:E_INT(16,75,    CFG.Req_Files,       "Maximum ^files^ to request, 0 is unlimited")
-	    case 22:E_INT(17,75,    CFG.Req_MBytes,      "Maximum ^MBytes^ to request, 0 is unlimited")
+	    case 18:e_trans(0, 17);  break;
+	    case 19:e_trans(10, 18); break;
+	    case 20:e_trans(20, 19); break;
+	    case 21:e_trans(30, 20); break;
+	    case 22:E_INT(16,75,    CFG.Req_Files,       "Maximum ^files^ to request, 0 is unlimited")
+	    case 23:E_INT(17,75,    CFG.Req_MBytes,      "Maximum ^MBytes^ to request, 0 is unlimited")
 	}
     }
 }
@@ -2270,6 +2270,7 @@ int global_doc(FILE *fp, FILE *toc, int page)
     add_webtable(wp, (char *)"No Calls", getboolean(CFG.NoCall));
     add_webtable(wp, (char *)"No EMSI", getboolean(CFG.NoEMSI));
     add_webtable(wp, (char *)"No YooHoo/2U2", getboolean(CFG.NoWazoo));
+    add_webtable(wp, (char *)"No CRC32", getboolean(CFG.NoCRC32));
     add_webtable(wp, (char *)"No Zmodem", getboolean(CFG.NoZmodem));
     add_webtable(wp, (char *)"No Zedzap", getboolean(CFG.NoZedzap));
     add_webtable(wp, (char *)"No Hydra", getboolean(CFG.NoHydra));
@@ -2294,6 +2295,7 @@ int global_doc(FILE *fp, FILE *toc, int page)
     fprintf(fp, "      No Calls           %s\n",  getboolean(CFG.NoCall));
     fprintf(fp, "      No EMSI            %s\n",  getboolean(CFG.NoEMSI));
     fprintf(fp, "      No YooHoo/2U2      %s\n",  getboolean(CFG.NoWazoo));
+    fprintf(fp, "      No CRC32           %s\n",  getboolean(CFG.NoCRC32));
     fprintf(fp, "      No Zmodem          %s\n",  getboolean(CFG.NoZmodem));
     fprintf(fp, "      No Zedzap          %s\n",  getboolean(CFG.NoZedzap));
     fprintf(fp, "      No Hydra           %s\n",  getboolean(CFG.NoHydra));
