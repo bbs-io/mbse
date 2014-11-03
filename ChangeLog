@@ -1,3 +1,15 @@
+v1.0.5          02-Nov-2014 - Andrew Leary
+
+		1.  Adjusted mbcico's .flo file logic to support a space
+		character as the first character of the .flo file line. 
+		This character indicates that the file named in the
+		remainder of the line should be sent to the remote system. 
+		This is needed to allow transmitting filenames that start
+		with .flo file reserved characters such as ^, #, -, or @.
+		2.  Worked on increasing reliability of Binkp NR mode.  It
+		is strongly recommended that CRC mode be enabled for any
+		node which NR mode is enabled for.
+
 v1.0.4		03-Sep-2014 - Andrew Leary
 
 		1. Reverted Vince Coen's packaging changes until an upgrade
