@@ -1188,7 +1188,7 @@ struct	sysconfig {
 	unsigned	NoFreqs		: 1;	/* Don't allow requests	    */
 	unsigned	NoCall		: 1;	/* Don't call		    */
 	unsigned	NoMD5		: 1;	/* Don't do MD5		    */
-	unsigned	xNoCRC32	: 1;
+	unsigned	NoCRC32		: 1;    /* Don't do Binkp CRC32     */
 	unsigned	NoEMSI		: 1;	/* Don't do EMSI	    */
 	unsigned	NoWazoo		: 1;	/* Don't do Yooho/2U2	    */
 	unsigned	NoZmodem	: 1;	/* Don't do Zmodem	    */
@@ -1699,7 +1699,7 @@ struct	_nodes {
 	unsigned	WrongEscape	: 1;	/* Binkp wrong escape	    */
 	unsigned	NoBinkp11	: 1;	/* No binkp/1.1 mode	    */
 	unsigned	IgnHold		: 1;	/* Ignore Hold/Down status  */
-
+	
 	char		xExtra[94];
 	int32_t		StartDate;		/* Node start date	    */
 	int32_t		LastDate;		/* Last action date	    */
@@ -1737,6 +1737,7 @@ struct	_nodes {
 	unsigned	Dir_in_waitclr	: 1;	/* Inbound wait for clear   */
 	unsigned	Dir_in_mklck	: 1;	/* Inbound create lock	    */
 	unsigned	Tic4d		: 1;	/* 4d addresses in ticfile  */
+	unsigned	DoCRC		: 1;    /* Enable Binkp CRC check   */
 
 						/* FTP transfers	    */
 	char		FTP_site[65];		/* Site name or IP address  */

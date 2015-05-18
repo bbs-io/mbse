@@ -180,6 +180,7 @@ static void check_flo(file_list **lst, char *nm)
 	    case '#':	p=buf+1; disposition=TFS; break;
 	    case '-':
 	    case '^':	p=buf+1; disposition=KFS; break;
+	    case ' ':
 	    case '@':	p=buf+1; disposition=LEAVE; break;
 	    case 0:	continue;
 	    default:	p=buf; disposition=LEAVE; break;

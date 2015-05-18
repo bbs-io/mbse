@@ -81,6 +81,7 @@ typedef struct _binkp_list {
 	time_t			date;		/* File date & time		*/
 	off_t			offset;		/* Start offset			*/
 	int			compress;	/* Compression state		*/
+	int			crc32;		/* File CRC32 checksum		*/
 } binkp_list;
 
 

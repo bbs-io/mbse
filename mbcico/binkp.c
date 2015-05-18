@@ -161,6 +161,8 @@ struct binkprec {
     int			rxcompressed;		/* Receiver compressed bytes	    */
     char                *ropts;                 /* Receiver M_FILE optional args    */
     int			rmode;			/* Receiver compression mode	    */
+    int			rcrc32;			/* Receiver file crc32 	            */
+    int			rcrcerr;		/* Receiver CRC error count         */	
 
     struct timezone	tz;			/* Timezone			    */
 
@@ -197,12 +199,15 @@ struct binkprec {
     int			BZ2we;			/* BZ2 compression flag		    */
     int			BZ2they;
 #endif
+
     int			NRwe;			/* NR mode			    */
     int			NRthey;
     int			NDwe;			/* ND mode			    */
     int			NDthey;
     int			NDAwe;			/* NDA mode			    */
     int			NDAthey;
+    int			CRCwe;			/* CRC mode			    */
+    int			CRCthey;
 };
 
 
@@ -236,7 +241,7 @@ char	*binkp2unix(char *);			    /* Unix -> Binkp escape	    */
 void	fill_binkp_list(binkp_list **, file_list *, off_t); /* Build pending files  */
 int	binkp_pendingfiles(void);		    /* Count pending files	    */
 void	binkp_clear_filelist(int);		    /* Clear current filelist	    */
-
+unsigned int	htoul(char *);			    /* Convert ASCII hex to uns int */
 static int  orgbinkp(void);			    /* Originate session state	    */
 static int  ansbinkp(void);			    /* Answer session state	    */
 static int  file_transfer(void);		    /* File transfer state	    */
@@ -264,6 +269,7 @@ int binkp(int role)
     bp.txbuf = calloc(MAX_BLKSIZE + 3, sizeof(unsigned char));
     bp.rname = calloc(512, sizeof(char));
     bp.ropts = calloc(512, sizeof(char));
+    bp.rcrcerr = 0;
     bp.rxfp = NULL;
     bp.local_EOB = FALSE;
     bp.remote_EOB = FALSE;
@@ -300,6 +306,10 @@ int binkp(int role)
 	bp.NRwe = Can;
     else
 	bp.NRwe = Want;
+    if (localoptions & NOCRC)
+        bp.CRCthey = bp.CRCwe = No;
+    else
+        bp.CRCthey = bp.CRCwe = Can;
     bp.NRthey = Can;
     bp.NDwe = No;
     bp.NDthey = No;
@@ -321,7 +331,7 @@ int binkp(int role)
 	goto binkpend;
     }
 
-    if (((Loaded && nodes.NoBinkp11) || bp.buggyIrex) && (bp.Major == 1) && (bp.Minor != 0)) {
+    if ((bp.buggyIrex) && (bp.Major == 1) && (bp.Minor != 0)) {
 	Syslog('+', "Binkp: forcing downgrade to binkp/1.0 protocol");
         bp.Major = 1;
         bp.Minor = 0;
@@ -705,6 +715,14 @@ SM_STATE(WaitConn)
 	}
     }
 
+    if (!CFG.NoCRC32) {
+        char s[8]; /* Send OPT CRC if it's not disabled. */
+        strcpy(s, "OPT CRC");
+        if ((rc = binkp_send_command(MM_NUL, "%s", s))) {
+            SM_ERROR;
+        }
+    }
+
     if ((rc = binkp_banner(FALSE))) {
 	SM_ERROR;
     }
@@ -935,6 +953,10 @@ SM_STATE(Opts)
 	Syslog('b', "Binkp: no PLZ compression for this node");
     }
 #endif
+    if (localoptions & NOCRC) {
+        bp.CRCwe = bp.CRCthey = No;
+        Syslog('b', "Binkp: no CRC mode for this node");
+    }
 
     binkp_send_comp_opts(FALSE);
     binkp_set_comp_state();
@@ -1061,6 +1083,7 @@ TrType binkp_receiver(void)
     off_t	    rxbytes;
     int		    bcmd, rc = 0;
     int		    rc1 = 0, nget = bp.blklen, zavail, nput;
+    int		    rc2 = 0;
     char	    zbuf[ZBLKSIZE];
     char	    *buf = bp.rxbuf;
 
@@ -1148,6 +1171,13 @@ TrType binkp_receiver(void)
 		bp.rmode = CompGZ;
 	    else if (strcmp((char *)"BZ2", bp.ropts) == 0)
 		bp.rmode = CompBZ2;
+            if (bp.CRCthey == Active) {
+                bp.rcrc32 = htoul(bp.ropts);
+                if (bp.rcrc32 == 0xffffffff) {
+                    Syslog('b', "Binkp: No CRC in M_FILE - disabling CRC check");
+                    bp.CRCthey = bp.CRCwe = No;
+                }
+            }
 	} else {
 	    /*
 	     * Corrupted command, in case this was serious, send the M_GOT back so it's
@@ -1219,7 +1249,7 @@ TrType binkp_receiver(void)
 	    if ((bp.rsize / (sfs.f_bsize + 1)) >= sfs.f_bfree) {
 		Syslog('!', "Binkp: only %u blocks free (need %u) in %s for this file", sfs.f_bfree, 
 			    (unsigned int)(bp.rsize / (sfs.f_bsize + 1)), tempinbound);
-		bclosefile(FALSE);
+		bclosefile(FALSE, FALSE, 0);
 		bp.rxfp = NULL; /* Force SKIP command       */
 	    }
 	}
@@ -1229,8 +1259,8 @@ TrType binkp_receiver(void)
 	     * We already got this file, send GOT so it will
 	     * be deleted at the remote.
 	     */
-	    Syslog('+', "Binkp: already got %s, sending GOT", bp.rname);
-	    rc = binkp_send_command(MM_GOT, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
+            Syslog('+', "Binkp: already got %s, sending GOT", bp.rname);
+            rc = binkp_send_command(MM_GOT, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
 	    bp.RxState = RxWaitF;
 	    bp.rxfp = NULL;
 	    if (rc)
@@ -1290,7 +1320,7 @@ TrType binkp_receiver(void)
 	    return Ok;
 	} else if (bcmd == MM_FILE) {
 	    Syslog('+', "Binkp: partial received file, saving");
-	    bclosefile(FALSE);
+	    bclosefile(FALSE, FALSE, 0);
 	    bp.rxfp = NULL;
 	    bp.RxState = RxAccF;
 	    return Continue;
@@ -1378,22 +1408,42 @@ TrType binkp_receiver(void)
 	bp.rxpos += written;
 
 	if (bp.rxpos == bp.rsize) {
-	    rc = binkp_send_command(MM_GOT, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
-	    bclosefile(TRUE);
+            rc2 = bclosefile(TRUE, (bp.CRCwe == Active), bp.rcrc32);
+            if (rc2) {
+                if (rc2 == 2) {
+                    bp.rcrcerr++;
+                    if (bp.rcrcerr == 1) {
+                        /* First CRC error */
+                        rc = binkp_send_command(MM_SKIP, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
+                        bp.RxState = RxWaitF;
+                        if (rc)
+	            	    return Failure;
+                        else
+                	    return Ok;
+                    } else {
+                        rc = binkp_send_command(MM_ERR, "Too many CRC errors - session aborted.");
+                        bp.RxState = RxDone;
+                        bp.rxfp = NULL;
+                        bp.rc = MBERR_FTRANSFER;
+                        return Failure;
+                    }
+                }
+            }
+            rc = binkp_send_command(MM_GOT, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
 	    bp.rxpos = bp.rxpos - bp.rxbytes;
 	    gettimeofday(&rxtvend, &bp.tz);
 #if defined(HAVE_ZLIB_H) || defined(HAVE_BZLIB_H)
 	    if (bp.rxcompressed)
-		Syslog('+', "Binkp: %s", compress_stat(bp.rxpos, bp.rxcompressed));
+	        Syslog('+', "Binkp: %s", compress_stat(bp.rxpos, bp.rxcompressed));
 #endif
-	    Syslog('+', "Binkp: OK %s", transfertime(rxtvstart, rxtvend, bp.rxpos, FALSE));
-	    rcvdbytes += bp.rxpos;
-	    bp.RxState = RxWaitF;
-	    if (rc)
-		return Failure;
+            Syslog('+', "Binkp: OK %s", transfertime(rxtvstart, rxtvend, bp.rxpos, FALSE));
+            rcvdbytes += bp.rxpos;
+            bp.RxState = RxWaitF;
+            if (rc)
+                return Failure;
 	    else
-		return Ok;
-	}
+	        return Ok;
+        } 
 	bp.RxState = RxReceD;
 	return Ok;
     } else if (bp.RxState == RxEOB) {
@@ -1536,20 +1586,23 @@ TrType binkp_transmitter(void)
 
 		bp.tmode = CompNone;
 		extra = (char *)"";
-
-		if ((tmp->compress == CompGZ) || (tmp->compress == CompBZ2)) {
-		    bp.tmode = tmp->compress;
-		    Syslog('b', "Binkp: compress_init start");
-		    if ((rc1 = compress_init(bp.tmode))) {
-			Syslog('+', "Binkp: compress_init failed (rc=%d)", rc1);
-			tmp->compress = CompNone;
-			bp.tmode = CompNone;
+                if ((bp.CRCwe == Active)) {
+                    Syslog('b', "Binkp: CRC mode active - GZ/BZ2 compression disabled");
+                } else {
+		    if ((tmp->compress == CompGZ) || (tmp->compress == CompBZ2)) {
+		        bp.tmode = tmp->compress;
+		        Syslog('b', "Binkp: compress_init start");
+		        if ((rc1 = compress_init(bp.tmode))) {
+			    Syslog('+', "Binkp: compress_init failed (rc=%d)", rc1);
+			    tmp->compress = CompNone;
+           		    bp.tmode = CompNone;
 		    } else {
 			if (bp.tmode == CompBZ2)
 			    extra = (char *)" BZ2";
-			else if (bp.tmode == CompGZ)
-			    extra = (char *)" GZ";
+			    else if (bp.tmode == CompGZ)
+	        	             extra = (char *)" GZ";
 			Syslog('b', "Binkp: compress_init ok, extra=%s", extra);
+			}
 		    }
 		}
 
@@ -1559,8 +1612,13 @@ TrType binkp_transmitter(void)
 		Syslog('+', "Binkp: send \"%s\" as \"%s\"", MBSE_SS(tmp->local), MBSE_SS(tmp->remote));
 		Syslog('+', "Binkp: size %u bytes, dated %s, comp %s", 
 			(unsigned int)tmp->size, date(tmp->date), cpstate[bp.tmode]);
-		rc = binkp_send_command(MM_FILE, "%s %u %d %d%s", MBSE_SS(tmp->remote), 
+                if ((bp.CRCwe == Active)) {
+                    Syslog('b', "Binkp: CRC active - file %s CRC %x", MBSE_SS(tmp->local), (int)tmp->crc32);
+                    rc = binkp_send_command(MM_FILE, "%s %u %d %d %x", MBSE_SS(tmp->remote), (unsigned int)tmp->size, (int)tmp->date, (unsigned int)tmp->offset, (int)tmp->crc32);
+                    } else {
+        		rc = binkp_send_command(MM_FILE, "%s %u %d %d%s", MBSE_SS(tmp->remote), 
 			(unsigned int)tmp->size, (int)tmp->date, (unsigned int)tmp->offset, extra);
+                    }
 		if (rc) {
 		    bp.TxState = TxDone;
 		    return Failure;
@@ -2013,16 +2071,13 @@ int binkp_banner(int originate)
 
     return rc;
 }
-
-
-
+	
 /*
  * Send compression options
  */
 int binkp_send_comp_opts(int originate)
 {
-    int	    rc = 0, nr = FALSE;
-#if defined(HAVE_ZLIB_H) || defined(HAVE_BZLIB_H)
+    int	    rc = 0, nr = FALSE, crc = FALSE;
     int	    plz = FALSE, gz = FALSE, bz2 = FALSE;
     char    *p = NULL;
     
@@ -2046,6 +2101,11 @@ int binkp_send_comp_opts(int originate)
     }
 #endif
 
+    if ((bp.CRCwe == Can) || (bp.CRCthey == Can) || (bp.CRCthey == Want)) {
+        crc = TRUE;
+        bp.CRCwe = Want;
+    }
+
     Syslog('b', "Binkp: binkp_send_comp_opts(%s) NRwe=%s NRthey=%s", 
 	    originate ?"TRUE":"FALSE", opstate[bp.NRwe], opstate[bp.NRthey]);
     if (originate) {
@@ -2061,7 +2121,7 @@ int binkp_send_comp_opts(int originate)
 	}
     }
 
-    if (plz || gz || bz2 || nr) {
+    if (plz || gz || bz2 || nr || crc) {
 	p = xstrcpy((char *)"OPT");
 	if (bz2 || gz) {
 	    bp.EXTCMDwe = Want;
@@ -2075,10 +2135,11 @@ int binkp_send_comp_opts(int originate)
 	    p = xstrcat(p, (char *)" PLZ");
 	if (nr)
 	    p = xstrcat(p, (char *)" NR");
+        if (crc)
+            p = xstrcat(p, (char *)" CRC");
 	rc = binkp_send_command(MM_NUL,"%s", p);
 	free(p);
     }
-#endif
 
     return rc;    
 }
@@ -2122,6 +2183,11 @@ void binkp_set_comp_state(void)
     if ((bp.NRthey == Want) && (bp.NRwe == Want)) {
 	bp.NRwe = bp.NRthey = Active;
 	Syslog('+', "Binkp: NR mode active");
+    }
+    Syslog('b', "Binkp: CRC    they=%s we=%s", opstate[bp.CRCthey], opstate[bp.CRCwe]);
+    if ((bp.CRCthey == Want) && (bp.CRCwe == Want)) {
+        bp.CRCwe = bp.CRCthey = Active;
+        Syslog ('+', "Binkp: CRC mode active");
     }
 }
 
@@ -2203,13 +2269,13 @@ void parse_m_nul(char *msg)
 	    bp.Minor = atoi(q + 1);
 	}
 	/*
-	 * Irex 2.24 upto 2.29 claims binkp/1.1 while it is binkp/1.0
+	 * Irex 2.24 upto 2.67 claims binkp/1.1 while it is binkp/1.0
 	 * Set a flag so we can activate a workaround. This only works
 	 * for incoming sessions.
 	 */
 	if ((p = strstr(msg+4, "Internet Rex 2."))) {
 	    q = strtok(p + 15, (char *)" \0");
-	    if ((atoi(q) >= 24) && (atoi(q) <= 29)) {
+	    if ((atoi(q) >= 24) && (atoi(q) <= 67)) {
 		Syslog('b', "        : Irex bug detected, workaround activated");
 		bp.buggyIrex = TRUE;
 	    }
@@ -2280,7 +2346,14 @@ void parse_m_nul(char *msg)
 	    } else if (strcmp(q, (char *)"ND") == 0) {
 		Syslog('b', "Binkp: remote wants ND mode, NOT SUPPORTED HERE YET");
 		bp.NDthey = Want;
-	    }
+	    } else if (strcmp(q, (char *)"CRC") == 0) {
+	        Syslog('b', "Binkp: remote requests CRC mode");
+	        if (bp.CRCthey == Can) {
+	            bp.CRCthey = Want;
+	            binkp_set_comp_state();
+                }
+            }
+	            
 	}
 
     } else {
@@ -2761,6 +2834,7 @@ void fill_binkp_list(binkp_list **bkll, file_list *fal, off_t offs)
     (*tmpl)->size     = tstat.st_size;
     (*tmpl)->date     = tstat.st_mtime;
     (*tmpl)->compress = CompNone;
+    (*tmpl)->crc32    = file_crc(fal->local, FALSE);
 
     /*
      * Search compression method, but only if GZ or BZ2 compression is active.

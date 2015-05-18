@@ -157,7 +157,7 @@ void ProgName(void)
 	return;
 
     mbse_colour(WHITE, BLACK);
-    printf("\nMBFIDO: MBSE BBS %s - Fidonet File and Mail processor\n", VERSION);
+    printf("\nMBFIDO: MBSE BBS %s - Fidonet File and Mail Processor\n", VERSION);
     mbse_colour(YELLOW, BLACK);
     printf("        %s\n", COPYRIGHT);
 }

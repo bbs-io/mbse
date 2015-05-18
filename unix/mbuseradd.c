@@ -1,10 +1,9 @@
 /*****************************************************************************
  *
- * $Id: mbuseradd.c,v 1.24 2007/05/28 10:40:24 mbse Exp $
  * Purpose ...............: setuid root version of useradd
  *
  *****************************************************************************
- * Copyright (C) 1997-2007
+ * Copyright (C) 1997-2012
  *   
  * Michiel Broek	FIDO:		2:280/2802
  * Beekmansbos 10
@@ -342,7 +341,7 @@ int main(int argc, char *argv[])
      * We don't log into MBSE BBS logfiles but to the system logfiles,
      * because we are modifying system files not belonging to MBSE BBS.
      */
-    openlog("mbuseradd", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTH);
+    openlog("mbuseradd", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTHPRIV);
     syslog(LOG_WARNING, "mbuseradd %s %s %s %s", argv[1], argv[2], argv[3], argv[4]);
 
     /*

@@ -59,7 +59,7 @@ void ProgName(void)
 	return;
 
     mbse_colour(WHITE, BLACK);
-    printf("\nMBDIFF: MBSE BBS %s Nodelist diff processor\n", VERSION);
+    printf("\nMBDIFF: MBSE BBS %s Nodelist Diff Processor\n", VERSION);
     mbse_colour(YELLOW, BLACK);
     printf("        %s\n", COPYRIGHT);
 }

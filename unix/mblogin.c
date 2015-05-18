@@ -1,11 +1,10 @@
 /*****************************************************************************
  *
- * $Id: mblogin.c,v 1.9 2007/08/26 15:05:33 mbse Exp $
  * Purpose ...............: Login program for MBSE BBS.
  * Shadow Suite (c) ......: Julianne Frances Haugh
  *
  *****************************************************************************
- * Copyright (C) 1997-2007
+ * Copyright (C) 1997-2012
  *   
  * Michiel Broek        FIDO:           2:280/2802
  * Beekmansbos 10
@@ -462,7 +461,7 @@ int main(int argc, char **argv)
 	    memzero(utent.ut_host, sizeof utent.ut_host);
 #endif
 
-	openlog("mblogin", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTH);
+	openlog("mblogin", LOG_PID|LOG_CONS|LOG_NOWAIT, LOG_AUTHPRIV);
 	setup_tty();
 	umask(getdef_num("UMASK", 007));
 
@@ -813,9 +812,9 @@ auth_ok:
 	endsgent();			/* stop access to shadow group file */
 #endif
 	if (pwent.pw_uid == 0)
-	    syslog(LOG_NOTICE, ROOT_LOGIN, fromhost);
+	    syslog(LOG_WARNING, ROOT_LOGIN, fromhost);
 	else
-	    syslog(LOG_INFO, REG_LOGIN, username, fromhost);
+	    syslog(LOG_WARNING, REG_LOGIN, username, fromhost);
 	closelog();
 
 	shell (pwent.pw_shell, (char *) 0); /* exec the shell finally. */

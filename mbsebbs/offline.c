@@ -1877,7 +1877,7 @@ unsigned int BlueWave_PackArea(unsigned int ulLast, int Area)
 		    strncpy((char *)Fti.subject, Msg.Subject, 72);
 		    tp = localtime(&Msg.Written);
 		    snprintf((char *)Fti.date, 20, "%2d %.3s %2d %2d:%02d:%02d", tp->tm_mday, 
-			    (char *) Language(398 + tp->tm_mon), tp->tm_year, tp->tm_hour, tp->tm_min, tp->tm_sec);
+			    (char *) Language(398 + tp->tm_mon), tp->tm_year % 100, tp->tm_hour, tp->tm_min, tp->tm_sec);
 		    Fti.msgnum = le_us((tWORD)Number);
 		    Fti.msgptr = le_int((tLONG)ftell(fdm));
 		    Fti.replyto = le_us((tWORD)Msg.Original);

@@ -1,3 +1,140 @@
+v1.0.5          02-Nov-2014 - Andrew Leary
+
+		1.  Adjusted mbcico's .flo file logic to support a space
+		character as the first character of the .flo file line. 
+		This character indicates that the file named in the
+		remainder of the line should be sent to the remote system. 
+		This is needed to allow transmitting filenames that start
+		with .flo file reserved characters such as ^, #, -, or @.
+		2.  Worked on increasing reliability of Binkp NR mode.  It
+		is strongly recommended that CRC mode be enabled for any
+		node which NR mode is enabled for.
+
+v1.0.4		03-Sep-2014 - Andrew Leary
+
+		1. Reverted Vince Coen's packaging changes until an upgrade
+		script can be written and tested.
+		2. Added Binkp CRC support (FSP-1020) to mbcico.
+		3. Changed the No Binkp/1.1 setting for nodes to be
+		effective on outbound calls only.  It was causing issues
+		with other mailers (including BinkD) on inbound calls,
+		because mbcico was reporting binkp/1.1 in the VER string and
+		then downshifting to binkp/1.0.
+		4. Updated the Internet Rex binkp/1.1 bug workaround to
+		reflect that versions 2.31 and 2.67 are also affected.
+
+v1.0.3		13-Jun-2014 - Vincent Coen
+
+		1. Changed unix/mbuseradd.c
+		Added extra arg to useradd -p 12345 to avoid a locked
+		record under Mageia v4 that prevents the password
+		adding a record due to a file busy may be: Lets see.
+		No it is not so reverted back.
+
+		2. Still looking for cause of bug.
+
+v1.0.2		14-Mar-2014 - Vincent Coen
+
+		Changed packaging to use /home/mbse instead of /opt/mbse
+		to suit users with a seperate / and a /home partitions.
+
+		IT DOES NOT CHANGE THE RESULTS FOR AN EXISTING INSTALL
+		WHERE mbse & bbs users are set up to use /opt/mbse.
+
+		YOU WILL HAVE TO DO THIS MANUALLY.
+		The supplied INSTALL script has been changed.
+		
+		To do this you will need to change:
+		1. Users mbse, bbs and all bbs users to reflect the change
+		   of home directory from /opt/mbse to /home/mbse using your 
+		   distro's graphic system editing tool for users or if not 
+		   available use usermod via sudo etc:
+		   usermod -m -d /home/mbse mbse
+		   usermod -m -d /home/mbse/home/bbs bbs
+		   usermod -m -d /home/mbse/home/user-name bbs user-name
+		   
+		   Note that the '-m' option in usermod option is to move the
+		   contents from the existing to the new location.
+		  
+		   You can see the list of bbs users by running:
+		   ls -la /opt/mbse/home
+		   
+
+		2. Using your favourite editor Change 
+		   /etc/services  and
+		   /etc/xinetd.d/mbsebbs
+
+		   Replacing all instances of /opt/mbse  with
+		   			      /home/mbse
+
+		3. Now do the same with http and ftp config files in
+		   /etc/httpd/conf/httpd.conf and
+		   /etc/proftpd/proftpd.conf (or whatever ftp & web service
+		   you use.
+
+		4. Having installed/upgraded the mbse system you must
+		   reboot the system or stop and start mbse, xinetd, ftp,
+		   httpd etc
+		   services. It is easier just shuting down and starting
+		   the system.
+
+		5. As su run cp -ap /opt/mbse /home
+
+		6. If not already done so, build the system using the usual
+		   ./configure & make and now run make install as su or if
+		   not available do, sudo bash then su then make install
+
+		7. Change all crontab processes that deal with mbse both as
+		   user mbse and root to reflect new directory using:
+		   crontab -l to see what is current and then as crontab -e
+		   to edit.
+
+		8. After rebooting the system check everything is working
+		   Then I would suggest renaming /opt/mbse say from /opt/mbse
+		   /opt/old-mbse and leave it a few days before deleting when
+		   you are SURE that all is working.
+
+		9. Now when you change the /boot partition or install a new
+		   version of your distro you can continue to use your /home
+		   as is but do not forget to recreate the crontab, xinetd, 
+		   rc.d/init.d/mbseb etc as needed by using cp -vp from the
+		   old partition to the new or failing that create a modified
+		   version of SETUP.sh as needed and run it.
+
+		...........NOW READ THE ABOVE, AGAIN..................
+
+	lib/
+	libmbse.a:
+		Replaced ftscprod.014 with ftscprod.016
+
+
+v1.0.1		Dec 2013 - Vincent Coen	
+
+	lib/
+	libmbse.a:
+		Fixed packaging and compiling the correct ftscprod
+		file to ftscprod.014.
+
+v1.0.0		Dec 2013?
+		This is the last version of mbsebbs submitted by me,
+		Michiel.
+
+	libmbse.a:
+		Updated to ftscprod.012.
+
+
+v0.95.15	26-Dec-2012
+
+	mblogin:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbuseradd:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbpasswd:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+
 v0.95.14	01-Dec-2011
 
 	general:

@@ -1,5 +1,3 @@
-$Id: README,v 1.8 2006/07/03 20:27:21 mbse Exp $
-
 				MBSE BBS Packages.
 
 
@@ -24,5 +22,12 @@ scheme is 0.36.00
 
 For first time installing, see the file INSTALL. After installation, the html
 guide is installed in /opt/mbse/html.
+
+
+Since 1 August 2013 I (Michiel Broek) stopped developing this package. But this
+is a GPL2 licensed open source package so feel free to continue to improve it.
+I only ask to make it clear to others that it is a modified package. You can do 
+that by changing the version numbers and messages in the file configure.ac and
+then run autoconf to update the configure scripts.
 
 
