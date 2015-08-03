@@ -533,7 +533,7 @@ node *getnlent(faddr *addr)
     static char		    buf[MAXNLLINELEN], ebuf[MAXNLLINELEN], *p, *q, tbuf[256];
     struct _ixentry	    xaddr;
     int			    i, Found = FALSE, ixflag, stdflag, ndrecord = FALSE;
-    char		    *mydomain, *path, *r;
+    char		    *mydomain, *path, *r, *s;
     struct _nlfil	    fdx;
     struct _nlidx	    ndx;
     int			    lowest, highest, current;
@@ -1092,7 +1092,26 @@ node *getnlent(faddr *addr)
 	     */
 	    snprintf(tbuf, 256, ":%u", tport);
 	    nodebuf.url = xstrcat(nodebuf.url, tbuf);
-	}
+	} else if (tbuf[0] == '[') {
+	    /*
+	     * Literal IPv6 address, check for port number after
+	     * ending bracket.
+	     */
+            s = strchr(tbuf, ']');
+            if (s == NULL) {
+              Syslog('+', "getnlent: invalid IPv6 address, cannot call");
+              if (nodebuf.url)
+                free(nodebuf.url);
+              nodebuf.url = NULL;
+            }
+            if (strchr(s, ':') == NULL) {
+              /*
+               * No port number given; add default.
+               */
+              snprintf(tbuf, 256, ":%u", tport);
+              nodebuf.url = xstrcat(nodebuf.url, tbuf);
+            }
+          } 
 
     } else if (nodebuf.dflags & myisdn) {
 	nodebuf.url = xstrcpy((char *)"isdn://");

@@ -69,7 +69,7 @@ int opentcp(char *servname)
     struct servent	*se;
     struct sockaddr_in  server;
     int			rc, GotPort = FALSE;
-    char		*portname, *ipver = NULL, servport[20], ipstr[INET6_ADDRSTRLEN];
+    char		*tservname, *portname, *ipver = NULL, servport[20], ipstr[INET6_ADDRSTRLEN];
     u_int16_t		portnum;
     struct addrinfo	hints, *res=NULL, *p;
 
@@ -80,20 +80,41 @@ int opentcp(char *servname)
     Syslog('+', "Open TCP connection to \"%s\"", MBSE_SS(servname));
     tcp_is_open = FALSE;
 
-    /*
-     * Get port number from name argument if there is a : part
-     */
-    if ((portname = strchr(servname,':'))) {
-	*portname++='\0';
-	if ((portnum = atoi(portname))) {
-	    server.sin_port=htons(portnum);
-	    GotPort = TRUE;
-	} else if ((se = getservbyname(portname, "tcp"))) {
-	    server.sin_port = se->s_port;
-	    GotPort = TRUE;
-	}
-    }
-
+    if ((tservname = strchr(servname,'['))) {
+      
+      /*
+       * Literal IPv6 address; check for port after ending bracket.
+       */
+      
+      tservname++; /* Strip left bracket. */
+      portname = strchr(tservname,']'); /* Find end of IPv6 address. */
+      *portname++='\0'; /* Strip right bracket. */
+      if ((portname = strchr(portname,':'))) {
+        *portname++='\0';
+        if ((portnum = atoi(portname))) {
+          server.sin_port = htons(portnum);
+          GotPort = TRUE;
+        } else if ((se = getservbyname(portname, "tcp"))) {
+            server.sin_port= se->s_port;
+            GotPort = TRUE;
+        }
+        servname = tservname;
+        }
+      } else if ((portname = strchr(servname,':'))) {
+           /*
+            * Hostname or IPv4 address.
+            * Get port number from name argument if there is a : part
+            */
+            *portname++='\0';
+            if ((portnum = atoi(portname))) {
+	      server.sin_port = htons(portnum);
+	      GotPort = TRUE;
+	    } else if ((se = getservbyname(portname, "tcp"))) {
+	        server.sin_port = se->s_port;
+	        GotPort = TRUE;
+	    }
+        }
+    
     /*
      * If not a forced port number, get the defaults.
      */

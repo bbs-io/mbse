@@ -1,4 +1,15 @@
-v1.0.5          02-Nov-2014 - Andrew Leary
+v1.0.6		03-Aug-2015 - Andrew Leary
+
+		1.  Added support for specifying a literal IPv6 address
+		encased in square brackets for a node.  Previously, IPv6 was
+		only supported for nodes having an AAAA record for their
+		hostname in DNS.
+		2.  The BBS now allows alphanumeric and punctuation
+		characters in user passwords.  Previously, only alphanumeric
+		characters were permitted.  
+		3.  Several minor grammar and punctuation corrections.
+
+v1.0.5          02-Nov-2014 - Andrew Leary (Never officially released)
 
 		1.  Adjusted mbcico's .flo file logic to support a space
 		character as the first character of the .flo file line. 
