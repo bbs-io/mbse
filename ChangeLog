@@ -1,3 +1,11 @@
+v1.0.6.1	07-Aug-2015 - Andrew Leary
+
+		1.  Removed the Precise field from Via lines in netmail, as
+		it was not actually accurate anyway.  Forwarded netmails had
+		this field set to .00, and locally generated netmails had this
+		field set to .01.  This field is optional in FTS-4009, but
+		if used is supposed to indicate fractions of a second.
+
 v1.0.6		03-Aug-2015 - Andrew Leary
 
 		1.  Added support for specifying a literal IPv6 address
