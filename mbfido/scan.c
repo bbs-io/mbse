@@ -1048,7 +1048,7 @@ void ExportNet(unsigned int MsgNum, int UUCPgate)
 
     now = time(NULL);
     tm = gmtime(&now);
-    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.01.UTC MBSE BBS %s\r",
+    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.UTC MBSE BBS %s\r",
 		aka2str(msgs.Aka), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday,
 		tm->tm_hour, tm->tm_min, tm->tm_sec, VERSION);
 

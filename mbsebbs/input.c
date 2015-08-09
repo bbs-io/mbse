@@ -758,14 +758,14 @@ void Getpass(char *theword)
                         continue;
                 } /* Don't Backtrack as we are at the begining of the passwd field */
 
-                if (isalnum(c)) {
+                if (((isalnum(c)) || (ispunct(c)))) {
                         password[counter] = c;
                         counter++;
                         printf("%c", CFG.iPasswd_Char);
-                }
+                } /* Allow alphanumeric and punctuation, but not CTRL characters or spaces */
         }
 
-        password[counter] = '\0';  /* Make sure the string has a NULL at the end*/
+        password[counter] = '\0';  /* Make sure the string has a NULL at the end */
         strcpy(theword,password);
 }
 

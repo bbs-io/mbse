@@ -104,14 +104,14 @@ int Ping(faddr *f, faddr *t, FILE *fp, int intransit)
     fprintf(np, "\001PID: MBSE-FIDO %s (%s-%s)\r", VERSION, OsName(), OsCPU());
     fprintf(np, "\001TZUTC: %s\r", gmtoffset(Now));
 
-    fprintf(np, "     Dear %s\r\r", MBSE_SS(f->name));
+    fprintf(np, "     Dear %s,\r\r", MBSE_SS(f->name));
     if (intransit) {
-	fprintf(np, "You did send a PING to %s\r", ascfnode(t, 0x1f));
-	fprintf(np, "This is a TRACE response from \"%s\" aka %s\r", CFG.bbs_name, ascfnode(from, 0x1f));
-	fprintf(np, "The time of arrival is %s\r", rfcdate(Now));
+	fprintf(np, "You sent a PING request to %s.\r", ascfnode(t, 0x1f));
+	fprintf(np, "This is a TRACE response from \"%s\" (AKA %s).\r", CFG.bbs_name, ascfnode(from, 0x1f));
+	fprintf(np, "The time of arrival is %s.\r", rfcdate(Now));
     } else
-	fprintf(np, "Your Ping arrived here at %s\r", rfcdate(Now));
-    fprintf(np, "Here are all the detected Via lines of the message from you:\r\r");
+	fprintf(np, "Your PING request arrived here at %s.\r", rfcdate(Now));
+    fprintf(np, "Here are all the detected VIA lines from your message:\r\r");
     fprintf(np, "======================================================================\r");
 
     rewind(fp);
@@ -123,10 +123,10 @@ int Ping(faddr *f, faddr *t, FILE *fp, int intransit)
     }
     fprintf(np, "======================================================================\r");
 
-    fprintf(np, "\rWith regards, %s\r\r", CFG.sysop_name);
+    fprintf(np, "\rAll the best,\r%s\r\r", CFG.sysop_name);
     fprintf(np, "%s\r", TearLine());
     Now = time(NULL) - (gmt_offset((time_t)0) * 60);
-    rc = postnetmail(np, from, f, NULL, (char *)"Re: Ping", Now, 0x0000, FALSE, from->zone, f->zone);
+    rc = postnetmail(np, from, f, NULL, (char *)"Re: Your PING Request", Now, 0x0000, FALSE, from->zone, f->zone);
     tidy_faddr(from);
 
     fclose(np);
