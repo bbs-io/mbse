@@ -422,7 +422,7 @@ int UplinkRequest(faddr *t, faddr *From, int FileMgr, char *cmd)
     fprintf(qp, "Please note, this is an automatic created message\r");
 
     tm = gmtime(&Now);
-    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.02.UTC %s\r",
+    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.UTC mbfido %s\r",
 		ascfnode(bestaka_s(t), 0x1f), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, 
 		tm->tm_hour, tm->tm_min, tm->tm_sec, VERSION);
 
