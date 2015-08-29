@@ -136,7 +136,7 @@ void CloseMail(FILE *qp, faddr *t)
     Now = time(NULL);
     tm = gmtime(&Now);
     ta = bestaka_s(t);
-    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.02.UTC %s\r",
+    fprintf(qp, "\001Via %s @%d%02d%02d.%02d%02d%02d.UTC mbfido %s\r",
 		ascfnode(ta, 0x1f), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, 
 		tm->tm_hour, tm->tm_min, tm->tm_sec, VERSION);
     tidy_faddr(ta);
