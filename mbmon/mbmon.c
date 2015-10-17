@@ -449,7 +449,7 @@ void soft_info(void)
 	set_color(WHITE, BLACK);
 	center_addstr( 8, (char *)COPYRIGHT);
 	set_color(YELLOW, BLACK);
-	center_addstr(10, (char *)"Made in the Netherlands.");
+	center_addstr(10, (char *)"Ceeated in the Netherlands.");
 	set_color(WHITE, BLACK);
 #ifdef __GLIBC__
 	snprintf(temp, 81, "Compiled on glibc v%d.%d", __GLIBC__, __GLIBC_MINOR__);
@@ -462,7 +462,7 @@ void soft_info(void)
 #endif
 	center_addstr(12, temp);
 	set_color(LIGHTCYAN, BLACK);
-	center_addstr(14, (char *)"http://www.mbse.eu or 2:280/2802");
+	center_addstr(14, (char *)"https://sourceforge.net/projects/mbsebbs");
 	set_color(LIGHTGREEN, BLACK);
 	center_addstr(rows -7, (char *)"This is free software; released under the terms of the GNU General");
 	center_addstr(rows -6, (char *)"Public License as published by the Free Software Foundation.");
