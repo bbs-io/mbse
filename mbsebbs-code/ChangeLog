@@ -1,7 +1,8 @@
-v1.0.6.2A	17-Oct-2015 - Vincent coen
+v1.0.6A		17-Oct-2015 - Vincent coen
 		1. Amended mbmon.c and mbsetup.c to reflect new hosting
 		for the sources etc at www.sourceforge.net.
 		2. Other very minor cosmetics.
+		3. Aded new doc directory and manual.
 
 v1.0.6		03-Aug-2015 - Andrew Leary
 
@@ -11,15 +12,15 @@ v1.0.6		03-Aug-2015 - Andrew Leary
 		hostname in DNS.
 		2.  The BBS now allows alphanumeric and punctuation
 		characters in user passwords.  Previously, only alphanumeric
-		characters were permitted.
+		characters were permitted.  
 		3.  Several minor grammar and punctuation corrections.
 
 v1.0.5          02-Nov-2014 - Andrew Leary (Never officially released)
 
 		1.  Adjusted mbcico's .flo file logic to support a space
-		character as the first character of the .flo file line.
+		character as the first character of the .flo file line. 
 		This character indicates that the file named in the
-		remainder of the line should be sent to the remote system.
+		remainder of the line should be sent to the remote system. 
 		This is needed to allow transmitting filenames that start
 		with .flo file reserved characters such as ^, #, -, or @.
 		2.  Worked on increasing reliability of Binkp NR mode.  It
@@ -59,24 +60,24 @@ v1.0.2		14-Mar-2014 - Vincent Coen
 
 		YOU WILL HAVE TO DO THIS MANUALLY.
 		The supplied INSTALL script has been changed.
-
+		
 		To do this you will need to change:
 		1. Users mbse, bbs and all bbs users to reflect the change
-		   of home directory from /opt/mbse to /home/mbse using your
-		   distro's graphic system editing tool for users or if not
+		   of home directory from /opt/mbse to /home/mbse using your 
+		   distro's graphic system editing tool for users or if not 
 		   available use usermod via sudo etc:
 		   usermod -m -d /home/mbse mbse
 		   usermod -m -d /home/mbse/home/bbs bbs
 		   usermod -m -d /home/mbse/home/user-name bbs user-name
-
+		   
 		   Note that the '-m' option in usermod option is to move the
 		   contents from the existing to the new location.
-
+		  
 		   You can see the list of bbs users by running:
 		   ls -la /opt/mbse/home
+		   
 
-
-		2. Using your favourite editor Change
+		2. Using your favourite editor Change 
 		   /etc/services  and
 		   /etc/xinetd.d/mbsebbs
 
@@ -112,7 +113,7 @@ v1.0.2		14-Mar-2014 - Vincent Coen
 
 		9. Now when you change the /boot partition or install a new
 		   version of your distro you can continue to use your /home
-		   as is but do not forget to recreate the crontab, xinetd,
+		   as is but do not forget to recreate the crontab, xinetd, 
 		   rc.d/init.d/mbseb etc as needed by using cp -vp from the
 		   old partition to the new or failing that create a modified
 		   version of SETUP.sh as needed and run it.
@@ -124,7 +125,7 @@ v1.0.2		14-Mar-2014 - Vincent Coen
 		Replaced ftscprod.014 with ftscprod.016
 
 
-v1.0.1		Dec 2013 - Vincent Coen
+v1.0.1		Dec 2013 - Vincent Coen	
 
 	lib/
 	libmbse.a:

@@ -1,0 +1,369 @@
+v1.0.6.2A	17-Oct-2015 - Vincent coen
+		1. Amended mbmon.c and mbsetup.c to reflect new hosting
+		for the sources etc at www.sourceforge.net.
+		2. Other very minor cosmetics.
+
+v1.0.6		03-Aug-2015 - Andrew Leary
+
+		1.  Added support for specifying a literal IPv6 address
+		encased in square brackets for a node.  Previously, IPv6 was
+		only supported for nodes having an AAAA record for their
+		hostname in DNS.
+		2.  The BBS now allows alphanumeric and punctuation
+		characters in user passwords.  Previously, only alphanumeric
+		characters were permitted.
+		3.  Several minor grammar and punctuation corrections.
+
+v1.0.5          02-Nov-2014 - Andrew Leary (Never officially released)
+
+		1.  Adjusted mbcico's .flo file logic to support a space
+		character as the first character of the .flo file line.
+		This character indicates that the file named in the
+		remainder of the line should be sent to the remote system.
+		This is needed to allow transmitting filenames that start
+		with .flo file reserved characters such as ^, #, -, or @.
+		2.  Worked on increasing reliability of Binkp NR mode.  It
+		is strongly recommended that CRC mode be enabled for any
+		node which NR mode is enabled for.
+
+v1.0.4		03-Sep-2014 - Andrew Leary
+
+		1. Reverted Vince Coen's packaging changes until an upgrade
+		script can be written and tested.
+		2. Added Binkp CRC support (FSP-1020) to mbcico.
+		3. Changed the No Binkp/1.1 setting for nodes to be
+		effective on outbound calls only.  It was causing issues
+		with other mailers (including BinkD) on inbound calls,
+		because mbcico was reporting binkp/1.1 in the VER string and
+		then downshifting to binkp/1.0.
+		4. Updated the Internet Rex binkp/1.1 bug workaround to
+		reflect that versions 2.31 and 2.67 are also affected.
+
+v1.0.3		13-Jun-2014 - Vincent Coen
+
+		1. Changed unix/mbuseradd.c
+		Added extra arg to useradd -p 12345 to avoid a locked
+		record under Mageia v4 that prevents the password
+		adding a record due to a file busy may be: Lets see.
+		No it is not so reverted back.
+
+		2. Still looking for cause of bug.
+
+v1.0.2		14-Mar-2014 - Vincent Coen
+
+		Changed packaging to use /home/mbse instead of /opt/mbse
+		to suit users with a seperate / and a /home partitions.
+
+		IT DOES NOT CHANGE THE RESULTS FOR AN EXISTING INSTALL
+		WHERE mbse & bbs users are set up to use /opt/mbse.
+
+		YOU WILL HAVE TO DO THIS MANUALLY.
+		The supplied INSTALL script has been changed.
+
+		To do this you will need to change:
+		1. Users mbse, bbs and all bbs users to reflect the change
+		   of home directory from /opt/mbse to /home/mbse using your
+		   distro's graphic system editing tool for users or if not
+		   available use usermod via sudo etc:
+		   usermod -m -d /home/mbse mbse
+		   usermod -m -d /home/mbse/home/bbs bbs
+		   usermod -m -d /home/mbse/home/user-name bbs user-name
+
+		   Note that the '-m' option in usermod option is to move the
+		   contents from the existing to the new location.
+
+		   You can see the list of bbs users by running:
+		   ls -la /opt/mbse/home
+
+
+		2. Using your favourite editor Change
+		   /etc/services  and
+		   /etc/xinetd.d/mbsebbs
+
+		   Replacing all instances of /opt/mbse  with
+		   			      /home/mbse
+
+		3. Now do the same with http and ftp config files in
+		   /etc/httpd/conf/httpd.conf and
+		   /etc/proftpd/proftpd.conf (or whatever ftp & web service
+		   you use.
+
+		4. Having installed/upgraded the mbse system you must
+		   reboot the system or stop and start mbse, xinetd, ftp,
+		   httpd etc
+		   services. It is easier just shuting down and starting
+		   the system.
+
+		5. As su run cp -ap /opt/mbse /home
+
+		6. If not already done so, build the system using the usual
+		   ./configure & make and now run make install as su or if
+		   not available do, sudo bash then su then make install
+
+		7. Change all crontab processes that deal with mbse both as
+		   user mbse and root to reflect new directory using:
+		   crontab -l to see what is current and then as crontab -e
+		   to edit.
+
+		8. After rebooting the system check everything is working
+		   Then I would suggest renaming /opt/mbse say from /opt/mbse
+		   /opt/old-mbse and leave it a few days before deleting when
+		   you are SURE that all is working.
+
+		9. Now when you change the /boot partition or install a new
+		   version of your distro you can continue to use your /home
+		   as is but do not forget to recreate the crontab, xinetd,
+		   rc.d/init.d/mbseb etc as needed by using cp -vp from the
+		   old partition to the new or failing that create a modified
+		   version of SETUP.sh as needed and run it.
+
+		...........NOW READ THE ABOVE, AGAIN..................
+
+	lib/
+	libmbse.a:
+		Replaced ftscprod.014 with ftscprod.016
+
+
+v1.0.1		Dec 2013 - Vincent Coen
+
+	lib/
+	libmbse.a:
+		Fixed packaging and compiling the correct ftscprod
+		file to ftscprod.014.
+
+v1.0.0		Dec 2013?
+		This is the last version of mbsebbs submitted by me,
+		Michiel.
+
+	libmbse.a:
+		Updated to ftscprod.012.
+
+
+v0.95.15	26-Dec-2012
+
+	mblogin:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbuseradd:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+	mbpasswd:
+		Logs to facility LOG_AUTHPRIV instead of LOG_AUTH.
+
+
+v0.95.14	01-Dec-2011
+
+	general:
+		Fixed the main manual html page.
+
+
+v0.95.13	08-Aug-2011
+
+	general:
+		Added support for Arch Linux.
+		Added some IPv6 configurations to the manual.
+		Changed META description lines in the manual.
+		Fixed a six year old documentation error.
+		All manual pages have only the .html extention.
+
+	mbfile:
+		Each html file index page now has an unique name to help
+		search engines.
+
+
+v0.95.12	22-May-2011
+
+	general:
+		Removed several compiler warnings.
+		Added invisible markers in the html manual.
+
+	mbselib:
+		The virus stream scanner can now uses IPv4 and/or IPv6 to
+		connect to the clamav server and can use server clusters too.
+		Connect smtp, pop3 and nntp upgraded to IPv4 and IPv6 use.
+
+	mbcico:
+		Can accept both IPv6 and IPv4 calls.
+		Can call IPv4 and IPv6 nodes.
+
+	mbtask:
+		Upgraded the ping function to newer system calls. Note that
+		for now I leave the interbbs chat IPv4 only.
+
+	mblogin:
+		Don't use gethostbyname function.
+
+
+v0.95.11	14-Jan-2011 (patches by Scott Street).
+
+	mbselib:
+		Fixed memory corruption error in mbnntp.
+		Added sysop in nodelist search function.
+
+	mbsebbs:
+		Fixed several (possible) buffer overflows, some serious ones.
+		Added lookup sysop in nodelist for netmail messages.
+
+	mbtask:
+		Fixed several (possible) buffer overflows.
+
+	lang:
+		Added language prompts 480 and 481.
+
+
+v0.95.10       26-Aug-2010 (released by Vince Coen).
+
+	mbsetup:
+		Minor cosmetic errors eg, inormation (information) etc in site
+		docs & update copyright dates for m_global.c & ledit.c.
+
+	mbout:
+		Check that when using file attach mode that path is absolute
+		eg, starts with '/' ('~/ is changed to '/opt/mbse/ etc)
+
+
+v0.95.7/8      12-Jul-2010 (released by Vince Coen).
+
+	general:
+		Cosmetics and exp. code.
+		And a few others I don't remember.
+
+	NOTE:   I am incrementing the version minor number for every build as
+		mbse does not use build number.
+
+
+v0.95.6		04-Oct-2009
+
+	general:
+		This may need more patches for Ubuntu 9.10.
+
+	mbfido:
+		Patch to compile on Ubuntu 9.10.
+
+	hatch:
+		Patch to compile on Ubuntu 9.10.
+
+
+v0.95.5		29-Nov-2008 - 04-Oct-2009
+
+	upgrade:
+		Start mbsetup, enter global setup, leave and save.
+
+	mbselib:
+		Newsservers can be connected with a port number from the
+		setup.
+
+	mbfido:
+		Fixed a possible array subscript overflow.
+
+	mbaff:
+		Fixed a possible array subscript overflow.
+
+	mbfile:
+		Fixed a possible array subscript overflow.
+
+	mbsetup:
+		In screen 1.12 a nntp port number can be set.
+		Added a switch to force authentication on connect with nntp
+		servers.
+
+	examples:
+		Added German menus and textfiles, written by Niels Haedecke.
+
+
+v0.95.4		31-Aug-2008 - 29-Nov-2008
+
+	upgrade:
+		Start mbsetup, enter global menu, leave and save.
+
+	mbnntp:
+		A cosmetic change to add an extra newline before the tearline.
+
+	mbfido:
+		A cosmetic change to add an extra newline before the tearline.
+
+	mbsebbs:
+		Fixed a buffer overflow in lastcallers display.
+
+	mbsetup:
+		Increased the size of the nntp username and password fields to
+		32 characters.
+
+	script:
+		installinit.sh now knows about Slamd64.
+		SETUP.sh now knows about Slamd64.
+
+
+v0.95.3		12-Mar-2008 - 31-Aug-2008.
+
+	mbfido:
+		Fixed another buffer overflow thanks someone who is using a
+		tic processor that doesn't follow specs and doesn't create
+		proper ticfiles.
+
+
+v0.95.2		17-Feb-2008 - 12-Mar-2008.
+
+	mbselib.h:
+		Added stream scanning for F-Prot.
+
+	mbfido:
+		Fixed missing SEENBY entry of our own aka if a echomail
+		message came from another zone.
+
+	mbsetup:
+		Fixed chapter numbering in the ascii sitedoc.
+
+	script:
+		Fixed hatch script to send File line. Note: you must manually
+		install hatch.new to hatch in the bin directory and set the
+		password again, this script will not automatic install.
+
+	mbtask:
+		Call setprgp is not fatal if it fails.
+
+
+v0.95.1		07-Jan-2008 - 17-Feb-2008.
+
+	upgrade:
+		Start mbsetup and exit. If you have a clamd running on some
+		server (or bbs machine), you can switch to use stream
+		scanning. See the manual for details.
+
+	mbselib.h:
+		Added file virscan function.
+		Added stream scanning for ClamAV, scanning is 10 times faster
+		compared to the commandline scanner.
+		Don't log errors if execute unzip returned error 11.
+
+	mbtask:
+		Added last changes for MIB counters.
+
+	mbfido:
+		Changed error message on the news gate.
+		Switched to virus scanner from library.
+
+	mbfile:
+		Switched to virus scanner from library.
+
+	mbsebbs:
+		Added MIB counters.
+		Switched to virus scanner from library.
+
+	mbsetup:
+		Added support for TCP stream scanners.
+
+	script:
+		Added support for Zenwalk.
+
+
+v0.95.0		25-Nov-2007 - 07-Jan-2008
+
+	mbcico:
+		The maximum speed to show to the other end is now 4294976295.
+
+	mbsetup:
+		Changed the maximum linespeed to display for TCP/IP sessions to
+		4294976295. Numbers above 2147483647 might display on remote
+		systems as negative numbers.
+
