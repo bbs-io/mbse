@@ -170,11 +170,11 @@ void ForwardFile(fidoaddr Node, fa_list *sbl)
 	    if ((TIC.PassThru) || (TIC.SendOrg)) {
 		fprintf(fp, "File %s\r\n", TIC.TicIn.File);
 		if (strlen(TIC.TicIn.FullName))
-		    fprintf(fp, "Fullname %s\r\n", TIC.TicIn.FullName);
+		    fprintf(fp, "Lfile %s\r\n", TIC.TicIn.FullName);
 	    } else {
 		fprintf(fp, "File %s\r\n", TIC.NewFile);
 		if (strlen(TIC.NewFullName))
-		    fprintf(fp, "Fullname %s\r\n", TIC.NewFullName);
+		    fprintf(fp, "Lfile %s\r\n", TIC.NewFullName);
 	    }
 	    fprintf(fp, "Size %d\r\n", (int)(TIC.FileSize));
 	    fprintf(fp, "Desc %s\r\n", TIC.TicIn.Desc);

@@ -288,6 +288,9 @@ int LoadTic(char *inb, char *tfn, orphans **opl)
 	    
 	} else if (strncasecmp(Temp, "fullname ", 9) == 0) {
 	    strncpy(TIC.TicIn.FullName, Temp+9, 80);
+        
+        } else if (strncasecmp(Temp, "lfile ", 6) == 0) {
+            strncpy(TIC.TicIn.FullName, Temp+6, 80);
 
 	} else if (strncasecmp(Temp, "created ", 8) == 0) {
 	    strncpy(TIC.TicIn.Created, Temp+8, 80);
