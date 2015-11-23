@@ -105,7 +105,7 @@ do
 	    echo "Origin $AKA" >> $FILE
 	    echo "From $AKA" >> $FILE
 	    echo "File $f" >> $FILE
-	    echo "Fullname $f" >> $FILE
+	    echo "Lfile $f" >> $FILE
 	    echo "Pth `pwd`" >> $FILE
 	    echo "Desc $DESC" >> $FILE
 	    echo "Pw $HATCHPWD" >> $FILE
