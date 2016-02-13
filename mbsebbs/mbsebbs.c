@@ -131,7 +131,7 @@ int main(int argc, char **argv)
     do_quiet = TRUE;
     InitClient(sUnixName, (char *)"mbsebbs", (char *)"Unknown", CFG.logfile, 
 	    CFG.bbs_loglevel, CFG.error_log, CFG.mgrlog, CFG.debuglog);
-    IsDoing("Loging in");
+    IsDoing("Logging in");
     Syslog(' ', " ");
     Syslog(' ', "MBSEBBS v%s", VERSION);
 
