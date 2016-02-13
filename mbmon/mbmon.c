@@ -3,7 +3,7 @@
  * Purpose ...............: Monitor Program 
  *
  *****************************************************************************
- * Copyright (C) 1997-2011
+ * Copyright (C) 1997-2015
  *   
  * Michiel Broek		FIDO:		2:280/2802
  * Beekmansbos 10
@@ -449,7 +449,7 @@ void soft_info(void)
 	set_color(WHITE, BLACK);
 	center_addstr( 8, (char *)COPYRIGHT);
 	set_color(YELLOW, BLACK);
-	center_addstr(10, (char *)"Ceeated in the Netherlands.");
+	center_addstr(10, (char *)"Created in the Netherlands.");
 	set_color(WHITE, BLACK);
 #ifdef __GLIBC__
 	snprintf(temp, 81, "Compiled on glibc v%d.%d", __GLIBC__, __GLIBC_MINOR__);
