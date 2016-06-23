@@ -1,3 +1,9 @@
+v1.0.6.6	23-Jun-2016 - Andrew Leary
+
+		1.  Several spelling and grammar corrections in mbsebbs.c,
+		chat.c, offline.c, and newuser.c.  Thanks to Sean Dennis for
+		the updates.
+
 v1.0.6.5	12-Feb-2016 - Robert James Clay
 
 		1. Edit README file to better reflect current practice.

@@ -955,7 +955,7 @@ void OLR_RestrictDate()
 {
     WhosDoingWhat(OLR, NULL);
 
-    PUTSTR((char *)"Not Yet Implemented");
+    PUTSTR((char *)"Sorry, but this feature isn't yet implemented.");
     Enter(1);
     Pause();
 }
@@ -974,7 +974,7 @@ void OLR_Upload(void)
     up_list	*up = NULL, *tmpf;
 
     if (strlen(CFG.bbsid) == 0) {
-	PUTSTR((char *)"System configuration error, inform sysop");
+	PUTSTR((char *)"System configuration error.  Inform the sysop!");
 	Enter(1);
 	WriteError("Config OLR bbsid not configured");
 	Pause();
@@ -1013,7 +1013,7 @@ void OLR_Upload(void)
     }
 
     if (RetVal == FALSE) {
-	WriteError("Invalid OLR packed received");
+	WriteError("Invalid OLR packet received!");
 	for (tmpf = up; tmpf; tmpf = tmpf->next) {
 	    Syslog('+', "Delete %s", tmpf->filename);
 	    unlink(tmpf->filename);
@@ -1074,7 +1074,7 @@ void OLR_Upload(void)
 
     rc = execute_str(archiver.funarc, File, NULL, (char *)"/dev/null", (char *)"/dev/null", (char *)"/dev/null");
     if (rawport() != 0) {
-	WriteError("Unable to set raw mode");
+	WriteError("Unable to set raw mode!");
     }
     if (rc) {
 	WriteError("$Failed %s", temp);
@@ -1090,7 +1090,7 @@ void OLR_Upload(void)
     unlink(File);
 
     /*
-     * Check for BlueWave files, case insensitive.
+     * Check for Blue Wave files, case insensitive.
      */
     RetVal = FALSE;
     snprintf(Dirpath, PATH_MAX, "%s/%s", CFG.bbs_usersdir, exitinfo.Name);
@@ -1111,7 +1111,7 @@ void OLR_Upload(void)
     }
 
     if (RetVal) {
-	Syslog('+', "OLR packet is BlueWave v3");
+	Syslog('+', "OLR packet is Blue Wave v3");
 	free(File);
 	free(temp);
 	BlueWave_Fetch();
@@ -1133,7 +1133,7 @@ void OLR_Upload(void)
 	return;
     }
 
-    WriteError("OLR_Upload: Garbage in mailpacket, clean directory!");
+    WriteError("OLR Upload: Garbage in mail packet.  Clean up the directory!");
     /*      Unknown type mailpacket */
     poutCR(LIGHTRED, BLACK, (char *)Language(443));
     Pause();
@@ -1145,7 +1145,7 @@ void OLR_Upload(void)
 
 /***************************************************************************
  *
- *                    BlueWave specific functions.
+ *                    Blue Wave specific functions.
  */
 
 
@@ -1156,7 +1156,7 @@ char *Extensions[] = {
 
 
 /*
- *  Download a BlueWave mailpacket, called from menu.
+ *  Download a Blue Wave mailpacket, called from menu.
  */
 void OLR_DownBW()
 {
@@ -1172,9 +1172,9 @@ void OLR_DownBW()
     msg_high	    *mhl = NULL;
 
     if (strlen(CFG.bbsid) == 0) {
-	PUTSTR((char *)"System configuration error, inform sysop");
+	PUTSTR((char *)"System configuration error.  Inform the sysop!");
 	Enter(1);
-	WriteError("Config OLR bbsid not configured");
+	WriteError("Config OLR BBS ID not configured");
 	Pause();
 	return;
     }
@@ -1192,7 +1192,7 @@ void OLR_DownBW()
 
     Now = time(NULL);
     tp = localtime(&Now);
-    Syslog('+', "Preparing BlueWave packet");
+    Syslog('+', "Preparing Blue Wave packet");
 
     snprintf(Pktname, 32, "%s%s", CFG.bbsid , Extensions[tp->tm_wday]);
     Syslog('m', "Packet name %s", Pktname);
@@ -1405,13 +1405,13 @@ void OLR_DownBW()
     }
 
     if (rc) {
-	Syslog('+', "BlueWave download failed");
+	Syslog('+', "Blue Wave download failed");
 	/*      Download failed */
 	poutCR(CFG.HiliteF, CFG.HiliteB, (char *)Language(447));
     } else {
-	Syslog('+', "BlueWave download successfull");
+	Syslog('+', "Blue Wave download successful");
 	PUTCHAR('\r');
-	/*        Download successfull */
+	/*        Download successful */
 	poutCR(CFG.HiliteF, CFG.HiliteB, (char *)Language(448));
 
 	if (mhl != NULL)
@@ -1461,10 +1461,10 @@ void BlueWave_Fetch()
     }
     if (up != NULL) {
 	fread(&Uph, sizeof(UPL_HEADER), 1, up);
-	Syslog('+', "Processing BlueWave v3 \"%s\" file", Filename);
+	Syslog('+', "Processing Blue Wave v3 \"%s\" file", Filename);
 	Syslog('+', "Client: %s %d.%d", Uph.reader_name, Uph.reader_major, Uph.reader_minor);
 	if (le_us(Uph.upl_header_len) != sizeof(UPL_HEADER)) {
-	    WriteError("Recordsize mismatch");
+	    WriteError("Record size mismatch");
 	    fclose(up);
 	    free(temp);
 	    /*      ERROR in packet */
@@ -1638,7 +1638,7 @@ void BlueWave_Fetch()
     if (iol != NULL) {
 	/*      Processing Offline Configuration */
 	poutCR(LIGHTBLUE, BLACK, (char *)Language(455));
-	Syslog('+', "Processing BlueWave v3 configuration file \"%s\"", Filename);
+	Syslog('+', "Processing Blue Wave v3 configuration file \"%s\"", Filename);
 	OLC_head = FALSE;
 	
 	while (fgets(b, 255, iol) != NULL ) {
@@ -1950,7 +1950,7 @@ void OLR_DownQWK(void)
     msg_high	    *tmp, *mhl = NULL;
 
     if (strlen(CFG.bbsid) == 0) {
-	poutCR(LIGHTRED, BLACK, (char *)"System configuration error, inform sysop");
+	poutCR(LIGHTRED, BLACK, (char *)"System configuration error.  Inform the sysop!");
 	WriteError("Config OLR bbsid not configured");
 	Pause();
 	return;
@@ -2159,9 +2159,9 @@ void OLR_DownQWK(void)
 	/*      Download failed */
 	pout(CFG.HiliteF, CFG.HiliteB, (char *)Language(447));
     } else {
-	Syslog('+', "QWK download successfull");
+	Syslog('+', "QWK download successful");
 	PUTCHAR('\r');
-	/*        Download successfull */
+	/*        Download successful */
 	poutCR(CFG.HiliteF, CFG.HiliteB, (char *)Language(448));
 
 	if (mhl != NULL)
@@ -2191,7 +2191,7 @@ void QWK_Fetch()
     fidoaddr	    dest;
     int		    HasTear;
 
-    /*      Processing BlueWave reply packet */
+    /*      Processing QWK reply packet */
     poutCR(LIGHTBLUE, BLACK, (char *)Language(459));
     temp = calloc(PATH_MAX, sizeof(char));
     otemp = calloc(PATH_MAX, sizeof(char));
@@ -2665,7 +2665,7 @@ void OLR_DownASCII(void)
     msg_high        *tmp, *mhl = NULL;
 
     if (strlen(CFG.bbsid) == 0) {
-	poutCR(LIGHTRED, BLACK, (char *)"System configuration error, inform sysop");
+	poutCR(LIGHTRED, BLACK, (char *)"System configuration error.  Inform the sysop!");
 	WriteError("Config OLR bbsid not configured");
 	Pause();
 	return;
@@ -2853,9 +2853,9 @@ void OLR_DownASCII(void)
 	/*      Download failed */
 	pout(CFG.HiliteF, CFG.HiliteB, (char *)Language(447));
     } else {
-	Syslog('+', "ASCII download successfull");
+	Syslog('+', "ASCII download successful");
 	PUTCHAR('\r');
-	/*        Download successfull */
+	/*        Download successful */
 	poutCR(CFG.HiliteF, CFG.HiliteB, (char *)Language(448));
 
 	if (mhl != NULL)
