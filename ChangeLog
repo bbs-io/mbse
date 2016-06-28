@@ -1,3 +1,13 @@
+v1.0.6.7	28-Jun-2016 - Andrew Leary
+
+		1.  Added the ability to disable cross-zone SEEN-BY
+		stripping to mbfido.  This is currently a global toggle,
+		defaulting to strip SEEN-BYs when crossing zone boundaries. 
+		In situations where this behavior is not desired, toggle the
+		SBstrip option to "No" in mbsetup 1.11.20.  If there is
+		enough call for it, I will consider making this configurable
+		on a group and/or area basis.
+
 v1.0.6.6	23-Jun-2016 - Andrew Leary
 
 		1.  Several spelling and grammar corrections in mbsebbs.c,

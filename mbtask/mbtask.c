@@ -313,6 +313,7 @@ void load_maincfg(void)
 	CFG.ca_Notify = TRUE;
 	CFG.ca_Passwd = TRUE;
 	CFG.ca_Pause = TRUE;
+        CFG.ca_SBstrip = TRUE;
 	CFG.ca_Check = TRUE;
 
         for (i = 0; i < 32; i++) {

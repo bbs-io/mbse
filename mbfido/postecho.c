@@ -338,7 +338,7 @@ int postecho(faddr *p_from, faddr *f, faddr *t, char *orig, char *subj, time_t m
      */
     if (!dupe && !isbad) {
 
-	if (msgs.Aka.zone != Link.aka.zone) {
+	if ((msgs.Aka.zone != Link.aka.zone) && (CFG.ca_SBstrip)) {
 	    /*
 	     * If it is a zonegated echomailmessage the SEEN-BY lines
 	     * are stripped off including that of the other zone's

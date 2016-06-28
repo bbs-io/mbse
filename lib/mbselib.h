@@ -1274,6 +1274,7 @@ struct	sysconfig {
 	unsigned	ca_Notify	: 1;	/* Areamgr: Notify on/off   */
 	unsigned	ca_Passwd	: 1;	/* Areamgr: Passwd change   */
 	unsigned	ca_Pause	: 1;	/* Areamgr: Allow Pause     */
+	unsigned	ca_SBstrip	: 1;    /* Strip SB out-of-zone     */
 	unsigned	ca_Check	: 1;	/* Flag for upgrade check   */
 
 	char		rulesdir[65];		/* Area rules directory	    */
