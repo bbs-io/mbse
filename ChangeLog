@@ -1,3 +1,13 @@
+v1.0.6.8	20-Jul-2016 - Andrew Leary
+
+		1.  Fixed the SETUP.sh script to handle installing on fresh
+		installations of Ubuntu 12.04+.  These versions do not install
+		an admin group, which MBSE uses to enable the mbse user to run
+		sudo.  SETUP.sh will now add the admin group if it doesn't
+		exist, to prevent useradd failing to create the mbse user.
+		This change only affects first time installations on Ubuntu
+		12.04 or later.
+
 v1.0.6.7	28-Jun-2016 - Andrew Leary
 
 		1.  Added the ability to disable cross-zone SEEN-BY

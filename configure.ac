@@ -12,7 +12,7 @@ AC_SUBST(SUBDIRS)
 PACKAGE="mbsebbs"
 MAJOR="1"
 MINOR="0"
-REVISION="6.7"
+REVISION="6.8"
 VERSION="$MAJOR.$MINOR.$REVISION"
 COPYRIGHT="Copyright (C) 1997-2016 Michiel Broek, All Rights Reserved"
 SHORTRIGHT="Copyright (C) 1997-2016 M. Broek"
