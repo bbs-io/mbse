@@ -263,7 +263,7 @@ int get_nntp(char *buf, int max)
     int	    c, len;
 
     len = 0;
-    memset(buf, 0, sizeof(buf));
+    memset(buf, 0, sizeof(*buf));
     while (TRUE) {
 	c = tty_getc(180);
 	if (c <= 0) {

@@ -312,8 +312,8 @@ int main(int argc, char *argv[])
             if (execl(temp, "mblogin", (char *)NULL) == -1)
                 perror("FATAL: Error loading BBS!");
 
-	        InitClient(pw->pw_name, (char *)"mbcico", CFG.location, CFG.logfile,
-			            CFG.cico_loglevel, CFG.error_log, CFG.mgrlog, CFG.debuglog);
+	    InitClient(pw->pw_name, (char *)"mbcico", CFG.location, CFG.logfile,
+		    CFG.cico_loglevel, CFG.error_log, CFG.mgrlog, CFG.debuglog);
             /*
              * If this happens, nothing is logged!
              */

@@ -862,7 +862,7 @@ node *getnlent(faddr *addr)
 		     * Parse the IP flag for a optional port number.
 		     */
 		    if ((r = strrchr(p, ':'))) {
-			*r++;
+			r++;
 			for (tmps = &nl_service; *tmps; tmps=&((*tmps)->next)) {
 			    if (strncmp(p, (*tmps)->flag, 3) == 0) {
 				/*

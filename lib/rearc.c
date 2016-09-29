@@ -88,7 +88,7 @@ int rearc(char *filename, char *arctype, int do_quiet)
     newname = calloc(PATH_MAX, sizeof(char));
     strcpy(newname, filename);
     p = strrchr(newname, '.');
-    *p++;
+    p++;
     *p = '\0';
 
     if (!getarchiver(arctype)) {

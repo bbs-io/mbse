@@ -175,7 +175,7 @@ char *mkemsidat(int caller)
 	p=xstrcat(p,(char *)"ZAP,");
     if (emsi_local_protos & PROT_ZMO) 
 	p=xstrcat(p,(char *)"ZMO,");
-    if (emsi_local_protos & PROT_DZA);
+    if (emsi_local_protos & PROT_DZA)
 	p=xstrcat(p,(char *)"DZA,");
     if (emsi_local_protos & PROT_KER) 
 	p=xstrcat(p,(char *)"KER,");

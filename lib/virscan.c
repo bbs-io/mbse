@@ -161,7 +161,7 @@ int clam_stream_check(char *servname, char *servport, char *filename)
     /*  fwrite(buf, 1, buf_len, stderr); */
     buf_c = buf + buf_len;
     while(*buf_c=='\r' || *buf_c == '\r' || *buf_c == ' ')
-	*buf_c --;
+	buf_c --;
     if (buf_c - buf >= sizeof(" FOUND") && strncasecmp(buf_c - sizeof(" FOUND"), " FOUND", sizeof(" FOUND")-1) == 0) {
 	char *buf_s = buf;
 	buf_c -= sizeof(" FOUND");

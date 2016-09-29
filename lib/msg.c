@@ -518,8 +518,8 @@ char *Fgets(char *l, int size, FILE *f) {
       eol = TRUE;
       break;
     } else
-	 cr = (c=='\r');
-	 if ( cr )
+      cr = (c=='\r');
+    if ( cr )
       continue;
     --size;
     if (c=='\n') { eol = TRUE; break; }

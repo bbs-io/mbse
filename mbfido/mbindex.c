@@ -444,8 +444,8 @@ int compile(char *nlname, unsigned short zo, unsigned short ne, unsigned short n
 	 */
 	if ((*(buf+strlen(buf) -1) != '\n') && (*(buf + strlen(buf) -1) != '\012')) {
 	    while (fgets(buf, sizeof(buf) -1, nl) && (*(buf + strlen(buf) -1) != '\n')) /*void*/;
-		if (strlen(buf) > 1) /* Suppress EOF character */
-		    Syslog('-', "Nodelist: too long line junked (%d)", lineno);
+	    if (strlen(buf) > 1) /* Suppress EOF character */
+	        Syslog('-', "Nodelist: too long line junked (%d)", lineno);
 	    continue;
 	}
 

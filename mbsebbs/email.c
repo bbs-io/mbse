@@ -1042,7 +1042,7 @@ void Choose_Mailbox(char *Option)
 		SetEmailArea((char *)"trash");
 	    else if (!strcmp(sMailbox, "trash"))
 		SetEmailArea((char *)"archive");
-	    else if (!strcmp(sMailbox, "archive"));
+	    else if (!strcmp(sMailbox, "archive"))
 		SetEmailArea((char *)"mailbox");
 	}
 	Syslog('+', "Emailarea: %s", sMailbox);

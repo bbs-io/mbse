@@ -388,8 +388,8 @@ int each(faddr *addr, char flavor, int isflo, char *fname)
 		    if (*p == '\\') 
 			*p='/';
 		for (p = buf; *p && isspace(*p); p++);
-		    if (*p == '~') 
-			continue;
+		if (*p == '~') 
+		    continue;
 		if ((*p == '#') || (*p == '-') || (*p == '^') || (*p == '@') || (*p == '~')) 
 		    p++;
 		if (stat(p, &st) != 0) {

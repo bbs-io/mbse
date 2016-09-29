@@ -652,10 +652,10 @@ int rfc2ftn(FILE *fp)
 	    for (tmp = msg; tmp; tmp = tmp->next)
 		if (!strcasecmp(tmp->key,"X-FTN-PATH"))
 		    fill_path(&ptl,tmp->val);
-		if (msgs.Aka.point == 0) {
-		    snprintf(sbe,16,"%u/%u",msgs.Aka.net, msgs.Aka.node);
-		    fill_path(&ptl,sbe);
-		}
+	    if (msgs.Aka.point == 0) {
+	        snprintf(sbe,16,"%u/%u",msgs.Aka.net, msgs.Aka.node);
+		fill_path(&ptl,sbe);
+	    }
 
 	    /*
 	     *  Only add PATH line if there is something

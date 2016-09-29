@@ -594,7 +594,7 @@ fidoaddr *faddr2fido(faddr *aka)
 	fidoaddr *Sys;
 
 	Sys = (fidoaddr *)malloc(sizeof(fidoaddr));
-	memset(Sys, 0, sizeof(Sys));
+	memset(Sys, 0, sizeof(*Sys));
 	Sys->zone  = aka->zone;
 	Sys->net   = aka->net;
 	Sys->node  = aka->node;

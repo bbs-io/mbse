@@ -120,7 +120,7 @@ void checkutmp(int picky)
 		/* XXX - assumes /dev/tty?? */
 		strncpy(utent.ut_id, utent.ut_line + 3, sizeof utent.ut_id);
 		strcpy(utent.ut_user, "LOGIN");
-		time(&utent.ut_time);
+		time((time_t *) &utent.ut_time);
 	}
 }
 
@@ -294,7 +294,7 @@ void setutmp(const char *name, const char *line, const char *host)
 {
 	utent.ut_type = USER_PROCESS;
 	strncpy(utent.ut_user, name, sizeof utent.ut_user);
-	time(&utent.ut_time);
+	time((time_t *) &utent.ut_time);
 	/* other fields already filled in by checkutmp above */
 	setutent();
 	pututline(&utent);

@@ -309,7 +309,7 @@ void disk_getfs_r(char *buf)
 
     if (ans != NULL)
 	free(ans);
-	ans = NULL;
+    ans = NULL;
 
     return;
 }

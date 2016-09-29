@@ -1,3 +1,8 @@
+v1.0.6.9	28-Sep-2016 - Andrew Leary
+
+		1.  Fixed compiler warnings while building the BBS.  Thanks to
+		Ken Bowley for the patches.
+
 v1.0.6.8	20-Jul-2016 - Andrew Leary
 
 		1.  Fixed the SETUP.sh script to handle installing on fresh

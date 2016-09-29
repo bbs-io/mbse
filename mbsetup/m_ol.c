@@ -474,7 +474,7 @@ void ImportOneline(void)
     mbse_mvprintw(5, 6, "8.7.3  IMPORT ONELINERS");
     set_color(CYAN, BLACK);
     temp = calloc(PATH_MAX, sizeof(char));
-    memset(temp, 0, sizeof(temp));
+    memset(temp, 0, sizeof(*temp));
     strcpy(temp, edit_str(21, 6,64, temp, (char *)"The ^full path and filename^ of the file to import"));
     if (strlen(temp) == 0) {
 	free(temp);

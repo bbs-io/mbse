@@ -373,8 +373,8 @@ int rfc2ftn(FILE *fp, faddr *recipient)
 		fprintf(ofp, "\001TOPT %d\n", fmsg->to->point);
 	    if (fmsg->from->point != 0)
 		fprintf(ofp, "\001FMPT %d\n", fmsg->from->point);
-		fprintf(ofp, "\001INTL %d:%d/%d %d:%d/%d\n", fmsg->to->zone, fmsg->to->net, fmsg->to->node,
-				fmsg->from->zone, fmsg->from->net, fmsg->from->node);
+	    fprintf(ofp, "\001INTL %d:%d/%d %d:%d/%d\n", fmsg->to->zone, fmsg->to->net, fmsg->to->node,
+		fmsg->from->zone, fmsg->from->net, fmsg->from->node);
 	}
 
 	if ((fmsg->msgid_a == NULL) || (fmsg->msgid_n == 0)) {
@@ -673,10 +673,10 @@ int rfc2ftn(FILE *fp, faddr *recipient)
 	    for (tmp = msg; tmp; tmp = tmp->next)
 		if (!strcasecmp(tmp->key,"X-FTN-PATH"))
 		    fill_path(&ptl,tmp->val);
-		if (msgs.Aka.point == 0) {
-		    snprintf(sbe,128,"%u/%u",msgs.Aka.net, msgs.Aka.node);
-		    fill_path(&ptl,sbe);
-		}
+	    if (msgs.Aka.point == 0) {
+	        snprintf(sbe,128,"%u/%u",msgs.Aka.net, msgs.Aka.node);
+		fill_path(&ptl,sbe);
+	    }
 
 	    /*
 	     *  Only add PATH line if there is something

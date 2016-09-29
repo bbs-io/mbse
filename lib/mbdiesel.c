@@ -245,7 +245,7 @@ void html_massage(char *inbuf, char *outbuf, size_t size)
         char    *inptr = inbuf;
         char    *outptr = outbuf;
 
-        memset(outbuf, 0, sizeof(outbuf));
+        memset(outbuf, 0, sizeof(*outbuf));
 
         while (*inptr) {
 

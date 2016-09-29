@@ -30,6 +30,7 @@ all:		${TARGET}
 
 clean: 
 		rm -f ${TARGET} *.o *.h~ *.c~ core filelist Makefile.bak
+		rm -f login.defs
 
 mbuseradd:	${MBUSERADD_OBJS}
 		${CC} -o mbuseradd ${MBUSERADD_OBJS} ${LDFLAGS} ${LIBS}

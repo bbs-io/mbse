@@ -1807,7 +1807,7 @@ int hydra(int role)
 	    tmpfl = tosend;
 	    tosend = request;
 	    for (; request->next; request = request->next);
-		request->next = tmpfl;
+	    request->next = tmpfl;
 
 	    request = NULL;
 	}    
@@ -1823,7 +1823,7 @@ int hydra(int role)
 
 	if (emsi_remote_lcodes & LCODE_RH1) {
 	    for (tmpfl = tosend; tmpfl->next; tmpfl = tmpfl->next);
-		tmpfl->next = respond;
+	    tmpfl->next = respond;
 
 	    rc = hydra_batch(role, tosend);
 	    tmpfl->next = NULL;	/* split filelist into tosend and respond again */

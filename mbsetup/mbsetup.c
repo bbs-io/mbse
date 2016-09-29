@@ -117,7 +117,7 @@ static void die(int onsig)
 		for (i = 1; i < 40; i++)
 		    if (CFG.akavalid[i])
 			fprintf(fp, "AKA     %s\n", aka2str(CFG.aka[i]));
-		    fprintf(fp, "\n");
+		fprintf(fp, "\n");
 
 		gold_akamatch(fp);
 		fprintf(fp, "; JAM MessageBase Setup\n;\n");

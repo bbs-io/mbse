@@ -619,7 +619,7 @@ char *printable(char *s, int l)
 		case '\b': *p++='\\'; *p++='b'; break;
 		default:   snprintf(p, 5, "\\%02x", (*s & 0xff)); p+=3; break;
 	    }
-	    s++;
+	s++;
     }
     *p='\0';
     return pbuff;

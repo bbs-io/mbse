@@ -115,6 +115,7 @@ install:
 
 clean:
 		rm -f filelist
+		rm -f basic.html index.html upgrade.html
 
 filelist:	Makefile
 		BASE=`pwd`; \

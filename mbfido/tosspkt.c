@@ -463,9 +463,9 @@ int getmessage(FILE *pkt, faddr *p_from, faddr *p_to)
 	    } else
 		if (*(l=p+strlen(p)-1) == '\n')
 		    *l='\0';
-		for (l=p+strlen(p)-1;*l == ' ';l--) 
-		    *l='\0'; 
-		orig = xstrcpy(p);
+	    for (l=p+strlen(p)-1;*l == ' ';l--) 
+	        *l='\0'; 
+	    orig = xstrcpy(p);
 	}
     }
 

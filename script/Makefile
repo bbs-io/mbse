@@ -14,6 +14,7 @@ all:
 
 clean:
 		rm -f core filelist Makefile.bak
+		rm -f editor
 
 install:
 		@if [ "`id -un`" != "root" ] ; then \
