@@ -3,6 +3,10 @@ v1.0.6.9	28-Sep-2016 - Andrew Leary
 		1.  Fixed compiler warnings while building the BBS.  Thanks to
 		Ken Bowley for the patches.
 
+		2.  Fixed a bug with the use of an external editor, and removed
+		a limitation that forced a message to have at least two lines.
+		Thanks to Ken Bowley for these patches as well.
+
 v1.0.6.8	20-Jul-2016 - Andrew Leary
 
 		1.  Fixed the SETUP.sh script to handle installing on fresh

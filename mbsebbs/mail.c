@@ -817,7 +817,7 @@ int Save_Msg(int IsReply, faddr *Dest)
 
     Syslog('b', "Entering Save_Msg() Line=%d, Dest=%s", Line, (Dest == NULL)?"NULL":"valid");
 
-    if (Line < 2)
+    if (Line < 1)
 	return TRUE;
 
     /* Saving message to disk */
@@ -2939,7 +2939,7 @@ int Ext_Edit()
 		i++;
 	    }
 	    changed=TRUE;
-	    Line=i;
+	    Line=i-1;
 	    fclose(fd);
 	}
 	free(l);
