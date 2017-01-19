@@ -102,7 +102,7 @@ void cr(void)
     PUTSTR(chartran(pstr));
 
     ls();
-    snprintf(temp, 81, "%s", COPYRIGHT);
+    snprintf(temp, 81, "%s.", COPYRIGHT);
     strncat(pstr, pout_str(LIGHTCYAN, BLACK, padleft(temp, 76, ' ')), 255);
     rs();
     PUTSTR(chartran(pstr));
@@ -130,7 +130,7 @@ void cr(void)
     PUTSTR(chartran(pstr));
 
     ls();
-    strncat(pstr, pout_str(LIGHTCYAN, BLACK, (char *)"BBS a better BBS                                                            "), 255);
+    strncat(pstr, pout_str(LIGHTCYAN, BLACK, (char *)"BBS a better BBS.                                                           "), 255);
     rs();
     PUTSTR(chartran(pstr));
     
@@ -138,7 +138,7 @@ void cr(void)
     PUTSTR(chartran(pstr));
 
     ls();
-    strncat(pstr, pout_str(WHITE, BLACK, (char *)"Available from http://www.mbse.eu or 2:280/2802                             "), 255);
+    strncat(pstr, pout_str(WHITE, BLACK, (char *)"Available from https://sourceforge.net/projects/mbsebbs                     "), 255);
     rs();
     PUTSTR(chartran(pstr));
 

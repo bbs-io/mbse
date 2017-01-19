@@ -1021,12 +1021,10 @@ node *getnlent(faddr *addr)
 			if ((r = strchr(p, ':'))) {
 			    r++;
 			    /*
-			     * If there is a user@domain then strip the userpart.
+			     * If there is a user@domain then skip to the next flag.
 			     */
-			    if (strchr(r, '@')) {
-				r = strchr(r, '@');
-				r++;
-			    }
+			    if (strchr(r, '@'))
+				continue;
 			    if (*r == '*') {
 				Syslog('n', "getnlent: possible default domain marking \"%s\"", MBSE_SS(r));
 				for (tmpd = &nl_domsuffix; *tmpd; tmpd=&((*tmpd)->next)) {

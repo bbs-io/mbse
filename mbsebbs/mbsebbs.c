@@ -396,6 +396,7 @@ int main(int argc, char **argv)
     if (CFG.iConnectString) {
 	/* Connected from */
 	snprintf(temp, 81, "%s\"%s\" ", (char *) Language(348), ttyinfo.comment);
+	Syslog('b', "ttyinfo.comment = %s", ttyinfo.comment);
 	pout(CYAN, BLACK, temp);
 	/* line */
 	snprintf(temp, 81, "%s%d ", (char *) Language(31), iNode);

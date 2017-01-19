@@ -1150,7 +1150,7 @@ void OLR_Upload(void)
 
 
 char *Extensions[] = {
-   (char *)".SU0", (char *)".MO0", (char *)".TU0", (char *)".WE0", (char *)".TH0", (char *)".FR0", (char *)".SA0"
+   (char *)".SU", (char *)".MO", (char *)".TU", (char *)".WE", (char *)".TH", (char *)".FR", (char *)".SA"
 };
 
 
@@ -1194,7 +1194,7 @@ void OLR_DownBW()
     tp = localtime(&Now);
     Syslog('+', "Preparing Blue Wave packet");
 
-    snprintf(Pktname, 32, "%s%s", CFG.bbsid , Extensions[tp->tm_wday]);
+    snprintf(Pktname, 32, "%s%s%d", CFG.bbsid , Extensions[tp->tm_wday], exitinfo.OLRext);
     Syslog('m', "Packet name %s", Pktname);
     snprintf(Work, PATH_MAX, "%s/%s/tmp", CFG.bbs_usersdir, exitinfo.Name);
     Syslog('m', "Work path %s", Work);
@@ -1416,6 +1416,11 @@ void OLR_DownBW()
 
 	if (mhl != NULL)
 	    UpdateLR(mhl, mf);
+        /*	Update OLR extension */
+        exitinfo.OLRext++;
+        if (exitinfo.OLRext > 9)
+            exitinfo.OLRext = 0; /* After 9, go back to 0 */
+        WriteExitinfo();
     }
 
     fclose(mf);

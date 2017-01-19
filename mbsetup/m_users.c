@@ -284,16 +284,17 @@ void Screen2(void)
 	mbse_mvprintw(17, 2, "12. Archiver");
 	mbse_mvprintw(18, 2, "13. Charset");
 
-	mbse_mvprintw( 7,63, "14. Language");
-	mbse_mvprintw( 8,63, "15. Hotkeys");
-	mbse_mvprintw( 9,63, "16. Silent");
-	mbse_mvprintw(10,63, "17. CLS");
-	mbse_mvprintw(11,63, "18. More");
-	mbse_mvprintw(12,63, "19. Editor");
-	mbse_mvprintw(13,63, "20. MailScan");
-	mbse_mvprintw(14,63, "21. ShowNews");
-	mbse_mvprintw(15,63, "22. NewFiles");
-	mbse_mvprintw(16,63, "23. Emacs");
+	mbse_mvprintw( 7,58, "14. Language");
+	mbse_mvprintw( 8,58, "15. Hotkeys");
+	mbse_mvprintw( 9,58, "16. Silent");
+	mbse_mvprintw(10,58, "17. CLS");
+	mbse_mvprintw(11,58, "18. More");
+	mbse_mvprintw(12,58, "19. Editor");
+	mbse_mvprintw(13,58, "20. MailScan");
+	mbse_mvprintw(14,58, "21. ShowNews");
+	mbse_mvprintw(15,58, "22. NewFiles");
+	mbse_mvprintw(16,58, "23. Emacs");
+	mbse_mvprintw(17,58, "24. OLRext");
 }
 
 
@@ -318,16 +319,17 @@ void Fields2(void)
 	show_charset(18,17,usrconfig.Charset);
 
 	snprintf(temp, 4, "%c",usrconfig.iLanguage);
-	show_str(  7,76,1, temp);
-	show_bool( 8,76,   usrconfig.HotKeys);
-	show_bool( 9,76,   usrconfig.DoNotDisturb);
-	show_bool(10,76,   usrconfig.Cls);
-	show_bool(11,76,   usrconfig.More);
-	show_msgeditor(12,76, usrconfig.MsgEditor);
-	show_bool(13,76,   usrconfig.MailScan);
-	show_bool(14,76,   usrconfig.ieNEWS);
-	show_bool(15,76,   usrconfig.ieFILE);
-	show_bool(16,76,   usrconfig.FSemacs);
+	show_str(  7,71,1, temp);
+	show_bool( 8,71,   usrconfig.HotKeys);
+	show_bool( 9,71,   usrconfig.DoNotDisturb);
+	show_bool(10,71,   usrconfig.Cls);
+	show_bool(11,71,   usrconfig.More);
+	show_msgeditor(12,71, usrconfig.MsgEditor);
+	show_bool(13,71,   usrconfig.MailScan);
+	show_bool(14,71,   usrconfig.ieNEWS);
+	show_bool(15,71,   usrconfig.ieFILE);
+	show_bool(16,71,   usrconfig.FSemacs);
+	show_int( 17,71,   usrconfig.OLRext);
 }
 
 
@@ -340,7 +342,7 @@ int EditUsrRec2(void)
     Screen2();
     for (;;) {
         Fields2();
-        j = select_menu(23);
+        j = select_menu(24);
         switch(j) {
             case 0: return 0;
             case 1: E_STR( 6,17,35,usrconfig.sHandle,  "The ^Handle^ of this user")
@@ -413,16 +415,17 @@ int EditUsrRec2(void)
 		    clr_index();
 		    Screen2();
 		    break;
-            case 15:E_BOOL( 8,76,usrconfig.HotKeys,      "Is user using ^HotKeys^ for menus")
-            case 16:E_BOOL( 9,76,usrconfig.DoNotDisturb, "User will not be ^disturbed^")
-            case 17:E_BOOL(10,76,usrconfig.Cls,          "Send ^ClearScreen code^ to users terminal")
-            case 18:E_BOOL(11,76,usrconfig.More,         "User uses the ^More prompt^")
-            case 19:usrconfig.MsgEditor = edit_msgeditor(12,76,usrconfig.MsgEditor);
+            case 15:E_BOOL( 8,71,usrconfig.HotKeys,      "Is user using ^HotKeys^ for menus")
+            case 16:E_BOOL( 9,71,usrconfig.DoNotDisturb, "User will not be ^disturbed^")
+            case 17:E_BOOL(10,71,usrconfig.Cls,          "Send ^ClearScreen code^ to users terminal")
+            case 18:E_BOOL(11,71,usrconfig.More,         "User uses the ^More prompt^")
+            case 19:usrconfig.MsgEditor = edit_msgeditor(12,71,usrconfig.MsgEditor);
 		    break;
-            case 20:E_BOOL(13,76,usrconfig.MailScan,     "Don't check for ^new mail^")
-            case 21:E_BOOL(14,76,usrconfig.ieNEWS,       "Show ^News Bulletins^ when logging in")
-            case 22:E_BOOL(15,76,usrconfig.ieFILE,       "Show ^New Files^ when logging in")
-            case 23:E_BOOL(16,76,usrconfig.FSemacs,      "Use ^Emacs^ or Wordstart shorcut keys in FS editor")
+            case 20:E_BOOL(13,71,usrconfig.MailScan,     "Don't check for ^new mail^")
+            case 21:E_BOOL(14,71,usrconfig.ieNEWS,       "Show ^News Bulletins^ when logging in")
+            case 22:E_BOOL(15,71,usrconfig.ieFILE,       "Show ^New Files^ when logging in")
+            case 23:E_BOOL(16,71,usrconfig.FSemacs,      "Use ^Emacs^ or Wordstar shorcut keys in FS editor")
+            case 24:E_INT( 17,71,usrconfig.OLRext,       "Next ^OLR^ packet extension")
         }
     }
 }

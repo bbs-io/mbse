@@ -1,3 +1,30 @@
+v1.0.6.13	15-Jan-2017 - Andrew Leary
+
+		1.  Fixed mbfido using LFs instead of CRs in Notify messages. 
+		
+v1.0.6.12	11-Jan-2017 - Andrew Leary
+
+		1.  MBSE will now properly number Blue Wave packet
+		extensions, instead of always using .DD0 (DD being the
+		current day of the week.)  Reported by Sean Dennis.
+
+v1.0.6.11	08-Jan-2017 - Andrew Leary
+
+		1.  Forgot to update the copyright notices to reflect 2017.
+
+		2.  Update the product information screen in the BBS to
+		reflect the SourceForge website.
+
+v1.0.6.10	03-Jan-2017 - Andrew Leary
+
+		1.  Fixed a bug in the nodelist flag parsing code that resulted
+		in finding the wrong FQDN when a nodelist entry had both an
+		email address (IEM: flag) and an INA: flag.
+
+		2.  Updated the default English language file to correct
+		grammar and spelling issues.  Thanks to Sean Dennis for this
+		update.
+
 v1.0.6.9	28-Sep-2016 - Andrew Leary
 
 		1.  Fixed compiler warnings while building the BBS.  Thanks to

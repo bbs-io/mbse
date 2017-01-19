@@ -397,7 +397,7 @@ void load_taskcfg(void)
 	    snprintf(TCFG.cmd_mbindex2, 81, "%s -f -q", _PATH_GOLDNODE);
 	snprintf(TCFG.cmd_msglink,  81, "%s/bin/mbmsg link -quiet", getenv("MBSE_ROOT"));
 	    snprintf(TCFG.cmd_reqindex, 81, "%s/bin/mbfile index -quiet", getenv("MBSE_ROOT"));
-	TCFG.max_tcp  = 0;
+	TCFG.max_tcp  = 3;
 	snprintf(TCFG.isp_ping1, 41, "192.168.1.1");
 	snprintf(TCFG.isp_ping2, 41, "192.168.1.1");
 	if ((fp = fopen(tcfgfn, "a+")) == NULL) {

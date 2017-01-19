@@ -150,6 +150,7 @@ struct	userrec {
 	unsigned	FSemacs		: 1;	/* FSedit uses emacs keys   */
 	char		Password[Max_passlen+1];/* Plain password	    */
 	int		Charset;		/* Character set	    */
+	int		OLRext;			/* OLR extension counter    */
 };
 
 
