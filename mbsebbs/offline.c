@@ -1160,8 +1160,8 @@ char *Extensions[] = {
  */
 void OLR_DownBW()
 {
-    struct tm	    *tp;
-    time_t	    Now;
+    struct tm	    *tp, *tq;
+    time_t	    Now, Last;
     char	    Pktname[32], *Work, *Temp, *cwd = NULL, *p;
     int		    Area = 0;
     int		    RetVal = FALSE, rc = 0;
@@ -1191,9 +1191,18 @@ void OLR_DownBW()
     Temp = calloc(PATH_MAX, sizeof(char));
 
     Now = time(NULL);
+    Last = exitinfo.OLRlast;
     tp = localtime(&Now);
+    tq = localtime(&Last);
+    
+    /* Zero all fields except the dates */
+    tq->tm_sec = tq->tm_min = tq->tm_hour = tq->tm_wday = tq->tm_yday = tq->tm_isdst = 0;
+    tp->tm_sec = tp->tm_min = tp->tm_hour = tp->tm_wday = tp->tm_yday = tp->tm_isdst = 0;
+    if ((mktime(tp)) != (mktime(tq))) { /* Last download wasn't today */
+        exitinfo.OLRext = 0;
+    }
+    tp = localtime(&Now);    
     Syslog('+', "Preparing Blue Wave packet");
-
     snprintf(Pktname, 32, "%s%s%d", CFG.bbsid , Extensions[tp->tm_wday], exitinfo.OLRext);
     Syslog('m', "Packet name %s", Pktname);
     snprintf(Work, PATH_MAX, "%s/%s/tmp", CFG.bbs_usersdir, exitinfo.Name);
@@ -1420,6 +1429,7 @@ void OLR_DownBW()
         exitinfo.OLRext++;
         if (exitinfo.OLRext > 9)
             exitinfo.OLRext = 0; /* After 9, go back to 0 */
+        exitinfo.OLRlast = Now; /* Save the last download date/time */
         WriteExitinfo();
     }
 

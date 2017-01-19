@@ -151,6 +151,7 @@ struct	userrec {
 	char		Password[Max_passlen+1];/* Plain password	    */
 	int		Charset;		/* Character set	    */
 	int		OLRext;			/* OLR extension counter    */
+	time_t		OLRlast;		/* OLR last download        */
 };
 
 
