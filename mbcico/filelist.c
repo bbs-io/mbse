@@ -491,9 +491,9 @@ file_list *create_filelist(fa_list *al, char *fl, int create)
     }
 
     for (tmpf = st; tmpf; tmpf = tmpf->next)
-	Syslog('o',"flist: \"%s\" -> \"%s\" dsp:%d flofp:%u floff:%u",
+	Syslog('o',"flist: \"%s\" -> \"%s\" dsp:%d flofp:%p floff:%p",
 		MBSE_SS(tmpf->local), MBSE_SS(tmpf->remote), tmpf->disposition,
-		(unsigned int)tmpf->flofp, (unsigned int)tmpf->floff);
+		tmpf->flofp, tmpf->floff);
 
     return st;
 }

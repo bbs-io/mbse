@@ -220,7 +220,7 @@ int main(int argc, char **argv)
     i = getpid();
 
     if ((tty = ttyname(0)) == NULL) {
-	WriteError("Not at a tty");
+	WriteError("Not at a TTY");
 	Free_Language();
 	Quick_Bye(MBERR_OK);
     }
@@ -250,7 +250,7 @@ int main(int argc, char **argv)
      * log the user off.
      */
     if (CheckStatus() == FALSE) {
-	Syslog('+', "Kicking user out, the BBS is closed");
+	Syslog('+', "Kicking user out.  The BBS is closed.");
 	Free_Language();
 	Quick_Bye(MBERR_OK);
     }
@@ -272,7 +272,7 @@ int main(int argc, char **argv)
      * Check and report screens that are too small
      */
     if ((cols < 80) || (rows < 24)) {
-	snprintf(temp, 81, "Your screen is set to %dx%d, we use 80x24 at least", cols, rows);
+	snprintf(temp, 81, "\r\n\r\nYour screen is set to %dx%d.  MBSE requires an 80x24 minimum screen size.", cols, rows);
 	poutCR(LIGHTRED, BLACK, temp);
 	Enter(1);
 	cols = 80;
@@ -287,9 +287,9 @@ int main(int argc, char **argv)
      */
     snprintf(temp, PATH_MAX, "%s/%s", CFG.bbs_usersdir, sUnixName);
     if (stat(temp, &sb)) {
-	snprintf(temp, 81, "No homedirectory\r\n\r\n");
+	snprintf(temp, 81, "You don't have a home directory!\r\n\r\n");
 	PUTSTR(temp);
-	WriteError("homedirectory %s doesn't exist", temp);
+	WriteError("User's home directory %s doesn't exist", temp);
 	Quick_Bye(MBERR_OK);
     }
     Fix = FALSE;
@@ -331,13 +331,13 @@ int main(int argc, char **argv)
     }
     if (Fix) {
 	if (chmod(temp, 0770)) {
-	    WriteError("Could not set home directory mode to 0770");
-	    snprintf(temp, 81, "Internal error, the sysop is notified");
+	    WriteError("Could not set home directory mode to 0770!");
+	    snprintf(temp, 81, "Internal error: the sysop has been notified.");
 	    poutCR(LIGHTRED, BLACK, temp);
 	    Enter(1);
 	    Quick_Bye(MBERR_OK);
 	} else {
-	    Syslog('+', "Corrected home directory mode to 0770");
+	    Syslog('+', "Corrected home directory mode to 0770.");
 	}
     }
 
@@ -359,7 +359,7 @@ int main(int argc, char **argv)
 	snprintf(ttyinfo.comment, 41, "%s", p);
 	snprintf(ttyinfo.tty,      7, "%s", pTTY);
 	snprintf(ttyinfo.speed,   21, "10 mbit");
-	snprintf(ttyinfo.flags,   31, "IBN,IFC,XX");
+	snprintf(ttyinfo.flags,   31, "XX,IBN,IFC");
 	ttyinfo.type = NETWORK;
 	ttyinfo.available = TRUE;
 	ttyinfo.honor_zmh = FALSE;

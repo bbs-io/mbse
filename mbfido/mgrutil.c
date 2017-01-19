@@ -69,7 +69,7 @@ void MacroRead(FILE *fi, FILE *fp)
 		/*
 		 * Empty lines are just written
 		 */
-		fprintf(fp, "\r");
+		fprintf(fp, "\n");
 	    } else {
 		strncpy(temp, ParseMacro(line,&res), 254);
 		if (res)
@@ -78,7 +78,7 @@ void MacroRead(FILE *fi, FILE *fp)
 		 * Only output if something was evaluated
 		 */
 		if (strlen(temp))
-		    fprintf(fp, "%s\r", temp);
+		    fprintf(fp, "%s\n", temp);
 	    }
 	}
     }

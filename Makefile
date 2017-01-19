@@ -148,7 +148,9 @@ dist tar:	${TARFILE}
 
 clean:
 		rm -f .filelist core ${TARFILE} paths.h config.h
+		rm -f FILE_ID.DIZ INSTALL config.log config.status stamp-h
 		for d in ${SUBDIRS}; do (cd $$d && ${MAKE} $@) || exit; done;
+		rm -f Makefile.global
 
 ${TARFILE}:	.filelist
 		cd ..; ln -s ${PACKAGE} ${PACKAGE}-${VERSION} ; rm -f ${TARFILE}; \

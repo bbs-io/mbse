@@ -85,7 +85,7 @@ void dolastlog(struct lastlog *ll, const struct passwd *pw, const char *line, co
 	if (ll)
 		*ll = newlog;
 
-	time(&newlog.ll_time);
+	time((time_t *) &newlog.ll_time);
 	strncpy(newlog.ll_line, line, sizeof newlog.ll_line);
 #ifdef HAVE_LL_HOST
 	strncpy(newlog.ll_host, host, sizeof newlog.ll_host);

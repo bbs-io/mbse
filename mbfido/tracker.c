@@ -89,7 +89,7 @@ void ParseMask(char *s, fidoaddr *addr)
 	else 
 	    if (strcmp(str, "All"))
 		good = FALSE;
-	    str = p;
+	str = p;
     }
 
     if ((p=strchr(str, '.'))) {
@@ -101,7 +101,7 @@ void ParseMask(char *s, fidoaddr *addr)
 		addr->node = 65535;
 	    else 
 		good = FALSE;
-	    str = p;
+	str = p;
     } else {
 	if (strspn(str, "0123456789") == strlen(str))
 	    addr->node = atoi(str);
@@ -110,7 +110,7 @@ void ParseMask(char *s, fidoaddr *addr)
 		addr->node = 65535;
 	    else 
 		good = FALSE;
-	    str = NULL;
+	str = NULL;
     }
 
     if (str) {

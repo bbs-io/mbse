@@ -299,6 +299,10 @@ if [ "$OSTYPE" = "Linux" ]; then
     fi
     if [ "$DISTNAME" = "Ubuntu" ]; then
 	GRPS=${GRPS}",adm,admin"
+	if ! grep -q ^admin /etc/group ; then
+	    # Fresh install of Ubuntu 12.04+ has no admin group; we need it to enable use of sudo.
+	    $PW groupadd admin
+	fi
     fi
     if grep -q ^dialout /etc/group ; then
 	GRPS=${GRPS}",dialout"

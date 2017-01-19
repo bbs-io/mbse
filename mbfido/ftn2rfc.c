@@ -305,7 +305,7 @@ void Send(int newsmode, char *outstr)
 int ftn2rfc(faddr *f, faddr *t, char *subj, char *origline, time_t mdate, int flags, FILE *pkt)
 {
     int		    rrq, result = 1, waskludge = FALSE, badkludge;
-    int             bNeedToGetAddressFromMsgid = (int)NULL, newsmode = 0, lines, pass, count, first;
+    int             bNeedToGetAddressFromMsgid = 0, newsmode = 0, lines, pass, count, first;
     char	    *newsgroup = NULL, *charset = NULL;
     char            *temp, *p, *q, *r, *l, *b, *To = NULL, buf[4096], c, MailFrom[128], MailTo[128];
     time_t	    now;

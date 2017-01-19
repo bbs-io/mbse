@@ -73,7 +73,7 @@ int rxtcp(void)
     if ((rc=tcprcvfiles()) == 0) {
 	if ((emsi_local_opts & OPT_NRQ) == 0) {
 	    for (tmpfl = &tosend; *tmpfl; tmpfl = &((*tmpfl)->next));
-		*tmpfl = respond_wazoo();
+	    *tmpfl = respond_wazoo();
 	}
 
 	if ((tosend != NULL) || ((emsi_remote_lcodes & LCODE_NPU) == 0))

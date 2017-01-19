@@ -892,28 +892,28 @@ void MsgGlobal(void)
 						Found = TRUE;
 						break;
 					    }
-					    if (Found)
-						break;
-					    fseek(tfil, 0, SEEK_SET);
-					    while (fread(&Sc, sizeof(sysconnect), 1, tfil) == 1) {
-						if (Sc.aka.zone == 0) {
-						    fseek(tfil, - sizeof(sysconnect), SEEK_CUR);
-						    memset(&Sc, 0, sizeof(sysconnect));
-						    Sc.aka.zone = a2.zone;
-						    Sc.aka.net = a2.net;
-						    Sc.aka.node = a2.node;
-						    Sc.aka.point = a2.point;
-						    Sc.sendto = TRUE;
-						    Sc.receivefrom = TRUE;
-						    snprintf(Sc.aka.domain, 13, "%s", a2.domain);
-						    fwrite(&Sc, sizeof(sysconnect), 1, tfil);
-						    if (SaveMsgRec(marea, FALSE) == 0) {
-							Done++;
-							Syslog('+', "Added %s to area %s", aka2str(a2), msgs.Tag);
-						    }
-						    break;
+					if (Found)
+					    break;
+					fseek(tfil, 0, SEEK_SET);
+					while (fread(&Sc, sizeof(sysconnect), 1, tfil) == 1) {
+					    if (Sc.aka.zone == 0) {
+						fseek(tfil, - sizeof(sysconnect), SEEK_CUR);
+						memset(&Sc, 0, sizeof(sysconnect));
+						Sc.aka.zone = a2.zone;
+						Sc.aka.net = a2.net;
+						Sc.aka.node = a2.node;
+						Sc.aka.point = a2.point;
+						Sc.sendto = TRUE;
+						Sc.receivefrom = TRUE;
+						snprintf(Sc.aka.domain, 13, "%s", a2.domain);
+						fwrite(&Sc, sizeof(sysconnect), 1, tfil);
+						if (SaveMsgRec(marea, FALSE) == 0) {
+						    Done++;
+						    Syslog('+', "Added %s to area %s", aka2str(a2), msgs.Tag);
 						}
+						break;
 					    }
+					}
 					break;
 				case 3: fseek(tfil, 0, SEEK_SET);
 					while (fread(&Sc, sizeof(sysconnect), 1, tfil) == 1) {

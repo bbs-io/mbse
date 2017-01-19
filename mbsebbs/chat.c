@@ -236,7 +236,7 @@ void Chat(char *username, char *channel)
     if (socket_send(buf) == 0) {
 	strncpy(buf, socket_receive(), sizeof(buf)-1);
 	if (strncmp(buf, "200:1,", 6) == 0) {
-	    Syslog('!', "Chatsever is not available");
+	    Syslog('!', "Chat server is not available");
 	    colour(LIGHTRED, BLACK);
 	    mvprintw(4, 1, (char *) Language(30));
 	    Enter(2);
@@ -248,7 +248,7 @@ void Chat(char *username, char *channel)
 
     locate(rows - 2, 1);
     colour(WHITE, BLUE);
-    snprintf(buf, 200, "%-*s", cols, " Chat, type \"/EXIT\" to exit or \"/HELP\" for help");
+    snprintf(buf, 200, "%-*s", cols, " Type \"/EXIT\" to exit or \"/HELP\" for help.");
     mvprintw(rows - 2, 1, buf);
 
     colour(WHITE, BLACK);

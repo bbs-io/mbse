@@ -241,7 +241,7 @@ SM_STATE(send_mail)
 	tmpfl = tosend;
 	tosend = request;
 	for (; request->next; request = request->next);
-	    request->next = tmpfl;
+	request->next = tmpfl;
 
 	request = NULL;
     }

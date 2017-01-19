@@ -81,7 +81,7 @@ int newuser(void)
     struct userrec  us;
 
     IsDoing("New user login");
-    Syslog('+', "Newuser registration");
+    Syslog('+', "New user registration");
     clear();
     DisplayFile((char *)"newuser");
     if ((iLang = Chg_Language(TRUE)) == 0)
@@ -198,7 +198,7 @@ int newuser(void)
     if (CFG.iVoicePhone) {
 	while (1) {
 	    Enter(1);
-	    /* Please enter you Voice Number */
+	    /* Please enter your voice number */
 	    language(LIGHTGREEN, BLACK, 45);
 	    Enter(1);
 
@@ -223,7 +223,7 @@ int newuser(void)
     if (CFG.iDataPhone) {
 	while (TRUE) {
 	    Enter(1);
-	    /* Please enter you Data Number */
+	    /* Please enter your data number */
 	    language(LIGHTGREEN, BLACK, 48);
 	    Enter(1);
 
@@ -233,7 +233,7 @@ int newuser(void)
 	    GetPhone(temp, 16);
 
 	    /*
-	     * If no dataphone, copy voicephone.
+	     * If no data phone, copy voice phone.
 	     */
 	    if (strcmp(temp, "") == 0) {
 		strcpy(usrconfig.sDataPhone, usrconfig.sVoicePhone);
@@ -559,7 +559,7 @@ int newuser(void)
 
     DisplayFile((char *)"registered");
 
-    Syslog('+', "Completed new-user procedure");
+    Syslog('+', "Completed new user procedure");
     /* New user registration completed. */
     poutCR(LIGHTGREEN, BLACK, (char *) Language(71));
     /* You need to login again with the name: */

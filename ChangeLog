@@ -1,3 +1,38 @@
+v1.0.6.9	28-Sep-2016 - Andrew Leary
+
+		1.  Fixed compiler warnings while building the BBS.  Thanks to
+		Ken Bowley for the patches.
+
+		2.  Fixed a bug with the use of an external editor, and removed
+		a limitation that forced a message to have at least two lines.
+		Thanks to Ken Bowley for these patches as well.
+
+v1.0.6.8	20-Jul-2016 - Andrew Leary
+
+		1.  Fixed the SETUP.sh script to handle installing on fresh
+		installations of Ubuntu 12.04+.  These versions do not install
+		an admin group, which MBSE uses to enable the mbse user to run
+		sudo.  SETUP.sh will now add the admin group if it doesn't
+		exist, to prevent useradd failing to create the mbse user.
+		This change only affects first time installations on Ubuntu
+		12.04 or later.
+
+v1.0.6.7	28-Jun-2016 - Andrew Leary
+
+		1.  Added the ability to disable cross-zone SEEN-BY
+		stripping to mbfido.  This is currently a global toggle,
+		defaulting to strip SEEN-BYs when crossing zone boundaries. 
+		In situations where this behavior is not desired, toggle the
+		SBstrip option to "No" in mbsetup 1.11.20.  If there is
+		enough call for it, I will consider making this configurable
+		on a group and/or area basis.
+
+v1.0.6.6	23-Jun-2016 - Andrew Leary
+
+		1.  Several spelling and grammar corrections in mbsebbs.c,
+		chat.c, offline.c, and newuser.c.  Thanks to Sean Dennis for
+		the updates.
+
 v1.0.6.5	12-Feb-2016 - Robert James Clay
 
 		1. Edit README file to better reflect current practice.

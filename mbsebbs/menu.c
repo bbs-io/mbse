@@ -328,7 +328,7 @@ void DoMenu(int Type)
 	case 7:
 		/* Run external program */
 		if (strlen(menus.DoorName) && !menus.HideDoor) {
-		    memset(temp, 0, sizeof(temp));
+		    memset(temp, 0, sizeof(*temp));
 		    strcpy(temp, menus.DoorName);
 		    ExtDoor(menus.OptionalData, menus.NoDoorsys, menus.Y2Kdoorsys, menus.Comport, 
 			menus.NoSuid, menus.NoPrompt, menus.SingleUser, temp);
