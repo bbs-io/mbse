@@ -594,7 +594,7 @@ void OLR_SyncTags()
 	/*
 	 *  If the user has no .olrtagsfile yet, we silently create
 	 *  a new one. The user will not be notified of new areas
-	 *  of coarse.
+	 *  of course.
 	 */
 	Syslog('m', "Creating %s", Tagname);
 	if ((fp = fopen(Tagname, "w")) != NULL) {
@@ -1160,9 +1160,9 @@ char *Extensions[] = {
  */
 void OLR_DownBW()
 {
-    struct tm	    *tp, *tq;
-    time_t	    Now, Last;
-    char	    Pktname[32], *Work, *Temp, *cwd = NULL, *p;
+    struct tm	    *tp;
+    time_t	    Now;
+    char	    Pktname[32], *Work, *Temp, Temp2[12], *cwd = NULL, *p;
     int		    Area = 0;
     int		    RetVal = FALSE, rc = 0;
     FILE	    *fp, *tf, *mf, *af;
@@ -1191,17 +1191,15 @@ void OLR_DownBW()
     Temp = calloc(PATH_MAX, sizeof(char));
 
     Now = time(NULL);
-    Last = exitinfo.OLRlast;
     tp = localtime(&Now);
-    tq = localtime(&Last);
     
-    /* Zero all fields except the dates */
-    tq->tm_sec = tq->tm_min = tq->tm_hour = tq->tm_wday = tq->tm_yday = tq->tm_isdst = 0;
-    tp->tm_sec = tp->tm_min = tp->tm_hour = tp->tm_wday = tp->tm_yday = tp->tm_isdst = 0;
-    if ((mktime(tp)) != (mktime(tq))) { /* Last download wasn't today */
+    /* Build today's date for comparison to last download date */
+    
+    snprintf(Temp2, 12, "%02d-%02d-%04d", tp->tm_mday, tp->tm_mon +1, tp->tm_year +1900);
+
+    if (strcmp(Temp2,exitinfo.OLRlast)) { /* Last download wasn't today */
         exitinfo.OLRext = 0;
     }
-    tp = localtime(&Now);    
     Syslog('+', "Preparing Blue Wave packet");
     snprintf(Pktname, 32, "%s%s%d", CFG.bbsid , Extensions[tp->tm_wday], exitinfo.OLRext);
     Syslog('m', "Packet name %s", Pktname);
@@ -1429,7 +1427,7 @@ void OLR_DownBW()
         exitinfo.OLRext++;
         if (exitinfo.OLRext > 9)
             exitinfo.OLRext = 0; /* After 9, go back to 0 */
-        exitinfo.OLRlast = Now; /* Save the last download date/time */
+        snprintf(exitinfo.OLRlast, 12, "%s", Temp2); /* Save the last download date/time */
         WriteExitinfo();
     }
 

@@ -105,7 +105,7 @@ int newuser(void)
 
     /* Set default editor */
     if (strlen(CFG.externaleditor))
-	exitinfo.MsgEditor = EXTEDIT;
+	usrconfig.MsgEditor = EXTEDIT;
     else
 	usrconfig.MsgEditor = FSEDIT;
 
