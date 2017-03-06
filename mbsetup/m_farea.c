@@ -703,13 +703,13 @@ int PickFilearea(char *shdr)
 	working(1, 0, 0);
 	if (config_read() == -1) {
 		working(2, 0, 0);
-		return 0;
+		return -1;
 	}
 
 	records = CountFilearea();
 	if (records == -1) {
 		working(2, 0, 0);
-		return 0;
+		return -1;
 	}
 
 
@@ -752,7 +752,7 @@ int PickFilearea(char *shdr)
 		strcpy(pick, select_pick(records, 20));
 
 		if (strncmp(pick, "-", 1) == 0)
-			return 0;
+			return -1;
 
 		if (strncmp(pick, "N", 1) == 0)
 			if ((o + 20) < records)
@@ -762,6 +762,9 @@ int PickFilearea(char *shdr)
 			if ((o - 20) >= 0)
 				o -= 20;
 
+                if (!atoi(pick)) /* 0 = passthru file area */
+                    return 0;
+                
 		if ((atoi(pick) >= 1) && (atoi(pick) <= records)) {
 			snprintf(temp, PATH_MAX, "%s/etc/fareas.data", getenv("MBSE_ROOT"));
 			if ((fil = fopen(temp, "r")) != NULL) {

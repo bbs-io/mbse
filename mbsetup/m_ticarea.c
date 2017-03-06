@@ -827,15 +827,18 @@ int EditTicRec(int Area)
     for (;;) {
 
 	snprintf(temp, PATH_MAX, "%s/etc/fareas.data", getenv("MBSE_ROOT"));
-	if ((fp = fopen(temp, "r")) != NULL) {
-	    fread(&areahdr, sizeof(areahdr), 1, fp);
-	    fseek(fp, ((tic.FileArea - 1) * areahdr.recsize) + areahdr.hdrsize, SEEK_SET);
-	    fread(&area, areahdr.recsize, 1, fp);
-	    snprintf(temp, 81, "%d: %s", tic.FileArea, area.Name);
+	if (!tic.FileArea) {
+	    snprintf(temp, 81, "%d: %s", tic.FileArea, "Passthru");
 	    temp[24] = '\0';
-	    fclose(fp);
-	} else {
-	    snprintf(temp, 81, "%d", tic.FileArea);
+        } else if ((fp = fopen(temp, "r")) != NULL) {
+	        fread(&areahdr, sizeof(areahdr), 1, fp);
+	        fseek(fp, ((tic.FileArea - 1) * areahdr.recsize) + areahdr.hdrsize, SEEK_SET);
+	        fread(&area, areahdr.recsize, 1, fp);
+	        snprintf(temp, 81, "%d: %s", tic.FileArea, area.Name);
+	        temp[24] = '\0';
+	        fclose(fp);
+	        } else {
+	        snprintf(temp, 81, "%d", tic.FileArea);
 	}
 
 	set_color(WHITE, BLACK);
@@ -906,7 +909,7 @@ int EditTicRec(int Area)
 		    SetTicScreen();
 		    break;
 	    case 4: tmp = PickFilearea((char *)"10.2.4");
-		    if (tmp != 0)
+		    if (tmp != -1)
 			tic.FileArea = tmp;
 		    SetTicScreen();
 		    break;

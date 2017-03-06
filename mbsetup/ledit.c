@@ -563,7 +563,7 @@ char *select_pick(int max, int items)
 				break;
 		}
 		pick = atoi(menu);
-		if ((pick >= 1) && (pick <= max))
+		if ((pick >= 0) && (pick <= max))
 			break;
 
 		working(2, 0, 0);
