@@ -1,3 +1,8 @@
+v1.0.6.16	20-Mar-2017 - Andrew Leary
+
+		1.  Default routing for hosts will now route out of zone and
+		region netmail to the ZC if we are the RC.
+
 v1.0.6.15	06-Mar-2017 - Andrew Leary
 
 		1.  Fixed the ability to designate a file echo area as a

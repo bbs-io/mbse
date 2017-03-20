@@ -551,6 +551,7 @@ int GetRoute(char *ftn, fidoaddr *res)
     /*
      *  This is default routing for hosts:
      *   1.  Out of zone and region mail goes to the myzone:myregion/0
+     *   1a. If we are the RC, mail goes to the myzone:myzone/0
      *   2.  Out of net mail goes to host myzone:destnet/0
      *   3.  Nodes without hub are my downlinks, no route.
      *   4.  The rest goes to the hubs.
@@ -561,6 +562,10 @@ int GetRoute(char *ftn, fidoaddr *res)
 	if (((myregion != dnlent->region) && (!(dnlent->pflag & NL_DUMMY))) || (CFG.aka[me_host].zone != dest->zone)) {
 	    res->zone = CFG.aka[me_host].zone;
 	    res->net  = myregion;
+	    for (i = 0; i < 40; i++) {
+	        if (CFG.akavalid[i] && (CFG.aka[i].zone == res->zone) && (CFG.aka[i].net == myregion) && (CFG.aka[i].node == 0))
+	            res->net = res->zone;
+                }
 	    Syslog('+', "R: %s => Region %s", ascfnode(dest, 0x0f), aka2str(*res));
 	    free(dnlent);
 	    if (bnlent->addr.domain)
