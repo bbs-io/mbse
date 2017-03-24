@@ -1,3 +1,7 @@
+v1.0.7		24-Mar-2017 - Andrew Leary
+
+		Release version of v1.0.6.16 for wide distribution.
+
 v1.0.6.16	20-Mar-2017 - Andrew Leary
 
 		1.  Default routing for hosts will now route out of zone and
