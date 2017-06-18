@@ -100,6 +100,10 @@ if [ "$OSTYPE" = "Linux" ]; then
 	DISTNAME="Mandrake"
 	# Format: Linux Mandrake release 8.0 (Cooker) for i586
 	DISTVERS=$( cat /etc/mandrake-release | awk '{ print $4 }' )
+    elif [ -f /etc/centos-release ]; then
+    	DISTNAME="CentOS"
+    	# Format: CentOS release 7.3.1611 (AltArch)
+    	DISTVERS=$( cat /etc/centos-release | awk '{ print $3 }' )
     elif [ -f /etc/redhat-release ]; then
 	DISTNAME="RedHat"
 	if grep -q e-smith /etc/redhat-release ; then
@@ -294,6 +298,10 @@ echo -n ", user 'mbse' $OSTYPE "
 if [ "$OSTYPE" = "Linux" ]; then
     # Different distros have different needs...
     GRPS="uucp"
+    if ! grep -q ^uucp /etc/group ; then
+    	# Add the uucp group if it doesn't exist.
+    	$PW groupadd uucp
+    fi
     if grep -q ^wheel /etc/group ; then
 	GRPS=${GRPS}",wheel"
     fi

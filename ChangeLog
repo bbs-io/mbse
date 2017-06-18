@@ -1,3 +1,14 @@
+v1.0.7.2	18-Jun-2017 - Andrew Leary
+
+		1. Fixed first time installation on CentOS 7, caused by the 
+		distribution no longer creating a uucp group by default.
+
+v1.0.7.1	14-Apr-2017 - Andrew Leary
+
+		1.  Added /U switch on door optional data line; replaced
+		with the current user's home directory.  Requested by Sean
+		Dennis.
+
 v1.0.7		24-Mar-2017 - Andrew Leary
 
 		Release version of v1.0.6.16 for wide distribution.

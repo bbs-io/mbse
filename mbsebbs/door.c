@@ -152,6 +152,11 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 	strreplace(Program, (char *)"/N", temp1);
     }
 
+    if ((strstr(Program, "/U")) != NULL) {
+        snprintf(temp1, PATH_MAX, "%s/%s", CFG.bbs_usersdir, exitinfo.Name);
+        strreplace(Program, (char *)"/U", temp1);
+    }
+    
     if ((strstr(Program, "/A")) != NULL) {
 	Enter(1);
 	colour(CYAN, BLACK);
