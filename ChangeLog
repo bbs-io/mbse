@@ -1,6 +1,10 @@
+v1.0.7.3	01-Aug-2017 - Andrew Leary
+
+		1.  Updated to FTSCPROD.018 as released by the FTSC.
+
 v1.0.7.2	18-Jun-2017 - Andrew Leary
 
-		1. Fixed first time installation on CentOS 7, caused by the 
+		1.  Fixed first time installation on CentOS 7, caused by the 
 		distribution no longer creating a uucp group by default.
 
 v1.0.7.1	14-Apr-2017 - Andrew Leary
