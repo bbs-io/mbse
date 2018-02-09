@@ -120,11 +120,12 @@ int main(int argc, char **argv)
 		    cmd = xstrcat(cmd, argv[i]);
 		    if (!strncasecmp(argv[i], "-a", 2)) {
 			do_annon = TRUE;
-		    } else {
+		    } else if (!strncasecmp(argv[i], "-v", 2)) {
+		                do_novir = TRUE;
+		            } else {
 			Description = xstrcpy(argv[i]);
 		    }
 		}
-		break;
 	    }
 	} else if ((!strncasecmp(argv[i], "d", 1)) || (!strncasecmp(argv[i], "u", 1))) {
 	    if (!strncasecmp(argv[i], "u", 1))
