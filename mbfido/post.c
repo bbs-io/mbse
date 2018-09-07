@@ -199,7 +199,9 @@ int Post(char *To, int Area, char *Subj, char *File, char *Flavor)
 
 	case NETMAIL:
 			Msg.Netmail = TRUE;
-			snprintf(Msg.ToAddress, 101, "%s", ascfnode(parsefaddr(To), 0xff));
+			temp = strchr(To, '@');
+			temp++;
+			snprintf(Msg.ToAddress, 101, "%s", ascfnode(parsefaddr(temp), 0xff));
 			break;
 
 	case ECHOMAIL:

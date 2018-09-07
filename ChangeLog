@@ -1,3 +1,10 @@
+v1.0.7.6	06-Mar-2018 - Andrew Leary
+
+		1.  Fixed bug that caused netmails posted by MBMSG post to
+		have a destination address of 0:0/0.
+
+		2.  Updated copyright notices to 2018.
+  
 v1.0.7.5	31-Dec-2017 - Andrew Leary/Vince Coen
 
 		1.  Fixed bug causing the -v option (disable virus check) to
