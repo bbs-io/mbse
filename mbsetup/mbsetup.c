@@ -66,7 +66,7 @@
 #include "m_task.h"
 #include "m_route.h"
 #include "m_ibc.h"
-
+#include "m_domalias.h"
 
 mode_t		oldmask;		/* Old umask value	 	*/
 extern int	do_quiet;		/* Suppress log to screen	*/
@@ -464,19 +464,20 @@ int main(int argc, char *argv[])
 	    mbse_mvprintw(15, 6, "9.    Edit Mail Setup");
 	    mbse_mvprintw(16, 6, "10.   Edit File Echo's setup");
 	    mbse_mvprintw(17, 6, "11.   Edit Newfiles Groups");
-	    mbse_mvprintw( 7,46, "12.   Edit Newfiles Reports");
-	    mbse_mvprintw( 8,46, "13.   Edit FileFind Setup");
-	    mbse_mvprintw( 9,46, "14.   Edit Files Database");
-	    mbse_mvprintw(10,46, "15.   Edit BBS Users");
-	    mbse_mvprintw(11,46, "16.   Edit Services");
-	    mbse_mvprintw(12,46, "17.   Edit Domains");
-	    mbse_mvprintw(13,46, "18.   Edit Task Manager");
-	    mbse_mvprintw(14,46, "19.   Edit Routing Table");
-	    mbse_mvprintw(15,46, "20.   Edit Internet BBS Chat");
-	    mbse_mvprintw(16,46, "21.   Show software information");
-	    mbse_mvprintw(17,46, "22.   Create site documents");
+	    mbse_mvprintw(18, 6, "12.   Edit Newfiles Reports");
+	    mbse_mvprintw( 7,46, "13.   Edit FileFind Setup");
+	    mbse_mvprintw( 8,46, "14.   Edit Files Database");
+	    mbse_mvprintw( 9,46, "15.   Edit BBS Users");
+	    mbse_mvprintw(10,46, "16.   Edit Services");
+	    mbse_mvprintw(11,46, "17.   Edit Domains");
+	    mbse_mvprintw(12,46, "18.   Edit Task Manager");
+	    mbse_mvprintw(13,46, "19.   Edit Routing Table");
+	    mbse_mvprintw(14,46, "20.   Edit Internet BBS Chat");
+	    mbse_mvprintw(15,46, "21.   Show software information");
+	    mbse_mvprintw(16,46, "22.   Create site documents");
+	    mbse_mvprintw(17,46, "23.   Edit FTN Domain Aliases");
  
-	    switch(select_menu(22)) {
+	    switch(select_menu(23)) {
 		case 0:
 			loop = 0;
 			break;
@@ -546,6 +547,9 @@ int main(int argc, char *argv[])
 		case 22:
 			site_docs();
 			break;
+                case 23:
+                        EditDomAlias();
+                        break;
 	    }
 	} while (loop == 1);
     }

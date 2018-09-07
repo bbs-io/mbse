@@ -1491,7 +1491,20 @@ struct _fidonet {
 	unsigned	deleted	  : 1;		/* Network is deleted	   */
 };
 
+/*
+ * Fidonet domain aliases (domalias.data)
+ */
+struct _domaliashdr {
+        int		hdrsize;		/* Size of header record   */
+        int		recsize;		/* Size of records         */
+};
 
+struct _domalias {
+        char		alias[20];		/* Domain alias	           */
+        char		domain[13];		/* Network domain name     */
+        unsigned	active    : 1;		/* Alias is active         */
+        unsigned	deleted   : 1;		/* Alias is deleted        */
+};
 
 /*
  * Archiver programs (archiver.data)

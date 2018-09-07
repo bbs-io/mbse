@@ -73,18 +73,12 @@ int CountDomain(void)
 			snprintf(domtrans.ftndom, 61, ".z4.fidonet");
 			snprintf(domtrans.intdom, 61, ".z4.fidonet.org");
 			fwrite(&domtrans, sizeof(domtrans), 1, fil);
-			snprintf(domtrans.ftndom, 61, ".z5.fidonet");
-			snprintf(domtrans.intdom, 61, ".z5.fidonet.org");
-			fwrite(&domtrans, sizeof(domtrans), 1, fil);
-			snprintf(domtrans.ftndom, 61, ".z6.fidonet");
-			snprintf(domtrans.intdom, 61, ".z6.fidonet.org");
-			fwrite(&domtrans, sizeof(domtrans), 1, fil);
 			snprintf(domtrans.ftndom, 61, ".fidonet");
 			snprintf(domtrans.intdom, 61, ".ftn");
 			fwrite(&domtrans, sizeof(domtrans), 1, fil);
 			fclose(fil);
 			chmod(ffile, 0640);
-			return 7;
+			return 5;
 		} else
 			return -1;
 	}

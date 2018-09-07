@@ -1,3 +1,16 @@
+v1.0.7.4	26-Aug-2017 - Andrew Leary
+
+		1.  Updated to FTSCPROD.019 as released by the FTSC.
+
+		2.  When creating a new ~/etc/domain.data, mbsetup no longer
+		includes entries for FidoNet zones 5 & 6.
+
+		3.  Began preliminary work on FTN domain aliases, similar to
+		the BinkD "domain <new-name> alias-for <name>" option.  This
+		will allow MBSE to fully communicate with systems that use
+		FTN domain names longer than 8 characters, which are NOT
+		FTSC compliant.
+
 v1.0.7.3	01-Aug-2017 - Andrew Leary
 
 		1.  Updated to FTSCPROD.018 as released by the FTSC.

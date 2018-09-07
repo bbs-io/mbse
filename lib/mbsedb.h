@@ -61,8 +61,19 @@ int	TestFidonet(unsigned short);	/* Test if zone is in memory	    */
 int	SearchFidonet(unsigned short);	/* Search specified zone and load   */
 char	*GetFidoDomain(unsigned short);	/* Search Fidonet domain name	    */
 
+/*
+ * Domain alias database
+ */
+ 
+struct _domaliashdr domaliashdr;            /* Header record                */
+struct _domalias    domalias;               /* Domain alias datarecord      */
+int                 domalias_cnt;           /* Domain alias records in db   */
+char                domalias_fil[PATH_MAX]; /* Domain alias db filename     */
 
-
+void	InitDomAlias(void);		/* Initialize domain alias db       */
+char	*SearchDomAlias(char *alias);	/* Search alias db - returns string */
+                                        /* of domain or NUL if not found    */
+                                        
 /*
  * Nodes database
  */

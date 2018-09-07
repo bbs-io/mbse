@@ -75,7 +75,7 @@ int SearchFidonet(unsigned short zone)
 	FILE	*fil;
 
 	/*
-	 * If current record is ok, return immediatly.
+	 * If current record is ok, return immediately.
 	 */
 	if (TestFidonet(zone))
 		return TRUE;
@@ -111,3 +111,40 @@ char *GetFidoDomain(unsigned short zone)
 }
 
 
+int InitDomainAlias(void)
+{
+        FILE	*fil;
+        
+        memset(&domalias, 0, sizeof(domalias));
+        LoadConfig();
+        
+        snprintf(domalias_fil, PATH_MAX -1, "%s/etc/domalias.data", getenv("MBSE_ROOT"));
+        if ((fil = fopen(domalias_fil, "r")) == NULL)
+                return FALSE;
+                
+        fread(&domaliashdr, sizeof(domaliashdr), 1, fil);
+        fseek(fil, 0, SEEK_END);
+        domalias_cnt = (ftell(fil) - domaliashdr.hdrsize) / domaliashdr.recsize;
+        fclose(fil);
+        
+        return TRUE;
+}
+
+char *SearchDomainAlias(char *alias)
+{
+	FILE	*fil;
+
+	if ((fil = fopen(domalias_fil, "r")) == NULL) {
+		return NULL;
+	}
+	fread(&domaliashdr, sizeof(domaliashdr), 1, fil);
+
+	while (fread(&domalias, domaliashdr.recsize, 1, fil) == 1) {
+		if (strcmp(alias, domalias.alias) == 0) {
+			fclose(fil);
+			return domalias.domain;
+		}
+	}
+	fclose(fil);
+	return NULL;
+}

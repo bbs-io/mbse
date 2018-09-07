@@ -327,7 +327,7 @@ int EditFidoRec(int Area)
 		    free(temp);
 		    return 0;
 	    case 1: E_STR(7,26,40, fidonet.comment, "The ^Comment^ for this network name")
-	    case 2: E_STR(8, 26,8, fidonet.domain, "The ^Name^ of the network without dots")
+	    case 2: E_STR(8,26,8, fidonet.domain, "The ^Name^ of the network without dots")
 	    case 3: E_BOOL(9,26, fidonet.available, "Is this network ^Available^ for use")
 	    case 4: E_BOOL(10,26, fidonet.deleted,   "Is this netword ^Deleted^")
 	    case 5: E_STR(11,26,8, fidonet.nodelist, "The name of the ^Primary Nodelist^ for this network")
