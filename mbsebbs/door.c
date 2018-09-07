@@ -101,10 +101,12 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 {
     char    *String, *String1;
     int	    i, rc, Start;
-    char    *temp1, buf[128];
+    char    *temp1, *temp2, *temp3, buf[128];
     FILE    *fp;
 
     temp1 = calloc(PATH_MAX, sizeof(char));
+    temp2 = calloc(PATH_MAX, sizeof(char));
+    temp3 = calloc(PATH_MAX, sizeof(char));
     String = calloc(81, sizeof(char));
 
     Start = TRUE;
@@ -295,7 +297,56 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 	    fclose(fp);
 	}
     }
-
+    
+    /*
+     * Always remove the old dorinfo1.def first.
+     */
+    snprintf(temp1, PATH_MAX, "%s/%s/dorinfo1.def", CFG.bbs_usersdir, exitinfo.Name);
+    unlink(temp1);
+    
+    /*
+     * Write dorinfo1.def in users homedirectory.
+     */
+    if (!NoDoorsys) {
+        if ((fp = fopen(temp1, "w+")) == NULL) {
+            WriteError("$Can't create %s", temp1);
+        } else {
+            fprintf(fp, "%s\r\n", tu(CFG.bbs_name));  /* System name */
+            snprintf(temp2, 36, "%s", CFG.sysop_name);
+            strtok(temp2, " "); /* Split sysop name at first space. */
+            temp3 = strtok(NULL, " ");
+            if (temp3 == NULL) { /* Single word name */
+                fprintf(fp, "%s\r\n", tu(temp2));
+                fprintf(fp, "\r\n");
+            } else {
+                fprintf(fp, "%s\r\n", tu(temp2));
+                fprintf(fp, "%s\r\n", tu(temp3));
+            }
+            if (Comport) {
+                fprintf(fp, "COM1\r\n");
+                fprintf(fp, "19200 BAUD,N,8,1\r\n");
+            } else {
+                fprintf(fp, "COM0\r\n");
+                fprintf(fp, "0 BAUD,N,8,1\r\n");
+            }
+            fprintf(fp, "0\r\n");
+            snprintf(temp2, 36, "%s", exitinfo.sUserName);
+            strtok(temp2, " ");
+            temp3 = strtok(NULL, " ");
+            if (temp3 == NULL) {
+                fprintf(fp, "%s\r\n", tu(temp2));
+                fprintf(fp, "\r\n");
+            } else {
+                fprintf(fp, "%s\r\n", tu(temp2));
+                fprintf(fp, "%s\r\n", tu(temp3));
+            }
+            fprintf(fp, "%s\r\n", tu(exitinfo.sLocation));
+            fprintf(fp, "1\r\n");
+            fprintf(fp, "%d\r\n", exitinfo.Security.level);
+            fprintf(fp, "%d\r\n", exitinfo.iTimeLeft);
+            fclose(fp);
+        }
+    }
     clear();
     PUTSTR((char *)"Loading, please wait ...");
     Enter(2);

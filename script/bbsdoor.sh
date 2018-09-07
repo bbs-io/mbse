@@ -13,8 +13,9 @@ DOSDRIVE=/opt/mbse/var/dosemu/c
 if [ "$1" != "" ]; then
     if [ "$2" != "" ]; then
 	mkdir -p $DOSDRIVE/doors/node$2 >/dev/null 2>&1
-	# Copy door.sys to dos partition
+	# Copy door.sys and dorinfo1.def to dos partition
 	cat ~/door.sys >$DOSDRIVE/doors/node$2/door.sys
+	cat ~/dorinfo1.def >$DOSDRIVE/doors/node$2/dorinfo1.def
 	# Create .dosemu directory for the user.
 	if [ ! -d $HOME/.dosemu ]; then
 	    mkdir $HOME/.dosemu

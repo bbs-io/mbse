@@ -171,6 +171,9 @@ void Good_Bye(int onsig)
 
     snprintf(temp, PATH_MAX, "%s/%s/door32.sys", CFG.bbs_usersdir, exitinfo.Name);
     unlink(temp);
+    
+    snprintf(temp, PATH_MAX, "%s/%s/dorinfo1.def", CFG.bbs_usersdir, exitinfo.Name);
+    unlink(temp);
 
     snprintf(temp, PATH_MAX, "%s/%s/exitinfo", CFG.bbs_usersdir, exitinfo.Name);
     unlink(temp);

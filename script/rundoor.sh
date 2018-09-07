@@ -24,9 +24,10 @@ DOSDRIVE=${MBSE_ROOT}/var/dosemu/c
 # Prepare users home directory and node directory
 if [ "$1" != "" ]; then
     mkdir -p $DOSDRIVE/doors/node$1 >/dev/null 2>&1
-    # Copy door*.sys to dos partition
+    # Copy door*.sys and dorinfo1.def to dos partition
     cat ~/door.sys >$DOSDRIVE/doors/node$1/door.sys
     cat ~/door32.sys >$DOSDRIVE/doors/node$1/door32.sys
+    cat ~/dorinfo1.def >$DOSDRIVE/doors/node$1/dorinfo1.def
     # Create .dosemu directory for the user.
     if [ ! -d $HOME/.dosemu ]; then
 	mkdir $HOME/.dosemu
