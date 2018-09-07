@@ -1,3 +1,8 @@
+v1.0.7.5	31-Dec-2017 - Andrew Leary/Vince Coen
+
+		1.  Fixed bug causing the -v option (disable virus check) to
+		fail when running mbfile adopt.
+
 v1.0.7.4	26-Aug-2017 - Andrew Leary
 
 		1.  Updated to FTSCPROD.019 as released by the FTSC.
