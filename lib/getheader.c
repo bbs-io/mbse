@@ -111,6 +111,9 @@ int getheader(faddr *f, faddr *t, FILE *pkt, char *pname, int session)
 	t->zone   = buffer[0x30] + (buffer[0x31] << 8);
 	f->point  = buffer[0x32] + (buffer[0x33] << 8);
 	t->point  = buffer[0x34] + (buffer[0x35] << 8);
+	if (f->net == 65535) { /* Point packet - Get Net from auxNet */
+	    f->net = buffer[0x26] + (buffer[0x27] << 8);
+        }
     } else {
 	/*
 	 * Stone age @%#$@

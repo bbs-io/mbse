@@ -1,3 +1,11 @@
+v1.0.7.8	07-Sep-2018 - Andrew Leary
+
+		1.  Fixed reading the origin Net from incoming Type 2+
+		packets from Points.  Thanks to Deon George for the report
+		and a patch.
+
+		2.  Fixed a minor cosmetic bug in mbmon.
+
 v1.0.7.7	05-Jun-2018 - Andrew Leary
 
 		1.  Added support for creating the DORINFO1.DEF dropfile, in

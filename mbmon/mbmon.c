@@ -429,7 +429,7 @@ void soft_info(void)
 #if defined(__i386__)
 	p = xstrcat(p, (char *)" i386)");
 #elif defined(__x86_64__)
-	p = xstrcat(p, (char *)" x86-64");
+	p = xstrcat(p, (char *)" x86-64)");
 #elif defined(__PPC__) || defined(__ppc__)
 	p = xstrcat(p, (char *)" PPC)");
 #elif defined(__sparc__)
