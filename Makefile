@@ -10,7 +10,8 @@ OTHER		= AUTHORS ChangeLog COPYING DEBUG CRON.sh FILE_ID.DIZ.in \
 		  ChangeLog_2006 ChangeLog_2007 README SETUP.sh \
 		  TODO UPGRADE aclocal.m4 checkbasic config.h.in configure \
 		  configure.ac \
-		  paths.h.in README.Gentoo README.Ubuntu
+		  paths.h.in README.Gentoo README.Ubuntu docs/mbse-1.odt \
+		  docs/mbse-1.pdf
 TARFILE		= ${PACKAGE}-${VERSION}.tar.bz2
 
 ###############################################################################
