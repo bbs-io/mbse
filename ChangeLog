@@ -1,3 +1,13 @@
+v1.0.7.9	17-Sep-2018 - Andrew Leary
+
+		1.  Removed the requirement that incoming .TIC files have
+		exactly 8 character filenames with the .TIC extension.  This
+		will allow processing incoming .TICs from Mystic BBS without
+		manual intervention.  Mystic does not comply with
+		FTS-5006.001, which specifies that .TIC files be named with
+		a DOS compatible 8 character filename, a dot, and the 3
+		character extension TIC.
+
 v1.0.7.8	07-Sep-2018 - Andrew Leary
 
 		1.  Fixed reading the origin Net from incoming Type 2+

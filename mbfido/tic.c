@@ -65,7 +65,7 @@ int Tic()
     DIR		    *dp;
     struct dirent   *de;
     struct stat	    sbuf;
-    int		    i, rc = 0, Age;
+    int		    i, rc = 0, Age, len;
     fd_list	    *fdl = NULL;
     orphans	    *opl = NULL, *tmp;
     time_t	    Now, Fdate;
@@ -99,10 +99,11 @@ int Tic()
     }
 
     while ((de = readdir(dp))) {
-	if ((strlen(de->d_name) == 12) && (strncasecmp(de->d_name+11, "c", 1) == 0)) {
-	    if ((strncasecmp(de->d_name+8, ".a", 2) == 0) || (strncasecmp(de->d_name+8, ".c", 2) == 0) ||
-		(strncasecmp(de->d_name+8, ".z", 2) == 0) || (strncasecmp(de->d_name+8, ".l", 2) == 0) ||
-		(strncasecmp(de->d_name+8, ".r", 2) == 0) || (strncasecmp(de->d_name+8, ".0", 2) == 0)) {
+	len = strlen(de->d_name);
+	if ((len >= 5) && (strncasecmp(de->d_name+(len-1), "c", 1) == 0)) {
+	    if ((strncasecmp(de->d_name+(len-4), ".a", 2) == 0) || (strncasecmp(de->d_name+(len-4), ".c", 2) == 0) ||
+		(strncasecmp(de->d_name+(len-4), ".z", 2) == 0) || (strncasecmp(de->d_name+(len-4), ".l", 2) == 0) ||
+		(strncasecmp(de->d_name+(len-4), ".r", 2) == 0) || (strncasecmp(de->d_name+(len-4), ".0", 2) == 0)) {
 		if (checkspace(inbound, de->d_name, UNPACK_FACTOR)) {
 		    if ((unpack(de->d_name)) != 0) {
 			WriteError("Error unpacking %s", de->d_name);
@@ -116,7 +117,8 @@ int Tic()
 
     rewinddir(dp);
     while ((de = readdir(dp))) {
-	if ((strlen(de->d_name) == 12) && (strncasecmp(de->d_name+8, ".tic", 4) == 0)) {
+	len = strlen(de->d_name);
+	if ((len >= 5) && (strncasecmp(de->d_name+(len-4), ".tic", 4) == 0)) {
 	    stat(de->d_name, &sbuf);
 	    fill_fdlist(&fdl, de->d_name, sbuf.st_mtime);
 	}
