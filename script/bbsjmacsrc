@@ -43,7 +43,7 @@
  -lines nnn	Set no. screen lines
  -baud nnn	Set baud rate for terminal optimizations
  -columns nnn	Set no. screen columns
---help		Start with help on
+ -help		Start with help on
 -skiptop 4	Don't use top nnn lines of the screen
 
  Status line definition strings.  -lmsg defines the left-justified string and
@@ -264,7 +264,7 @@
  Macros may cross lines if they end with ,
 
 :windows		Bindings common to all windows
-type		^@ TO ÿ		Self insert
+type		U+0 TO U+10FFFF	Self insert
 abort		^G		Abort window
 abort		^X ^C
 abort		^C
@@ -508,10 +508,39 @@ uparwmenu	^[ [ A
 uparwmenu	^[ O A
 
 :querysr		Search & replace query window
-type		^@ TO ÿ
+type		U+0 TO U+10FFFF
 
 :query			Single-key query window
 :inherit windows
 
 :querya			Single-key query window for quoting
-type		^@ TO ÿ
+type		U+0 TO U+10FFFF
+
+:shell                  Input to shell windows
+:inherit main
+"C"             ^C              Abort
+"D"             ^D              Eof
+"       "       ^I              Tab
+"H"             ^H              Backspace
+"M"             ^M              Return
+"?"             ^?              Backspace
+
+:vtshell                Input to ANSI shell windows
+:inherit main
+"[[A"           [ [ A
+"[[A"           .ku
+"[[B"           [ [ B
+"[[B"           .kd
+"[[C"           [ [ C
+"[[C"           .kr
+"[[D"           [ [ D
+"[[D"           .kl
+"A"             ^A              BOL for bash
+"C"             ^C              Abort
+"D"             ^D              Eof
+"E"             ^E              EOL for bash
+"       "       ^I              Tab
+"H"             ^H              Backspace
+"M"             ^M              Return
+"?"             ^?              Backspace
+

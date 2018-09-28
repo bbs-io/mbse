@@ -40,7 +40,7 @@ clean:
 		rm -f mbsetup *.o *.h~ *.c~ core filelist Makefile.bak
 
 install:	all
-		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 0700 mbsetup ${BINDIR}
+		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 0500 mbsetup ${DESTDIR}${BINDIR}
 
 filelist:	Makefile
 		BASE=`pwd`; \

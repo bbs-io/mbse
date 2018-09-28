@@ -73,6 +73,8 @@ int CountService(void)
 			fwrite(&servrec, sizeof(servrec), 1, fil);
 			snprintf(servrec.Service, 16, "fmail");
 			fwrite(&servrec, sizeof(servrec), 1, fil);
+			snprintf(servrec.Service, 16, "areafix");
+			fwrite(&servrec, sizeof(servrec), 1, fil);
 
 			servrec.Action = FILEMGR;
 			snprintf(servrec.Service, 16, "filemgr");
@@ -83,9 +85,12 @@ int CountService(void)
 			fwrite(&servrec, sizeof(servrec), 1, fil);
 			snprintf(servrec.Service, 16, "raid");
 			fwrite(&servrec, sizeof(servrec), 1, fil);
+			snprintf(servrec.Service, 16, "filefix");
+			fwrite(&servrec, sizeof(servrec), 1, fil);
+			
 			fclose(fil);
 			chmod(ffile, 0640);
-			return 6;
+			return 10;
 		} else
 			return -1;
 	}

@@ -15,7 +15,7 @@ clean:
 		rm -f core filelist Makefile.bak language.*
 
 install: ${LDAT}
-		${INSTALL} -c -o ${OWNER} -g ${GROUP} -m 0444 ${LDAT} ${INTDIR}
+		${INSTALL} -c -o ${OWNER} -g ${GROUP} -m 0444 ${LDAT} ${DESTDIR}${INTDIR}
 
 language.en:	source.en
 		../mbutils/mblang language.en source.en

@@ -58,9 +58,9 @@ install:	all
 		@if [ "`id -un`" != "root" ] ; then \
 			echo; echo " Must be root to install!"; echo; exit 3; \
 		fi
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP}  -m 0750 mbsebbs   ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP}  -m 6750 mbnewusr  ${BINDIR}
-		@rm -f ${ETCDIR}/bbslist.data
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP}  -m 0550 mbsebbs   ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP}  -m 6550 mbnewusr  ${DESTDIR}${BINDIR}
+		@rm -f ${DESTDIR}${ETCDIR}/bbslist.data
 
 filelist:	Makefile
 		BASE=`pwd`; \

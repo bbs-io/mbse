@@ -1,3 +1,25 @@
+v1.0.7.10	28-Sep-2018 - Andrew Leary
+
+		1.  Updated the configuration file for using joe as the BBS
+		external editor to support current versions of joe.  joe 4.2
+		is now the minimum version supported; all releases up to and
+		including 4.6 have been tested and found to work.  Thanks to
+		Deon George for the patch.
+
+		2.  When creating a new Services database, mbsetup will now
+		include AreaFix and FileFix as known services, for the Areamgr
+		and Filemgr services respectively.  Also fixed a bug that
+		caused the wrong number of records to be returned when creating
+		a new Services database.
+
+		3.  Updated the Makefiles to install most of the BBS binaries
+		as read & execute only.  Thanks to Deon George for the patch.
+
+		4.  Added $DESTDIR support to the Makefiles, to make it easier
+		to build .DEB packages.  This change should be transparent to
+		users building and installing MBSE.  Thanks to Deon George for
+		the patch.
+
 v1.0.7.9	17-Sep-2018 - Andrew Leary
 
 		1.  Removed the requirement that incoming .TIC files have

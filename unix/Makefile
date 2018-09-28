@@ -45,15 +45,15 @@ install:	all
 		@if [ "`id -un`" != "root" ] ; then \
 			echo; echo " Must be root to install!"; echo; exit 3; \
 		fi
-		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 6711 mbuseradd  ${BINDIR}
-		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 6711 mbpasswd   ${BINDIR}
-		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 0755 mblogin    ${BINDIR}
-		@if [ ! -f ${ETCDIR}/login.defs ] ; then \
-			${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${ETCDIR} ; \
-			echo "${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${ETCDIR}" ; \
+		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 6511 mbuseradd  ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 6511 mbpasswd   ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${ROWNER} -g ${RGROUP} -m 0555 mblogin    ${DESTDIR}${BINDIR}
+		@if [ ! -f ${DESTDIR}${ETCDIR}/login.defs ] ; then \
+			${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${DESTDIR}${ETCDIR} ; \
+			echo "${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${DESTDIR}${ETCDIR}" ; \
 		else \
-			${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${ETCDIR}/login.defs.new ; \
-			echo "${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${ETCDIR}/login.defs.new" ; \
+			${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${DESTDIR}${ETCDIR}/login.defs.new ; \
+			echo "${INSTALL} -c    -o ${OWNER} -g ${GROUP}  -m 0644 login.defs ${DESTDIR}${ETCDIR}/login.defs.new" ; \
 		fi
 
 filelist:	Makefile

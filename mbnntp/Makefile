@@ -27,7 +27,7 @@ clean:
 		rm -f mbnntp *.o *.h~ *.c~ core filelist Makefile.bak
 
 install:	all
-		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 4750 mbnntp   ${BINDIR}
+		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 4550 mbnntp   ${DESTDIR}${BINDIR}
 
 filelist:	Makefile
 		BASE=`pwd`; \

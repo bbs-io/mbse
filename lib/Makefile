@@ -83,7 +83,7 @@ libnodelist.a:	${NODELIST_OBJS}
 		${RANLIB} $@
 
 install:	all
-		${INSTALL} -c -o ${OWNER} -g ${GROUP} -m 0444 nodelist.conf ${ETCDIR}
+		${INSTALL} -c -o ${OWNER} -g ${GROUP} -m 0444 nodelist.conf ${DESTDIR}${ETCDIR}
 
 clean:
 		rm -f ${TARGET} *.o *.h~ *.c~ ftscprod.c core filelist Makefile.bak

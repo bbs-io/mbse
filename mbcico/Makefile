@@ -46,10 +46,10 @@ clean:
 		rm -f ${TARGET} *.o *.h~ *.c~ core filelist Makefile.bak
 
 install:	all
-		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 4750 mbcico    ${BINDIR}
-		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 0750 mbout     ${BINDIR}
-		@rm -f ${BINDIR}/mbtelind
-		@rm -f ${BINDIR}/mbtelout
+		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 4550 mbcico    ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -g ${GROUP} -o ${OWNER} -m 0550 mbout     ${DESTDIR}${BINDIR}
+		@rm -f ${DESTDIR}${BINDIR}/mbtelind
+		@rm -f ${DESTDIR}${BINDIR}/mbtelout
 
 mbcico:		${MBCICO_OBJS} ${SLIBS}
 		${CC} -o mbcico ${MBCICO_OBJS} ${LDFLAGS} ${LIBS} ${SLIBS}

@@ -85,33 +85,33 @@ FILES		= $(H_IN) $(H_BASE) $(H_FTSC) $(H_IMAGES) $(H_LICENSE) $(H_MENUS) $(H_MIS
 all depend clean depend:
 
 install:
-		@echo "Installing html documentation in ${PREFIX}/html"
-		@rm -Rf ${PREFIX}/html
-		@mkdir -p ${PREFIX}/html
-		@mkdir -p ${PREFIX}/html/ftsc
-		@mkdir -p ${PREFIX}/html/images
-		@mkdir -p ${PREFIX}/html/license
-		@mkdir -p ${PREFIX}/html/menus
-		@mkdir -p ${PREFIX}/html/misc
-		@mkdir -p ${PREFIX}/html/programs
-		@mkdir -p ${PREFIX}/html/setup
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/ftsc
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/images
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/license
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/menus
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/misc
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/programs
-		@${CHOWN} ${OWNER}:${GROUP} ${PREFIX}/html/setup
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_BASE}    ${PREFIX}/html
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_OTHER}   ${PREFIX}/html
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_FTSC}    ${PREFIX}/html/ftsc
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_IMAGES}  ${PREFIX}/html/images
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_LICENSE} ${PREFIX}/html/license
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_MENUS}   ${PREFIX}/html/menus
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_MISC}    ${PREFIX}/html/misc
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_PROGS}   ${PREFIX}/html/programs
-		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_SETUP}   ${PREFIX}/html/setup
+		@echo "Installing html documentation in ${DESTDIR}${PREFIX}/html"
+		@rm -Rf ${DESTDIR}${PREFIX}/html
+		@mkdir -p ${DESTDIR}${PREFIX}/html
+		@mkdir -p ${DESTDIR}${PREFIX}/html/ftsc
+		@mkdir -p ${DESTDIR}${PREFIX}/html/images
+		@mkdir -p ${DESTDIR}${PREFIX}/html/license
+		@mkdir -p ${DESTDIR}${PREFIX}/html/menus
+		@mkdir -p ${DESTDIR}${PREFIX}/html/misc
+		@mkdir -p ${DESTDIR}${PREFIX}/html/programs
+		@mkdir -p ${DESTDIR}${PREFIX}/html/setup
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/ftsc
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/images
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/license
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/menus
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/misc
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/programs
+		@${CHOWN} ${OWNER}:${GROUP} ${DESTDIR}${PREFIX}/html/setup
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_BASE}    ${DESTDIR}${PREFIX}/html
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_OTHER}   ${DESTDIR}${PREFIX}/html
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_FTSC}    ${DESTDIR}${PREFIX}/html/ftsc
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_IMAGES}  ${DESTDIR}${PREFIX}/html/images
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_LICENSE} ${DESTDIR}${PREFIX}/html/license
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_MENUS}   ${DESTDIR}${PREFIX}/html/menus
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_MISC}    ${DESTDIR}${PREFIX}/html/misc
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_PROGS}   ${DESTDIR}${PREFIX}/html/programs
+		@${INSTALL} -p -c -o ${OWNER} -g ${GROUP} -m 0444 ${H_SETUP}   ${DESTDIR}${PREFIX}/html/setup
 
 clean:
 		rm -f filelist

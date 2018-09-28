@@ -83,17 +83,17 @@ clean:
 		rm -f ${TARGET} *.o *.h~ *.c~ core filelist Makefile.bak
 
 install:	all
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 4750 mbfido  ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0750 mbseq   ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0700 mbaff   ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0700 mbindex ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0700 mbdiff  ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0700 mbfile  ${BINDIR}
-		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0750 mbmsg   ${BINDIR}
-		rm -f ${BINDIR}/mbmail
-		${LN_S}  ${BINDIR}/mbfido ${BINDIR}/mbmail
-		rm -f ${BINDIR}/mbnews
-		${LN_S}  ${BINDIR}/mbfido ${BINDIR}/mbnews
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 4550 mbfido  ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0550 mbseq   ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0500 mbaff   ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0500 mbindex ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0500 mbdiff  ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0500 mbfile  ${DESTDIR}${BINDIR}
+		${INSTALL} -c -s -o ${OWNER} -g ${GROUP} -m 0550 mbmsg   ${DESTDIR}${BINDIR}
+		rm -f ${DESTDIR}${BINDIR}/mbmail
+		${LN_S}  ${BINDIR}/mbfido ${DESTDIR}${BINDIR}/mbmail
+		rm -f ${DESTDIR}${BINDIR}/mbnews
+		${LN_S}  ${BINDIR}/mbfido ${DESTDIR}${BINDIR}/mbnews
 
 filelist:	Makefile
 		BASE=`pwd`; \
