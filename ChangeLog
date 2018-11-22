@@ -1,3 +1,8 @@
+v1.0.7.11	09-Oct-2018 - Andrew Leary
+
+		1.  Fixed a bug that could truncate the tearline under certain
+		combinations of OS and architecture.
+
 v1.0.7.10	28-Sep-2018 - Andrew Leary
 
 		1.  Updated the configuration file for using joe as the BBS

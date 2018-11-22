@@ -408,9 +408,9 @@ char *OsCPU()
  */
 char *TearLine()
 {
-    static char	    tearline[41];
+    static char	    tearline[45];
 
-    snprintf(tearline, 41, "--- MBSE BBS v%s (%s-%s)", VERSION, OsName(), OsCPU());
+    snprintf(tearline, 45, "--- MBSE BBS v%s (%s-%s)", VERSION, OsName(), OsCPU());
     return tearline;
 }
 
