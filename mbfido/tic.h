@@ -35,7 +35,7 @@ typedef	struct	_tic_in {
 
 typedef	struct	_TICrec {
 	char		Inbound[PATH_MAX+1];	/* Inbound directory	    */
-	char		TicName[13];		/* Name of .TIC file	    */
+	char		TicName[51];		/* Name of .TIC file	    */
 	Tic_in		TicIn;			/* Original TIC record	    */
 	fidoaddr	OrgAka;			/* Origin address	    */
 	fidoaddr	Aka;			/* An address ?		    */

@@ -53,7 +53,7 @@ void fill_orphans(orphans **qal, char *TicName, char *Area, char *FileName, int 
     
     tmp = (orphans *)malloc(sizeof(orphans));
     tmp->next = *qal;
-    snprintf(tmp->TicName, 13, TicName);
+    snprintf(tmp->TicName, 51, TicName);
     snprintf(tmp->Area, 21, Area);
     snprintf(tmp->FileName, 81, FileName);
     tmp->Orphaned = Orphaned;

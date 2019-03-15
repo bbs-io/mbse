@@ -1167,6 +1167,7 @@ TrType binkp_receiver(void)
 	    bp.rtime = atoi(strtok(NULL, " \n\r"));
 	    bp.roffs = atoi(strtok(NULL, " \n\r"));
 	    snprintf(bp.ropts, 512, "%s", printable(strtok(NULL, " \n\r\0"), 0));
+	                  
 	    if (strcmp((char *)"GZ", bp.ropts) == 0)
 		bp.rmode = CompGZ;
 	    else if (strcmp((char *)"BZ2", bp.ropts) == 0)
@@ -1194,6 +1195,15 @@ TrType binkp_receiver(void)
 
 	Syslog('+', "Binkp: receive file \"%s\" date %s size %ld offset %ld comp %s",
 		bp.rname, date(bp.rtime), bp.rsize, bp.roffs, cpstate[bp.rmode]);
+        if (!bp.rsize) {  
+            Syslog('+', "Binkp: 0 byte file %s, sending M_GOT", bp.rname);
+            bp.RxState = RxWaitF;
+            rc = binkp_send_command(MM_GOT, "%s %ld %ld", bp.rname, bp.rsize, bp.rtime);
+            if (rc)
+                return Failure;
+            else
+                return Ok;
+	} 
 	if (bp.roffs == -1) {
 	    /*
 	     * Even without NR mode Taurus sends as if it's in NR mode.

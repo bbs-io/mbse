@@ -227,7 +227,7 @@ int LoadTic(char *inb, char *tfn, orphans **opl)
     memset(&T_File, 0, sizeof(T_File));
 
     snprintf(TIC.Inbound, PATH_MAX, "%s", inb);
-    strncpy(TIC.TicName, tfn, 12);
+    strncpy(TIC.TicName, tfn, 50);
 
     chdir(inb);
     if ((tfp = fopen(tfn, "r")) == NULL) {

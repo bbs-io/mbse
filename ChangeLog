@@ -1,3 +1,15 @@
+v1.0.7.12	15-Mar-2019 - Andrew Leary
+
+		1.  MBCICO will no longer leave partial files in the temporary
+		inbound when a remote Binkp site attempts to send a zero byte
+		file.  An M_GOT message will be sent to remove the zero byte
+		file from the remote's queue.
+
+		2.  Fixed the bad/orphan .TIC file support to handle .TIC files
+		with names longer than 8 characters.
+
+		3.  Updated copyright notices to 2019.
+
 v1.0.7.11	09-Oct-2018 - Andrew Leary
 
 		1.  Fixed a bug that could truncate the tearline under certain

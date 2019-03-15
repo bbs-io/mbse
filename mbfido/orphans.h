@@ -8,7 +8,7 @@
  */
 typedef struct _orphans {
         struct _orphans     *next;              /* Linked list              */
-        char                TicName[13];        /* TIC filename             */
+        char                TicName[51];        /* TIC filename             */
         char                Area[21];           /* TIC area                 */
         char                FileName[81];       /* TIC filename             */
         unsigned            Orphaned    : 1;    /* Real orphaned file       */
