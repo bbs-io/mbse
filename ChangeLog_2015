@@ -1,0 +1,41 @@
+v1.0.6.4	22-Nov-2015 - Andrew Leary
+
+		1. Updated mbfido's .tic file support to use "Lfile" instead
+		of "Fullname" when creating .tic files.  This is to increase
+		compatibility with HTick, and comply with the recently
+		released FSP-1039.  Both keywords will be accepted in
+		incoming .tic files.
+
+v1.0.6.3	05-Nov-2015 - Robert James Clay
+
+		1. Update the Dev Team information in the AUTHORS file.
+
+		03-Nov-2015 - Vincent Coen
+
+		1. Add mbse-1.odt to the docs directory.
+
+v1.0.6.2	17-Oct-2015 - Vincent Coen
+
+		1. Amended mbmon.c and mbsetup.c to reflect new hosting
+		for the sources etc at www.sourceforge.net.
+		2. Other very minor cosmetics.
+		3. Add mbse-1.pdf to a new docs directory.
+
+v1.0.6.1	07-Aug-2015 - Andrew Leary
+
+		1.  Removed the Precise field from Via lines in netmail, as
+		it was not actually accurate anyway.  Forwarded netmails had
+		this field set to .00, and locally generated netmails had this
+		field set to .01.  This field is optional in FTS-4009, but
+		if used is supposed to indicate fractions of a second.
+
+v1.0.6		03-Aug-2015 - Andrew Leary
+
+		1.  Added support for specifying a literal IPv6 address
+		encased in square brackets for a node.  Previously, IPv6 was
+		only supported for nodes having an AAAA record for their
+		hostname in DNS.
+		2.  The BBS now allows alphanumeric and punctuation
+		characters in user passwords.  Previously, only alphanumeric
+		characters were permitted.  
+		3.  Several minor grammar and punctuation corrections.

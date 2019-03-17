@@ -1,0 +1,14 @@
+v1.0.1		Dec 2013 - Vincent Coen	
+
+	lib/
+	libmbse.a:
+		Fixed packaging and compiling the correct ftscprod
+		file to ftscprod.014.
+
+v1.0.0		Dec 2013?
+		This is the last version of mbsebbs submitted by me,
+		Michiel.
+
+	libmbse.a:
+		Updated to ftscprod.012.
+

@@ -1,0 +1,58 @@
+v1.0.7.11	09-Oct-2018 - Andrew Leary
+
+		1.  Fixed a bug that could truncate the tearline under certain
+		combinations of OS and architecture.
+
+v1.0.7.10	28-Sep-2018 - Andrew Leary
+
+		1.  Updated the configuration file for using joe as the BBS
+		external editor to support current versions of joe.  joe 4.2
+		is now the minimum version supported; all releases up to and
+		including 4.6 have been tested and found to work.  Thanks to
+		Deon George for the patch.
+
+		2.  When creating a new Services database, mbsetup will now
+		include AreaFix and FileFix as known services, for the Areamgr
+		and Filemgr services respectively.  Also fixed a bug that
+		caused the wrong number of records to be returned when creating
+		a new Services database.
+
+		3.  Updated the Makefiles to install most of the BBS binaries
+		as read & execute only.  Thanks to Deon George for the patch.
+
+		4.  Added $DESTDIR support to the Makefiles, to make it easier
+		to build .DEB packages.  This change should be transparent to
+		users building and installing MBSE.  Thanks to Deon George for
+		the patch.
+
+v1.0.7.9	17-Sep-2018 - Andrew Leary
+
+		1.  Removed the requirement that incoming .TIC files have
+		exactly 8 character filenames with the .TIC extension.  This
+		will allow processing incoming .TICs from Mystic BBS without
+		manual intervention.  Mystic does not comply with
+		FTS-5006.001, which specifies that .TIC files be named with
+		a DOS compatible 8 character filename, a dot, and the 3
+		character extension TIC.
+
+v1.0.7.8	07-Sep-2018 - Andrew Leary
+
+		1.  Fixed reading the origin Net from incoming Type 2+
+		packets from Points.  Thanks to Deon George for the report
+		and a patch.
+
+		2.  Fixed a minor cosmetic bug in mbmon.
+
+v1.0.7.7	05-Jun-2018 - Andrew Leary
+
+		1.  Added support for creating the DORINFO1.DEF dropfile, in
+		addition to DOOR.SYS and DOOR32.SYS.
+
+v1.0.7.6	06-Mar-2018 - Andrew Leary
+
+		1.  Fixed bug that caused netmails posted by MBMSG post to
+		have a destination address of 0:0/0.
+
+		2.  Updated copyright notices to 2018.
+
+		3.  Removed old .cvsignore files from the source tree.
