@@ -1,3 +1,8 @@
+v1.0.7.13	17-Nov-2019 - Andrew Leary
+
+		1.  MBFIDO will now restart the archive extensions at 0 when
+		it reaches the maximum extension (9 or z) for a node.
+
 v1.0.7.12	15-Mar-2019 - Andrew Leary
 
 		1.  MBCICO will no longer leave partial files in the temporary
