@@ -329,11 +329,16 @@ void flush_dir(char *ndir)
 		    Syslog('!', "Warning: archive filename extensions exhausted for today");
 		    while (nr > '0') {
 		        arcfile[strlen(arcfile) -1] = nr;
+		        Syslog('p', "Removing %s", arcfile);
 		        unlink(arcfile);
 		        nr--;
 		        if (nr == ('a' -1))
 		            nr = '9';
 		    }
+		    arcfile[strlen(arcfile) -1] = nr;
+		    Syslog('p', "Removing %s", arcfile);
+		    unlink(arcfile);
+		    Attach = TRUE;
 		    break;
 		}
 	    } else if (CFG.maxarcsize && (fsize > (CFG.maxarcsize * 1024)) && (nr < maxnr)) {

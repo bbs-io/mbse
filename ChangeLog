@@ -1,28 +1,12 @@
-v1.0.7.13	17-Nov-2019 - Andrew Leary
+v1.0.7.15	01-May-2020 - Andrew Leary
 
-		1.  MBFIDO will now restart the archive extensions at 0 when
-		it reaches the maximum extension (9 or z) for a node.
+		1.  Fixed a bug in MBFIDO that could cause new ARCmail bundles
+                to be created without file attaches when the archive extension
+                resets to 0 after exhausting all extensions for the day.
 
-v1.0.7.12	15-Mar-2019 - Andrew Leary
+		2.  Updated copyright notices to 2020.
 
-		1.  MBCICO will no longer leave partial files in the temporary
-		inbound when a remote Binkp site attempts to send a zero byte
-		file.  An M_GOT message will be sent to remove the zero byte
-		file from the remote's queue.
+v1.0.7.14       22-Jan-2020 - Andrew Leary
 
-		2.  Fixed the bad/orphan .TIC file support to handle .TIC files
-		with names longer than 8 characters.
-
-		3.  Updated copyright notices to 2019.
-
-v1.0.7.11B      22-Jan-2019 - Vincent Coen
-
-		1.  This patch a simply adds /usr/pkg/include and /usr/pkg/lib to the
-		configure.ac file, enabling the proper detection of libGeoIP and libbz2
-		on NetBSD systems. The reason for this change is that for a time now,
-		NetBSD uses /usr/pkg as the path for all libraries, binaries and other
-		content installed through the pkg_add command or the pkgsrc installation
-		tree. That way the keep the files and programs provided by the core
-		system separated from user installed packages.
-
-		2.  Update CP to 2019.
+                1.  This was a development version only; it was never uploaded
+                to SourceForge or made available to others.
