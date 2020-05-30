@@ -1238,7 +1238,8 @@ int Read_a_Msg(unsigned int Num, int UpdateLR)
     
     if (Msg.Private) {
 	ShowMsg = FALSE;
-	if ((strcasecmp(exitinfo.sUserName, Msg.From) == 0) || (strcasecmp(exitinfo.sUserName, Msg.To) == 0))
+	if ((strcasecmp(exitinfo.sUserName, Msg.From) == 0) || (strcasecmp(exitinfo.sUserName, Msg.To) == 0) \
+           || (strcasecmp(exitinfo.sHandle, Msg.From) == 0) || (strcasecmp(exitinfo.sHandle, Msg.To) == 0))
 	    ShowMsg = TRUE;
 	if (exitinfo.Security.level >= msgs.SYSec.level)
 	    ShowMsg = TRUE;
