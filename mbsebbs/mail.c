@@ -1875,8 +1875,8 @@ void QuickScan_Msgs()
 
     if (Msg_Open(sMsgAreaBase)) {
 	for (i = MsgBase.Lowest; i <= MsgBase.Highest; i++) {
-	    if (Msg_ReadHeader(i) && ((msgs.Type != NETMAIL) || 
-				    ((msgs.Type == NETMAIL) && ((IsMe(Msg.From)) || (IsMe(Msg.To)))))) {
+	    if (Msg_ReadHeader(i) && ((!Msg.Private) || 
+				    ((Msg.Private) && ((IsMe(Msg.From)) || (IsMe(Msg.To)) || (exitinfo.Security.level >= msgs.SYSec.level))))) {
 				
 		snprintf(msg, 81, "%-6u", Msg.Id);
 		pout(WHITE, BLACK, msg);

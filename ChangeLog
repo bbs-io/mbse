@@ -1,3 +1,9 @@
+v1.0.7.16       30-May-2020 - Andrew Leary
+
+                1.  Fixed bug that resulted in the QuickScan messages function
+                "leaking" information about Private messages not sent by or
+                addressed to the online user.
+
 v1.0.7.15	01-May-2020 - Andrew Leary
 
 		1.  Fixed a bug in MBFIDO that could cause new ARCmail bundles
