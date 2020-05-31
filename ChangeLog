@@ -1,3 +1,16 @@
+v1.0.7.17       31-May-2020 - Andrew Leary
+
+                1.  Applied Niels Haedecke's correction to the German textfiles
+                in the examples directory.
+
+                2.  Fixed a bug that could prevent a user from reading his own
+                private messages if the user's handle was in the message
+                header.  Thanks to Niels Haedecke for the report and a patch.
+
+		3.  Fixed a bug that could prevent a user from exporting his
+                own private messages if the user's handle was in the message
+                header.
+
 v1.0.7.16       30-May-2020 - Andrew Leary
 
                 1.  Fixed bug that resulted in the QuickScan messages function

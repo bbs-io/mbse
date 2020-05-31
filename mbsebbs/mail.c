@@ -1113,7 +1113,7 @@ int Export_a_Msg(unsigned int Num)
 
     if (Msg.Private) {
 	ShowMsg = FALSE;
-	if ((strcasecmp(exitinfo.sUserName, Msg.From) == 0) || (strcasecmp(exitinfo.sUserName, Msg.To) == 0))
+	if ((IsMe(Msg.From)) || (IsMe(Msg.To)))
 	    ShowMsg = TRUE;
 	if (exitinfo.Security.level >= msgs.SYSec.level)
 	    ShowMsg = TRUE;
@@ -1238,8 +1238,7 @@ int Read_a_Msg(unsigned int Num, int UpdateLR)
     
     if (Msg.Private) {
 	ShowMsg = FALSE;
-	if ((strcasecmp(exitinfo.sUserName, Msg.From) == 0) || (strcasecmp(exitinfo.sUserName, Msg.To) == 0) \
-           || (strcasecmp(exitinfo.sHandle, Msg.From) == 0) || (strcasecmp(exitinfo.sHandle, Msg.To) == 0))
+	if ((IsMe(Msg.From)) || (IsMe(Msg.To)))
 	    ShowMsg = TRUE;
 	if (exitinfo.Security.level >= msgs.SYSec.level)
 	    ShowMsg = TRUE;
