@@ -61,6 +61,9 @@ if [ "$OSTYPE" = "Linux" ]; then
 	# Debian, at least since version 2.2
 	DISTNAME="Debian"
 	DISTVERS=`cat /etc/debian_version`
+    elif [ -f /etc/devuan_version ]; then
+        DISTNAME="Devuan"
+        DISTVERS=`cat /etc/devuan_version`
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=`cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }'`
@@ -95,8 +98,8 @@ if [ "$OSTYPE" = "Linux" ]; then
 	log "-" "`uname -a`"
 	log "-" "`ls -la /etc`"
 	echo "Failed to install bootscripts, unknown Linux distribution."
-	echo "Please mail the file `pwd`/script/installinit.log to mbroek@users.sourceforge.net"
-	echo "or send it as file attach to Michiel Broek at 2:280/2802@Fidonet."
+	echo "Please mail the file `pwd`/script/installinit.log to ajleary@users.sourceforge.net"
+	echo "or send it as file attach to Andrew Leary at 1:320/219@fidonet."
 	echo "Add information about the distribution you use in the message."
 	exit 1;
     fi
@@ -282,6 +285,23 @@ if [ "$DISTNAME" = "Debian" ]; then
 	update-rc.d mbsebbs defaults
 	echo "Debian install ready."
         log "+" "Debian SystemV init script installed"
+fi
+
+
+#-------------------------------------------------------------------------
+#
+#  Adding scripts for Devuan
+#
+#
+if [ "$DISTNAME" = "Devuan" ]; then
+	echo "You are running Devuan Linux $DISTVERS"
+	log "+" "Adding Devuan SystemV init script"
+	DISTINIT="/etc/init.d/mbsebbs"
+	cp init.Devuan $DISTINIT
+	chmod 755 $DISTINIT
+	update-rc.d mbsebbs defaults
+	echo "Devuan install ready."
+	log "+" "Devuan SystemV init script installed"
 fi
 
 

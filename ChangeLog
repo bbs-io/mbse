@@ -1,3 +1,10 @@
+v1.0.7.18	15-Aug-2020 - Andrew Leary
+
+		1.  Added support for installing on Devuan Linux.
+
+		2.  Fixed the default telnet server entry in /etc/xinetd.d/
+                mbsebbs to call /usr/sbin/in.telnetd vs. /usr/sbin/telnetd.
+
 v1.0.7.17       31-May-2020 - Andrew Leary
 
                 1.  Applied Niels Haedecke's correction to the German textfiles

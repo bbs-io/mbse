@@ -91,6 +91,9 @@ if [ "$OSTYPE" = "Linux" ]; then
 	    DISTNAME="Ubuntu"
 	    DISTVERS=$( cat /etc/issue | awk '{ print $2 }' )
 	fi
+    elif [ -f /etc/devuan_version ]; then
+    	DISTNAME="Devuan"
+    	DISTVERS=$( cat /etc/devuan_version )	
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=$( cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }' )
@@ -205,6 +208,24 @@ if [ "$DISTNAME" = "Ubuntu" ]; then
 	exit 2
     fi
 fi
+
+#
+# Check if this is Devuan.  Devuan by default has no xinetd installed.
+#
+
+if [ "$DISTNAME" = "Devuan" ]; then
+    if [ ! -f /etc/xinetd.d/echo ]; then
+    	echo "*** You seem to be using Devuan but have not yet installed xinetd."
+    	echo "    'apt-get install xinetd' as root will install that for you. ***"
+    	echo "*** SETUP aborted ***"
+    	log "!" "Aborted, Devuan without xinetd package"
+    	exit 2
+    fi
+fi
+
+#
+# Check if this is Arch Linux.  Arch Linux by default has no xinetd installed.
+#
 
 if [ "$DISTNAME" = "Arch Linux" ]; then
     if [ ! -f /etc/xinetd.d/servers ]; then
@@ -593,6 +614,7 @@ cat << EOF >> $XINET
 #:MBSE BBS services are defined here.
 #
 # Author: Michiel Broek <mbse@mbse.eu>, 27-Sep-2004
+# Modified by: Andrew Leary <ajleary@users.sourceforge.net>, 15-Aug-2020
 
 service binkp
 {
@@ -638,7 +660,7 @@ service telnet
 	log_on_failure += USERID
 	socket_type	= stream
 	user		= root
-	server		= /usr/sbin/telnetd
+	server		= /usr/sbin/in.telnetd
 	server_args	= -L $MHOME/bin/mblogin
 	wait		= no
 }
