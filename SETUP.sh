@@ -34,8 +34,8 @@ MBSE BBS for Unix, first time setup. Checking your system..."
 If anything goes wrong with this script, look at the output of
 the file SETUP.log that is created by this script in this
 directory. If you can't get this script to run on your system,
-mail this logfile to Michiel Broek at 2:280/2802 or email it
-to mbroek@mbse.eu
+mail this logfile to Andrew Leary at 1:320/219 or email it
+to ajleary@users.sourceforge.net
 
 EOF
 
@@ -91,9 +91,11 @@ if [ "$OSTYPE" = "Linux" ]; then
 	    DISTNAME="Ubuntu"
 	    DISTVERS=$( cat /etc/issue | awk '{ print $2 }' )
 	fi
-    elif [ -f /etc/devuan_version ]; then
-    	DISTNAME="Devuan"
-    	DISTVERS=$( cat /etc/devuan_version )	
+    	# Devuan is based on Debian
+    	if [ -f /etc/devuan_version ]; then
+    	    DISTNAME="Devuan"
+    	    DISTVERS=$( cat /etc/devuan_version )
+    	fi
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=$( cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }' )

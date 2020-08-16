@@ -57,13 +57,14 @@ if [ "$OSTYPE" = "Linux" ]; then
     elif [ -f /etc/zenwalk-version ]; then
 	DISTNAME="Zenwalk"
 	DISTVERS=`cat /etc/zenwalk-version`
+    elif [ -f /etc/devuan_version ]; then
+        # Devuan test before Debian
+        DISTNAME="Devuan"
+        DISTVERS=`cat /etc/devuan_version`
     elif [ -f /etc/debian_version ]; then
 	# Debian, at least since version 2.2
 	DISTNAME="Debian"
 	DISTVERS=`cat /etc/debian_version`
-    elif [ -f /etc/devuan_version ]; then
-        DISTNAME="Devuan"
-        DISTVERS=`cat /etc/devuan_version`
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=`cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }'`

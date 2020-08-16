@@ -1,11 +1,13 @@
 #!/bin/sh
-#
-# Note: this is not 100% Debian style, at least it works for now.
-# $Id: init.Debian,v 1.10 2007/09/02 12:50:32 mbse Exp $
-# 
-# description: Starts and stops the MBSE BBS.
-#
-# For Debian SYSV init style.
+### BEGIN INIT INFO
+# Provides:          mbsebbs
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: MBSE BBS
+# Description:       MBSE BBS for *nix
+### END INIT INFO
 
 # Find the MBSE_ROOT from the /etc/passwd file.
 MBSE_ROOT=`cat /etc/passwd | grep ^mbse: | awk -F ':' '{ print $6}'`
