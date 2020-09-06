@@ -1,55 +1,46 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<META http-equiv="Content-Style-Type" content="text/css">
-<META NAME="Language" content='en'>
-<META name="author" lang="en" content="Michiel Broek">
-<META name="copyright" lang="en" content="Copyright Michiel Broek">
-<META name="description" lang="en" content="MBSE BBS Manual - Error return codes">
-<META name="keywords" lang="en" content="MBSE BBS, MBSE, BBS, manual, fido, fidonet, gateway, tosser, mail, tic, mailer">
-<TITLE>Error return codes.</TITLE>
-<LINK rel=stylesheet HREF="manual.css">
-</HEAD>
-<BODY>
-<BLOCKQUOTE>
-<!-- MBSEADVERT -->
-<div align='right'><h5>Last update 30-Jun-2005</h5></div>
-<div align='center'><H1>MBSE BBS - Error return codes.</H1></div>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <TITLE>MBSE BBS: Error Codes</TITLE>
+  <META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+  <META NAME="DESCRIPTION" CONTENT="MBSE BBS Error Codes">
+  <META NAME="AUTHOR" CONTENT="MBSE BBS Development Team">
+  <META NAME="COPYRIGHT" CONTENT="(C) MBSE BBS Development Team">
+  <link rel="stylesheet" type="text/css" href="manual.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</head>
 
+<div align="right"><h5>Last update 18 August 2020</h5></div>
+<div align="center"><H1>MBSE BBS Error Codes</H1></div>
 
-<P>
-Following is a list of return codes from all official mbse programs and
-utilities. These codes can be used in scripts. If a program exits normally, the
-return code is 0. If a program exits by a signal, the return code is the signal
-number. This means if you kill a running program with a SIGTERM, the programs
-exits with the SIGTERM error number. On most platforms this is 15. These
-errorcodes are for the most part the same on all *nix platforms but because of
-some small differences I cannot list these here. Just do a <b>kill -l</b> to see
-a list of errors for your own platform.<br>
-Here is the list of other return codes:
+<P>This is a list of possible return codes from all MBSE programs and utilities. These codes can be used in scripts. If a program exits normally, the return code is 0. If a program exits by a signal, the return code is the signal number. This means if you kill a running program with a SIGTERM, the program exits with the SIGTERM error number, usually error number 15. These
+error codes are all nearly identical on all *nix platforms but there may be differences between distributions. Just do a <code>kill -l</code> to see a list of errors for your own platform.</p>
+
+<p>Possible return codes:
 <OL start="100">
- <LI>Commandline error
+ <LI>Command line error
  <LI>Configuration error
- <LI>Initialisation error
- <LI>A full disk partition
+ <LI>Initialization error
+ <LI>Full disk partition
  <LI>UPS alarm detected
  <LI>No valid recipients
  <LI>Execute external program failed
- <LI>Set tty failed
+ <LI>Set TTY failed
  <LI>File transfer error
  <LI>File attach failed
  <LI>Can't lock program, retry later
  <LI>Node not in nodelist
  <LI>Node may not be called
  <LI>Can't make connection
- <LI>Can't open tty port
+ <LI>Can't open TTY port
  <LI>Node is locked
  <LI>Node IP address not found
- <LI>Unknow session type
+ <LI>Unknown session type
  <LI>Not Zone Mail Hour
  <LI>Modem error
- <LI>No modemport available
+ <LI>No modem port available
  <LI>Session error (password)
  <LI>EMSI session error
  <LI>FTSC session error
@@ -63,21 +54,17 @@ Here is the list of other return codes:
  <LI>General error
  <LI>Timeout error
 </OL>
-<P>
-The mailer can also return the following error codes:
+</p>
+<p>The mailer can also return the following error codes:
 <OL start="201">
  <LI>TTY general error
  <LI>TTY timeout
  <LI>TTY EndOfFile
  <LI>TTY Hangup
  <LI>TTY Empty
-</OL>
-<P>
-When an external program is run, a mbse program can exit with return code 256 +
-the return code of the external program. So if the external program exits with
-error code 7, the code returned by the mbse program is 263.
-<P>
+</OL></p>
+<P>When an external program is run, a MBSE program can exit with the return code of the external program with 256 added to it. So if the external program exits with
+error code 7, the code returned by the MBSE program is 263.</P>
 <A HREF="index.html"><IMG SRC="images/b_arrow.png" ALT="Back" Border="0">Go Back</A>
-</BLOCKQUOTE>
 </BODY>
 </HTML>

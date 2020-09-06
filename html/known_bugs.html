@@ -1,42 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<META http-equiv="Content-Style-Type" content="text/css">
-<META NAME="Language" content='en'>
-<META name="author" lang="en" content="Michiel Broek">
-<META name="copyright" lang="en" content="Copyright Michiel Broek">
-<META name="description" lang="en" content="MBSE BBS Manual - Known Bugs">
-<META name="keywords" lang="en" content="MBSE BBS, MBSE, BBS, manual, fido, fidonet, gateway, tosser, mail, tic, mailer">
-<TITLE>Running a BBS under Unix.</TITLE>
-<LINK rel=stylesheet HREF="manual.css">
-</HEAD>
-<BODY>
-<BLOCKQUOTE>
-<!-- MBSEADVERT -->
-<div align='right'><h5>Last update 01-Mar-2007</h5></div>
-<div align='center'><H1>MBSE BBS - Known bugs.</H1></div>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <TITLE>MBSE BBS: Known Issues</TITLE>
+  <META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+  <META NAME="DESCRIPTION" CONTENT="Known issues with MBSE BBS.">
+  <META NAME="AUTHOR" CONTENT="MBSE BBS Development Team">
+  <META NAME="COPYRIGHT" CONTENT="(C) MBSE BBS Development Team">
+  <link rel="stylesheet" type="text/css" href="manual.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</head>
 
-There are always more bugs, but these are known....
+<div align='right'><h5>Last updated 18 August 2020</h5></div>
+<div align='center'><H1>MBSE BBS: Known Issues</H1></div>
+
+These are the currently known issues with MBSE BBS:
 
 <UL>
-<LI>Reading of function keys in mbsebbs doesn't work always good, especially on
-slow links and over PPP. This is not a MBSE BBS problem.
-
-<LI>Problems with D'Bridge [1a] mailers.
-
-<LI>If you have regular sessions with a node wich only supports FTS-0001
-sessions and you use a session password you <b>must</b> also set a mail password
-and these passwords must be the same. This is a side effect of the way FTS-0001
-handshake works, by sending a small mail packet wich contains the password.
-
-<LI>Some Linux distributions have their glibc libraries compiled wrong, that
-will cause the <b>mbtask</b> program to do nothing usefull. This problem seems
-to have gone away.
-
-<LI>You cannot share the JAM message bases between little-endian and big-endian
-machines using networked filesystems because the storage format doesn't specify 
-the internal byte order for different CPU's. This is an error in the JAM spec.
+<LI>Reading of function keys in <code>mbsebbs</code> doesn't work always well especially on slow links and over PPP. This is not a MBSE BBS problem.</li><br>
+<LI>Problems with D'Bridge [1a] mailers.</li><br>
+<LI>If you have regular sessions with a node wich only supports FTS-0001 sessions and you use a session password, you <b>must</b> set a common mail password. This is a side effect of the way FTS-0001 handshake works by sending a small mail packet which contains the password.</li><br>
+<LI>Some Linux distributions have their glibc libraries compiled wrong that will cause the <code>mbtask</code> program to do nothing. This problem seems to have gone away with more modern systems.</li><br>
+<LI>You cannot share the JAM message bases between little-endian and big-endian machines using networked filesystems because the storage format doesn't specify the internal byte order for different CPUs. This is caused by an error in the JAM spec.</li>
 </UL>
 
 <A HREF="index.html"><IMG SRC="images/b_arrow.png" ALT="Back" Border="0">Go Back</A>
