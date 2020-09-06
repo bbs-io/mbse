@@ -12,10 +12,10 @@
   <meta charset="UTF-8">
 </head>
 
-<div align="right"><h5>Last update 18 August 2020</h5></div>
+<div align="right"><h5>Last update 6 September 2020</h5></div>
 <div align="center"><H1>Starting/Stopping MBSE</H1></div>
 
-<p>Now it is time to check the starting and stopping of the BBS. As you have installed everything, setup the BBS etc, you must check if the shutdown and reboot work properly. As root type <code>shutdown -r now</code> or <code>reboot</code> and watch the console. You should see messages that the BBS is closing while the systems shuts down. This should be one of the first things to happen.</p>
+<p>Now it is time to check the starting and stopping of the BBS. As you have installed everything, setup the BBS, et cetera, you must check if the shutdown and reboot work properly. As root type <code>shutdown -r now</code> or <code>reboot</code> and watch the console. You should see messages that the BBS is closing while the system shuts down. This should be one of the first things to happen.</p>
 <p><strong>NOTE:</strong> you won't see this happen on older Slackware versions. If you want, you can edit /etc/rc.d/rc.6 and /etc/rc.d/rc.K and insert the line /opt/mbse/etc/rc.shutdown
 at the proper places.<p>
 

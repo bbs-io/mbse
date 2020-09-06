@@ -123,20 +123,20 @@ previous or failed installation on your system. If that's so the script will
 not run. In other words, you can only run this script once. The script makes
 backup copies of the system files it changes, these files will get the
 extension <strong>.mbse</strong> To run the installation script you need
-the archive <strong>mbbsebbs-1.0.7.17.tar.bz2</strong>.
+the archive <strong>mbbsebbs-1.0.7.18.tar.bz2</strong>.
 Unpack this archive on your system, in /tmp:
 <pre>
 cd /tmp
-tar xfvj /path/to/the/mbsebbs-1.0.7.17.tar.bz2
+tar xfvj /path/to/the/mbsebbs-1.0.7.18.tar.bz2
 </pre>
 To start the script type:
 <pre>
-cd mbsebbs-1.0.7.17
+cd mbsebbs-1.0.7.18
 bash ./SETUP.sh
 </pre>
 Ubuntu users should do:
 <pre>
-cd mbsebbs-1.0.7.17
+cd mbsebbs-1.0.7.18
 sudo bash ./SETUP.sh
 </pre>
 Yes, use <b>bash</b> as shell here. On some systems root doesn't use  bash
@@ -174,10 +174,10 @@ If something is wrong, now is the time to fix it. Don't panic and remember
 the backups of the system files that are changed are in /etc with the 
 extension <strong>.mbse</strong> i.e: those were the original files.
 The installation logfile is copied to /opt/mbse.
-If everythings is allright, then remove the directory /tmp/mbsebbs-1.0.7.17:
+If everythings is allright, then remove the directory /tmp/mbsebbs-1.0.7.18:
 <pre>
 cd /tmp
-rm -Rf mbsebbs-1.0.7.17
+rm -Rf mbsebbs-1.0.7.18
 </pre>
 <p>&nbsp;<p>
 
@@ -186,12 +186,12 @@ rm -Rf mbsebbs-1.0.7.17
 Login as user <b>mbse</b>. Yes, very important, <b>login as user mbse</b>.
 While in mbse's home directory (/opt/mbse) unpack the distribution archives:
 <pre>
-tar xfvj /path/to/mbsebbs-1.0.7.17.tar.bz2
+tar xfvj /path/to/mbsebbs-1.0.7.18.tar.bz2
 </pre>
 You now have the subdirectory with sources in the right place. 
 Next build the binaries and install them using the following commands:
 <pre>
-cd ~/mbsebbs-1.0.7.17
+cd ~/mbsebbs-1.0.7.18
 ./configure [--enable-optimize] [--enable-newsgate] [--enable-gdkdel]
 make
 su        <span class="color:crimson"><b>important, do not use "su -"</b></span>
@@ -201,7 +201,7 @@ exit
 </pre>
 Ubuntu users should do:
 <pre>
-cd ~/mbsebbs-1.0.7.17
+cd ~/mbsebbs-1.0.7.18
 ./configure [--enable-optimize] [--enable-newsgate] [--enable-gdkdel]
 make
 sudo make install
