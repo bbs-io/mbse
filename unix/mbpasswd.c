@@ -624,7 +624,9 @@ static int new_password(const struct passwd *pw, char *newpasswd)
 	/*
 	 * Encrypt the password, then wipe the cleartext password.
 	 */
-	cp = pw_encrypt(pass, crypt_make_salt());
+	if ((cp = pw_encrypt(pass, crypt_make_salt())) == NULL) {
+        return -1;
+    }
 	memset(&pass, 0, sizeof(pass));
 
 #ifdef HAVE_LIBCRACK_HIST

@@ -117,7 +117,12 @@ int pw_auth(const char *cipher, const char *user, int reason, const char *input)
 	 * SUCCESS.  Otherwise we see if SKEY is being used and check
 	 * the results there as well.
 	 */
-	retval = strcmp(pw_encrypt(input, cipher), cipher);
+	char *encrypted = pw_encrypt(input, cipher);
+	if (encrypted) {
+		retval = strcmp(encrypted, cipher);
+	} else {
+		retval = -1;
+	}
 
 	/*
 	 * Things like RADIUS authentication may need the password -

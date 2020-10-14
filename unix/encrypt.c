@@ -115,8 +115,9 @@ char *pw_encrypt(const char *clear, const char *salt)
 	for (count = 0;count < 10;count++) {
 		cp = crypt (clear, salt);
 		if (!cp) {
-			perror("crypt");
-			exit(1);
+			/*perror("crypt");
+			exit(1);*/
+			return NULL;
 		}
 		if (strlen(cp) != 13)
 			return cp;
@@ -136,8 +137,9 @@ char *pw_encrypt(const char *clear, const char *salt)
                  * and set errno to indicate an error.  The caller doesn't
                  * expect us to return NULL, so...
                  */
-                perror("crypt");
-                exit(1);
+                /*perror("crypt");
+                exit(1); */
+								return NULL; /* Now the caller will expect it */
         }
 	if (strlen(cp) != 13)
 		return cp;  /* nonstandard crypt() in libc, better bail out */
@@ -147,8 +149,9 @@ char *pw_encrypt(const char *clear, const char *salt)
 	if (strlen (clear) > 8) {
 		cp = crypt (clear + 8, salt);
 		if (!cp) {
-		    perror("crypt");
-		    exit(1);
+		    /*perror("crypt");
+		    exit(1);*/
+				return NULL;
 		}
 		strcat (cipher, cp + 2);
 	}
