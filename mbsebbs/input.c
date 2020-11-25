@@ -270,7 +270,7 @@ int Speed(void)
 	case B115200:   return 115200;
 #endif
 #if defined(B230400)
-	case B230400:   return 203400;
+	case B230400:   return 230400;
 #endif
 #if defined(B460800)
 	case B460800:   return 460800;

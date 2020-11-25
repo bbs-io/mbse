@@ -1,3 +1,10 @@
+v1.0.7.19       19-Oct-2020 - Andrew Leary
+
+		1.  Corrected a typo in mbsebbs/input.c for 230400 bps.
+
+		2.  Applied Michael Dillon's patches addressing build warnings
+		with newer versions of GCC.
+
 v1.0.7.18	15-Aug-2020 - Andrew Leary
 
 		1.  Added support for installing on Devuan Linux.
