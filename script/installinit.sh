@@ -68,6 +68,9 @@ if [ "$OSTYPE" = "Linux" ]; then
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=`cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }'`
+    elif [ -f /etc/SUSE-brand ]; then
+        DISTNAME="openSuSE"
+        DISTVERS=`cat /etc/SUSE-brand | grep VERSION | awk '{ print $3 }'`
     elif [ -f /etc/mandrake-release ]; then
 	# Mandrake test before RedHat, Mandrake has a redhat-release
 	# file also which is a symbolic link to mandrake-release.
@@ -150,6 +153,32 @@ if [ "$DISTNAME" = "SuSE" ]; then
     ln -s ../mbsed $DISTDIR/init.d/rc5.d/S99mbsed
     echo "SuSE $DISTVERS SystemV init configured"
     log "+" "SuSE $DISTVERS SystemV init configured"
+fi
+
+
+#--------------------------------------------------------------------------
+#
+#  Adding scripts for openSuSE in /etc/init.d
+#
+if [ "$DISTNAME" = "openSuSE" ]; then
+    DISTDIR="/etc"
+    DISTINIT="$DISTDIR/init.d/mbsed"
+    echo "Installing SystemV init scripts for openSuSE $DISTVERS"
+    log "+" "Installing SystemV init scripts for openSuSE $DISTVERS"
+    echo "Adding $DISTINIT"
+    cp init.SuSE $DISTINIT
+    chmod 755 $DISTINIT
+    echo "Making links for start/stop in runlevel 2"
+    ln -s ../mbsed $DISTDIR/init.d/rc2.d/K05mbsed
+    ln -s ../mbsed $DISTDIR/init.d/rc2.d/S99mbsed
+    echo "Making links for start/stop in runlevel 3"
+    ln -s ../mbsed $DISTDIR/init.d/rc3.d/K05mbsed
+    ln -s ../mbsed $DISTDIR/init.d/rc3.d/S99mbsed
+    echo "Making links for start/stop in runlevel 5"
+    ln -s ../mbsed $DISTDIR/init.d/rc5.d/K05mbsed
+    ln -s ../mbsed $DISTDIR/init.d/rc5.d/S99mbsed
+    echo "openSuSE $DISTVERS SystemV init configured"
+    log "+" "openSuSE $DISTVERS SystemV init configured"
 fi
 
 
