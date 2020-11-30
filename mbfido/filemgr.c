@@ -846,14 +846,38 @@ int FileMgr(faddr *f, faddr *t, char *replyid, char *subj, time_t mdate, int fla
     Mgrlog("FileMgr request from %s start", ascfnode(f, 0xff));
 
     /*
-     * If the password failed, we return silently and don't respond.
+     * If the password failed, we respond with an error message.
      */
     if ((!strlen(subj)) || (strcasecmp(subj, nodes.Fpasswd))) {
 	WriteError("FileMgr: password expected \"%s\", got \"%s\"", nodes.Fpasswd, subj);
 	Mgrlog("FileMgr: password expected \"%s\", got \"%s\"", nodes.Fpasswd, subj);
 	Mgrlog("FileMgr request from %s finished", ascfnode(f, 0xff));
 	net_bad++;
-	return FALSE;
+	/*
+	 * Make sure we refresh the nodes record.
+	 */
+	SearchNodeFaddr(f);
+	subject=calloc(256,sizeof(char));
+        MacroVars("SsP", "sss", CFG.sysop_name, nodes.Sysop,"Filemgr");
+	MacroVars("RABCDE", "ssssss","","","","","","");
+	snprintf(subject,256,"Your FileMgr request");
+	GetRpSubject("filemgr.responses",subject,256);
+	if ((np = SendMgrMail(f, CFG.ct_KeepMgr, FALSE, (char *)"Filemgr", subject, replyid)) != NULL) {
+	    MacroVars("RABCDE", "ssssss","WELLCOME","","","","","");
+	    MsgResult("filemgr.responses",np,'\r');
+	    fprintf(np, "\r");
+	    MacroVars("RABCDE", "ssssss","ERR_BAD_PWD","","","","","");
+	    MsgResult("filemgr.responses",np,'\r');
+	    fprintf(np, "\r");
+	    MacroVars("RABCDE", "ssssss","GOODBYE","","","","","");
+	    MsgResult("filemgr.responses",np,'\r');
+	    fprintf(np, "\r%s\r", TearLine());
+	    CloseMail(np, t);
+	} else 
+	    WriteError("Can't create netmail");
+	free(subject);
+        MacroClear();
+	return rc;
     }
 
     if ((tmp = tmpfile()) == NULL) {
@@ -871,7 +895,7 @@ int FileMgr(faddr *f, faddr *t, char *replyid, char *subj, time_t mdate, int fla
 	 * Make sure we refresh the nodes record.
 	 */
 	SearchNodeFaddr(f);
-
+	
 	spaces = 0;
 	for (i = 0; i < strlen(Buf); i++) {
 	    if (*(Buf + i) == ' ')

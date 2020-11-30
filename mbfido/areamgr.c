@@ -1030,13 +1030,37 @@ int AreaMgr(faddr *f, faddr *t, char *replyid, char *subj, time_t mdate, int fla
     Mgrlog("AreaMgr request from %s start", ascfnode(f, 0xff));
 
     /*
-     * If the password failed, we return silently and don't respond.
+     * If the password failed, we respond with an error message.
      */
     if ((!strlen(subj)) || (strcasecmp(subj, nodes.Apasswd))) {
 	WriteError("AreaMgr: password expected \"%s\", got \"%s\"", nodes.Apasswd, subj);
 	Mgrlog("AreaMgr request from %s finished", ascfnode(f, 0xff));
 	net_bad++;
-	return FALSE;
+	/*
+	 * Make sure we have the nodes record loaded
+	 */
+	SearchNodeFaddr(f);
+	subject=calloc(256,sizeof(char));
+        MacroVars("SsP", "sss", CFG.sysop_name, nodes.Sysop,"Areamgr");
+	MacroVars("RABCDE", "ssssss","","","","","","");
+	snprintf(subject,256,"Your AreaMgr request");
+	GetRpSubject("areamgr.responses",subject,72);
+	if ((np = SendMgrMail(f, CFG.ct_KeepMgr, FALSE, (char *)"Areamgr", subject, replyid)) != NULL) {
+	    MacroVars("RABCDE", "ssssss","WELLCOME","","","","","");
+	    MsgResult("areamgr.responses",np,'\r');
+	    fprintf(np, "\r");
+	    MacroVars("RABCDE", "ssssss","ERR_BAD_PWD","","","","","");
+	    MsgResult("areamgr.responses",np,'\r');
+	    fprintf(np, "\r");
+	    MacroVars("RABCDE", "ssssss","GOODBYE","","","","","");
+	    MsgResult("areamgr.responses",np,'\r');
+	    fprintf(np, "\r%s\r", TearLine());
+	    CloseMail(np, t);
+	} else
+	    WriteError("Can't create netmail");
+	free(subject);
+	MacroClear();
+	return rc;
     }
 
     if ((tmp = tmpfile()) == NULL) {

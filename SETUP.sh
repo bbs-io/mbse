@@ -99,6 +99,9 @@ if [ "$OSTYPE" = "Linux" ]; then
     elif [ -f /etc/SuSE-release ]; then
 	DISTNAME="SuSE"
 	DISTVERS=$( cat /etc/SuSE-release | grep VERSION | awk '{ print $3 }' )
+    elif [ -f /etc/SUSE-brand ]; then
+        DISTNAME="openSuSE"
+        DISTVERS=$( cat /etc/SUSE-brand | grep VERSION | awk '{ print $3 }' )
 	# Mandrake test before RedHat, Mandrake has a redhat-release
 	# file also which is a symbolic link to mandrake-release.
     elif [ -f /etc/mandrake-release ]; then
@@ -448,7 +451,7 @@ if [ "$OSTYPE" = "Linux" ]; then
 	log "+" "[$?] made backup of /etc/shadow"
 	mv /etc/shadow.bbs /etc/shadow
 	log "+" "[$?] moved new /etc/shadow in place"
-	if [ "$DISTNAME" = "Debian" ] || [ "$DISTNAME" = "Ubuntu" ] || [ "$DISTNAME" = "SuSE" ]; then
+	if [ "$DISTNAME" = "Debian" ] || [ "$DISTNAME" = "Ubuntu" ] || [ "$DISTNAME" = "SuSE" ] || [ "$DISTNAME" = "openSuSE" ]; then
 	    # Debian, Ubuntu and SuSE use other ownership of /etc/shadow
 	    chmod 640 /etc/shadow
 	    chgrp shadow /etc/shadow

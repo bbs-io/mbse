@@ -1,3 +1,11 @@
+v1.0.7.20       30-Nov-2020 - Andrew Leary
+
+                1.  Added support for sending back an error message when an
+                incoming AreaMgr or FileMgr request does not include the
+                correct password.
+
+                2.  Added support for installing on openSuSE.
+
 v1.0.7.19       19-Oct-2020 - Andrew Leary
 
 		1.  Corrected a typo in mbsebbs/input.c for 230400 bps.
