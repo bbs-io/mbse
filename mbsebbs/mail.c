@@ -1113,10 +1113,19 @@ int Export_a_Msg(unsigned int Num)
 
     if (Msg.Private) {
 	ShowMsg = FALSE;
-	if ((IsMe(Msg.From)) || (IsMe(Msg.To)))
-	    ShowMsg = TRUE;
+
+        if (Msg.Netmail) {
+           if ((strcasecmp(aka2str(msgs.Aka), Msg.FromAddress) == 0 && IsMe(Msg.From)) || 
+               (strcasecmp(aka2str(msgs.Aka), Msg.ToAddress) == 0 && IsMe(Msg.To))) {
+	      ShowMsg = TRUE;
+           }
+        } else {
+           if ((IsMe(Msg.From)) || (IsMe(Msg.To))) 
+	      ShowMsg = TRUE;
+        }
+
 	if (exitinfo.Security.level >= msgs.SYSec.level)
-	    ShowMsg = TRUE;
+	   ShowMsg = TRUE;
     }
 
     if (!ShowMsg) {
@@ -1238,11 +1247,21 @@ int Read_a_Msg(unsigned int Num, int UpdateLR)
     
     if (Msg.Private) {
 	ShowMsg = FALSE;
-	if ((IsMe(Msg.From)) || (IsMe(Msg.To)))
-	    ShowMsg = TRUE;
+
+        if (Msg.Netmail) {
+           if ((strcasecmp(aka2str(msgs.Aka), Msg.FromAddress) == 0 && IsMe(Msg.From)) || 
+               (strcasecmp(aka2str(msgs.Aka), Msg.ToAddress) == 0 && IsMe(Msg.To))) {
+	      ShowMsg = TRUE;
+           }
+        } else {
+           if ((IsMe(Msg.From)) || (IsMe(Msg.To))) 
+	      ShowMsg = TRUE;
+        }
+
 	if (exitinfo.Security.level >= msgs.SYSec.level)
-	    ShowMsg = TRUE;
+	   ShowMsg = TRUE;
     } 
+
     if (!ShowMsg) {
 	Enter(1);
 	pout(WHITE, BLACK, (char *) Language(82));
@@ -1875,9 +1894,13 @@ void QuickScan_Msgs()
 
     if (Msg_Open(sMsgAreaBase)) {
 	for (i = MsgBase.Lowest; i <= MsgBase.Highest; i++) {
-	    if (Msg_ReadHeader(i) && ((!Msg.Private) || 
-				    ((Msg.Private) && ((IsMe(Msg.From)) || (IsMe(Msg.To)) || (exitinfo.Security.level >= msgs.SYSec.level))))) {
-				
+            if (Msg_ReadHeader(i) && ((!Msg.Private) ||
+                                     ((Msg.Private) && (!strcasecmp(aka2str(msgs.Aka), Msg.FromAddress) && IsMe(Msg.From) && Msg.Netmail) || 
+                                                       (!strcasecmp(aka2str(msgs.Aka), Msg.ToAddress) && IsMe(Msg.To) && Msg.Netmail) || 
+                                                       ((IsMe(Msg.From) || IsMe(Msg.To)) && (!Msg.Netmail)) ||
+                                                       (exitinfo.Security.level >= msgs.SYSec.level)
+                ))) {
+
 		snprintf(msg, 81, "%-6u", Msg.Id);
 		pout(WHITE, BLACK, msg);
 		snprintf(msg, 81, "%s ", padleft(Msg.From, 20, ' '));
