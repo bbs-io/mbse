@@ -155,9 +155,9 @@ struct	userrec {
 };
 
 
-struct  userhdr         usrconfighdr;           /* Users database          */
-struct  userrec         usrconfig;
-struct  userrec         exitinfo;               /* Users online data       */
+extern struct  userhdr         usrconfighdr;           /* Users database          */
+extern struct  userrec         usrconfig;
+extern struct  userrec         exitinfo;               /* Users online data       */
 
 
 #endif

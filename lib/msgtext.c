@@ -35,7 +35,7 @@
 
 
 LDATA	*List;
-
+unsigned short	Elements;
 
 
 

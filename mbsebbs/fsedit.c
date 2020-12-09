@@ -44,6 +44,13 @@
 extern int  cols;
 extern int  rows;
 
+int		Row;		/* Current row on screen		*/
+int		Col;		/* Current column in text and on screen	*/
+int		TopVisible;	/* First visible line of text		*/
+int		InsMode;	/* Insert mode				*/
+int		CurRow;		/* Current row in buffer		*/
+
+
 char	hstr[81];
 
 

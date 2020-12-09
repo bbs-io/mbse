@@ -31,6 +31,8 @@
 #include "../lib/mbselib.h"
 #include "ttyio.h"
 
+/* Globals */
+int	tty_status;
 
 extern	int	hanged_up;
 

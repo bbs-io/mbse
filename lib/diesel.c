@@ -330,6 +330,11 @@ documented above, in outstring.
 #include "mbselib.h"
 #include "diesel.h"
 
+#ifdef DIESEL_TRACE
+int tracing = TRUE;		      /* Trace macro evalution */
+#endif
+
+
 /* Get(<var>, <structure_type>) allocates a new  <structure_type>  and
    places  a  pointer  to  it  in  <var>.   The  definition  is subtly
    different depending on the setting of "lint" in order to get around

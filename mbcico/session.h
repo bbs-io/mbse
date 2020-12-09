@@ -69,7 +69,7 @@ extern int localoptions;
 #define	NONR	 0x1000
 #define NOCRC    0x2000
 
-struct	_history	history;	/* History record for sessions	*/
+extern struct	_history	history;	/* History record for sessions	*/
 
 int session(faddr*,node*,int,int,char*);
 

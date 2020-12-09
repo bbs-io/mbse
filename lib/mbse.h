@@ -47,69 +47,62 @@ typedef	struct _TagRec {
 
 
 /*
- * File Areas
+ * File Areas 
  */
-int	iAreaNumber;		/* Current File Area -1			   */
-char	sAreaDesc[PATH_MAX];	/* Current File Area Name		   */
-char	sAreaPath[PATH_MAX];	/* Current File Area path		   */
-FILE	*pTagList;		/* Tagged files for download		   */
-_Tag	Tag;			/* Tag record				   */
-
-
+extern int	iAreaNumber;		/* Current File Area -1			   */
+extern char	sAreaDesc[PATH_MAX];	/* Current File Area Name		   */
+extern char	sAreaPath[PATH_MAX];	/* Current File Area path		   */
+extern FILE	*pTagList;		/* Tagged files for download		   */
+extern _Tag	Tag;			/* Tag record				   */
 
 /*
- * Msg Areas
+ * Msg Areas 
  */
-int	iMsgAreaNumber;		/* Current Message Area number -1	   */
-int	iMsgAreaType;		/* Current Message Area Type		   */
-char	sMsgAreaDesc[PATH_MAX];	/* Current Message Area Name		   */
-char	sMsgAreaBase[PATH_MAX];	/* Current Message Area Base		   */
-char	sMailbox[21];		/* Current e-mail mailbox		   */
-char	sMailpath[PATH_MAX];	/* Current e-mail path			   */
-
+extern int	iMsgAreaNumber;		/* Current Message Area number -1	   */
+extern int	iMsgAreaType;		/* Current Message Area Type		   */
+extern char	sMsgAreaDesc[PATH_MAX];	/* Current Message Area Name		   */
+extern char	sMsgAreaBase[PATH_MAX];	/* Current Message Area Base		   */
+extern char	sMailbox[21];		/* Current e-mail mailbox		   */
+extern char	sMailpath[PATH_MAX];	/* Current e-mail path			   */
 
 
 /* 
- * Protocols
+ * Protocols 
  */
-char	sProtName[21];		/* Current Transfer Protocol name	   */
-char	sProtUp[51];		/* Upload path & binary			   */
-char	sProtDn[51];		/* Download path & binary		   */
-char	sProtAdvice[31];	/* Advice for protocol			   */
-unsigned uProtInternal;		/* Internal protocol			   */
-int	iProtEfficiency;	/* Protocol efficiency			   */
-
-
+extern char	sProtName[21];		/* Current Transfer Protocol name	   */
+extern char	sProtUp[51];		/* Upload path & binary			   */
+extern char	sProtDn[51];		/* Download path & binary		   */
+extern char	sProtAdvice[31];	/* Advice for protocol			   */
+extern unsigned uProtInternal;		/* Internal protocol			   */
+extern int	iProtEfficiency;	/* Protocol efficiency			   */
 
 /* 
  * Global variables
  */
-char  	*mLanguage[LANG];	/* Define LANG=nnn Language Variables	   */
-char	*mKeystroke[LANG];	/* Possible keystrokes			   */
-char	*Date1, *Date2;		/* Result from function SwapDate()	   */
-char	*pTTY;			/* Current tty name			   */
-char  	sUserTimeleft[7];	/* Global Time Left Variable		   */
-int	iUserTimeLeft;		/* Global Time Left Variable		   */
-char	LastLoginDate[12];	/* Last login date			   */
-char	LastLoginTime[9];	/* Last login time			   */
-char	LastCaller[36];		/* Last caller on system name		   */
-time_t	LastCallerTime;		/* Last caller on system time		   */
-char  	FirstName[20];		/* Users First name			   */
-char  	LastName[30];		/* Users Last name			   */ 
-int	UserAge;		/* Users age				   */
-int	grecno;			/* User's Record Number in user file	   */
-int	SYSOP;			/* Int to see if user is Sysop		   */
-int	iLineCount;		/* Line Counter				   */
-int	iExpired;		/* Check if users time ran out		   */
-char	sUnixName[9];		/* Unix login name			   */
-time_t	Time2Go;		/* Calculated time to force logout	   */
-struct	tm *l_date;		/* Structure for Date			   */
-
-time_t	ltime;
-time_t	Time_Now;
-
-char	current_language[10];	/* Current language of the user		   */
-int	utf8;
+extern char  	*mLanguage[LANG];	/* Define LANG=nnn Language Variables	   */
+extern char	*mKeystroke[LANG];	/* Possible keystrokes			   */
+extern char	*Date1, *Date2;		/* Result from function SwapDate()	   */
+extern char	*pTTY;			/* Current tty name			   */
+extern char  	sUserTimeleft[7];	/* Global Time Left Variable		   */
+extern int	iUserTimeLeft;		/* Global Time Left Variable		   */
+extern char	LastLoginDate[12];	/* Last login date			   */
+extern char	LastLoginTime[9];	/* Last login time			   */
+extern char	LastCaller[36];		/* Last caller on system name		   */
+extern time_t	LastCallerTime;		/* Last caller on system time		   */
+extern char  	FirstName[20];		/* Users First name			   */
+extern char  	LastName[30];		/* Users Last name			   */ 
+extern int	UserAge;		/* Users age				   */
+extern int	grecno;			/* User's Record Number in user file	   */
+extern int	SYSOP;			/* Int to see if user is Sysop		   */
+extern int	iLineCount;		/* Line Counter				   */
+extern int	iExpired;		/* Check if users time ran out		   */
+extern char	sUnixName[9];		/* Unix login name			   */
+extern time_t	Time2Go;		/* Calculated time to force logout	   */
+extern struct	tm *l_date;		/* Structure for Date			   */
+extern time_t	ltime;
+extern time_t	Time_Now;
+extern char	current_language[10];	/* Current language of the user		   */
+extern int	utf8;
 
 
 #endif

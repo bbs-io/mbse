@@ -42,9 +42,6 @@ extern int	bbs_free;
 extern int	ttyfd;
 extern pid_t	mypid;
 
-struct sysconfig    CFG;
-
-
 char  	rbuf[50][81];	    /* Chat receive buffer	*/ /* FIXME: must be a dynamic buffer */
 int	rpointer = 0;	    /* Chat receive pointer	*/
 int	rsize = 5;	    /* Chat receive size	*/

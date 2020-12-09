@@ -17,8 +17,8 @@ typedef struct _pp_list {
 } pp_list;
 
 
-struct _ttyinfohdr  ttyinfohdr;	/* TTY lines			*/
-struct _ttyinfo	    ttyinfo;
+//struct _ttyinfohdr  ttyinfohdr;	/* TTY lines			*/
+//struct _ttyinfo	    ttyinfo;
 
 
 void load_ports(void);		/* Initialize portlist		*/

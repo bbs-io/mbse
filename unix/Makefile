@@ -18,6 +18,7 @@ MBPASSWD_OBJS	= mbpasswd.o commonio.o pwio.o shadowio.o sgetpwent.o \
 MBLOGIN_OBJS	= getdef.o env.o chowntty.o shell.o basename.o pwdcheck.o pwauth.o encrypt.o \
 		  loginprompt.o utmp.o limits.o setupenv.o sub.o xmalloc.o log.o setugid.o \
 		  mblogin.o
+MBLOGIN_LIBS = ../lib/libdbase.a
 OTHER		= Makefile login.defs.in
 TARGET		= mbuseradd mbpasswd mblogin
 
@@ -39,7 +40,7 @@ mbpasswd:	${MBPASSWD_OBJS}
 		${CC} -o mbpasswd ${MBPASSWD_OBJS} ${LDFLAGS} ${LIBS}
 
 mblogin:	${MBLOGIN_OBJS}
-		${CC} -o mblogin ${MBLOGIN_OBJS} ${LDFLAGS} ${LIBS}
+		${CC} -o mblogin ${MBLOGIN_OBJS} ${LDFLAGS} ${LIBS} ${MBLOGIN_LIBS}
 
 install:	all
 		@if [ "`id -un`" != "root" ] ; then \

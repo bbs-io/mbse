@@ -14,7 +14,7 @@ struct	_olrtagrec {
 	unsigned short	ScanNew		: 1;	/* Scan for new mail	     */
 };
 
-struct	_olrtagrec	olrtagrec;
+extern struct	_olrtagrec	olrtagrec;
 
 
 struct _qwkhdr {
@@ -34,7 +34,7 @@ struct _qwkhdr {
 	unsigned char	Msgfiller[3];		/* Filler bytes			*/
 };
 
-struct _qwkhdr	Qwk;
+extern struct _qwkhdr	Qwk;
 
 
 void OLR_TagArea(void);				/* Tag area(s)		     */

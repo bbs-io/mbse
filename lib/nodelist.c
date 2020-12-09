@@ -41,6 +41,20 @@ static int		nlinitdone = FALSE;
 static int		linecnt = 0;
 static unsigned int	mypots = 0, myisdn = 0, mytcpip =0;
 
+/* Globals */
+nodelist_flag	    *nl_online;
+nodelist_flag	    *nl_request;
+nodelist_flag	    *nl_reqbits;
+nodelist_modem	    *nl_pots;
+nodelist_modem	    *nl_isdn;
+nodelist_modem	    *nl_tcpip;
+nodelist_array	    *nl_search;
+nodelist_array	    *nl_dialer;
+nodelist_array	    *nl_ipprefix;
+nodelist_domsuf	    *nl_domsuffix;
+nodelist_service    *nl_service;
+
+
 
 static int		getkwd(char**);
 static int		getmdm(char**);

@@ -34,6 +34,15 @@
 #include "msg.h"
 #include "jammsg.h"
 
+/*
+ * Global variables
+ */
+msgbuf		Msg;				/* Message buffer	    */
+msgbase		MsgBase;			/* Message Base buffer	    */
+msgbase		EmailBase;			/* Email Base buffer	    */
+lastread	LastRead;			/* LastRead pointer record  */
+char		szWrp[MAX_LINE_LENGTH + 1];
+
 
 
 char *strlwr (char *s)

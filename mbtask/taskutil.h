@@ -40,7 +40,7 @@ void		ascfnode_r(faddr *, int, char *);
 void		fido2str_r(fidoaddr, int, char *);
 void		Dos2Unix_r(char *, char *);
 char		*dayname(void);
-void		InitFidonet(void);
+void		TaskInitFidonet(void);
 int		SearchFidonet(unsigned short);
 char		*printable(char *, int);
 

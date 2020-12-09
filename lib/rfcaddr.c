@@ -33,6 +33,8 @@
 
 
 extern int addrerror;
+int	ttyfd;				/* Filedescriptor for raw mode	*/
+struct	termios	tbufs, tbufsavs;	/* Structure for raw mode	*/
 
 static char *errname[] = {
 	(char *)"nested <>",

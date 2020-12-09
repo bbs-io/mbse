@@ -13,7 +13,7 @@ HDRS		= callstat.h mbtask.h outstat.h signame.h taskdisk.h taskregs.h  taskutil.
 OBJS		= callstat.o scanout.o taskcomm.o taskinfo.o taskstat.o taskibc.o \
 		  mbtask.o outstat.o signame.o taskdisk.o taskregs.o taskutil.o \
 		  ports.o calllist.o ping.o taskchat.o crc.o pidinfo.o
-SLIBS		= ../lib/libnodelist.a
+SLIBS		= ../lib/libnodelist.a ../lib/libmbse.a
 OTHER		= Makefile issue issue.netbsd
 
 #############################################################################

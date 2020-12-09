@@ -1,6 +1,8 @@
 #ifndef	_ZMMISC_H
 #define	_ZMMISC_H
 
+#include "protocol.h"
+
 /* $Id: zmmisc.h,v 1.15 2006/03/18 18:32:23 mbse Exp $ */
 
 
@@ -139,29 +141,21 @@
 #define ZCACK1  1       /* Acknowledge, then do command */
 
 /* Globals used by ZMODEM functions */
-int  Rxframeind;        /* ZBIN ZBIN32, or ZHEX type of frame */
-int  Rxtype;            /* Type of header received */
-int  Rxcount;           /* Count of data bytes received */
-int  Rxpos;		/* Received file position */
-int  Txpos;		/* Transmitted file position */
-int  Txfcs32;           /* TURE means send binary frames with 32 bit FCS */
-int  Crc32t;            /* Display flag indicating 32 bit CRC being sent */
-int  Crc32r;            /* Display flag indicating 32 bit CRC being received */
-int  Znulls;            /* Number of nulls to send at beginning of ZDATA hdr */
-char Rxhdr[ZMAXHLEN];	/* Received header */
-char Txhdr[ZMAXHLEN];	/* Transmitted header */
-char Attn[ZATTNLEN+1];  /* Attention string rx sends to tx on err */
-char *Altcan;           /* Alternate canit string */
-char Zsendmask[33];     /* Additional control characters to mask */
-int  Zctlesc;
-
-enum zm_type_enum {
-    ZM_XMODEM,
-    ZM_YMODEM,
-    ZM_ZMODEM
-};
-
-enum zm_type_enum protocol;
+extern int  Rxframeind;        /* ZBIN ZBIN32, or ZHEX type of frame */
+extern int  Rxtype;            /* Type of header received */
+extern int  Rxcount;           /* Count of data bytes received */
+extern int  Rxpos;		/* Received file position */
+extern int  Txpos;		/* Transmitted file position */
+extern int  Txfcs32;           /* TURE means send binary frames with 32 bit FCS */
+extern int  Crc32t;            /* Display flag indicating 32 bit CRC being sent */
+extern int  Crc32r;            /* Display flag indicating 32 bit CRC being received */
+extern int  Znulls;            /* Number of nulls to send at beginning of ZDATA hdr */
+extern char Rxhdr[ZMAXHLEN];	/* Received header */
+extern char Txhdr[ZMAXHLEN];	/* Transmitted header */
+extern char Attn[ZATTNLEN+1];  /* Attention string rx sends to tx on err */
+extern char *Altcan;           /* Alternate canit string */
+extern char Zsendmask[33];     /* Additional control characters to mask */
+extern int  Zctlesc;
 
 void	get_frame_buffer(void);
 void	del_frame_buffer(void);

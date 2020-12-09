@@ -42,7 +42,7 @@
 
 
 extern int		do_quiet;		/* Suppress screen output   */
-struct _filerecord	T_File;			/* Internal announce record */
+static struct _filerecord	T_File;			/* Internal announce record */
 int			TotalFiles;		/* Total announced files    */
 unsigned int		TotalSize;		/* Total size in KBytes.    */
 int			MsgCount;		/* Message counter	    */

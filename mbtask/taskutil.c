@@ -523,7 +523,7 @@ char *dayname(void)
 
 
 
-void InitFidonet(void)
+void TaskInitFidonet(void)
 {
     memset(&fidonet, 0, sizeof(fidonet));
 }

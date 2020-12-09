@@ -66,11 +66,11 @@ char			waitmsg[81];		/* Waiting message	*/
 static char		spath[PATH_MAX];	/* Socket path		*/
 int			logtrans = 0;		/* Log transactions	*/
 struct taskrec		TCFG;			/* Task config record	*/
-struct sysconfig	CFG;			/* System config	*/
-struct _nodeshdr	nodeshdr;		/* Nodes header record	*/
-struct _nodes		nodes;			/* Nodes data record	*/
-struct _fidonethdr	fidonethdr;		/* Fidonet header rec.	*/
-struct _fidonet		fidonet;		/* Fidonet data record	*/
+//struct sysconfig	CFG;			/* System config	*/
+//struct _nodeshdr	nodeshdr;		/* Nodes header record	*/
+//struct _nodes		nodes;			/* Nodes data record	*/
+//struct _fidonethdr	fidonethdr;		/* Fidonet header rec.	*/
+//struct _fidonet		fidonet;		/* Fidonet data record	*/
 time_t			tcfg_time;		/* Config record time	*/
 time_t			cfg_time;		/* Config record time	*/
 time_t			tty_time;		/* TTY config time	*/
@@ -992,7 +992,7 @@ void start_scheduler(int port)
     if (nodaemon)
 	printf("init fidonet\n");
 
-    InitFidonet();
+    TaskInitFidonet();
     if (nodaemon)
         printf("done\n");
 

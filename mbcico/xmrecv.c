@@ -53,8 +53,8 @@ static char	*recvname=NULL;
 static char	*fpath=NULL;
 static FILE	*fp=NULL;
 static int	last;
-struct timeval	starttime, endtime;
-struct timezone	tz;
+static struct timeval	starttime, endtime;
+static struct timezone	tz;
 static off_t	startofs;
 static int	recv_blk;
 

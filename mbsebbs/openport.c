@@ -31,7 +31,8 @@
 #include "../lib/mbselib.h"
 #include "ttyio.h"
 #include "openport.h"
-#include "zmmisc.h"
+#include "protocol.h"
+//#include "zmmisc.h"
 
 #ifdef USE_SGTTY
 #  ifdef LLITOUT

@@ -73,13 +73,13 @@ static int Lzconv=0;
 static int Beenhereb4;
 static char Myattn[]={0};
 static int skipsize;
-struct timeval	starttime, endtime;
-struct timezone	tz;
 
 extern unsigned int sentbytes;
 extern int Rxhlen;
 extern void get_frame_buffer(void);
 extern void free_frame_buffer(void);
+
+char Zsendmask[33];
 
 
 int zmsndfiles(file_list *lst)
@@ -177,6 +177,9 @@ static int sendzfile(char *ln, char *rn)
 	struct flock fl;
 	int bufl;
 	int sverr;
+	struct timeval	starttime, endtime;
+	struct timezone	tz;
+
 
 	fl.l_type   = F_RDLCK;
 	fl.l_whence = 0;

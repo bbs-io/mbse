@@ -54,12 +54,12 @@ int		bytes_sent;
 int		firstsec;
 int		Optiong;		/* Let it rip no wait for sector ACK's */
 int		Totsecs;		/* total number of sectors this file */
-char		*txbuf;
+static char		*txbuf;
 size_t		blklen = 128;		/* length of transmitted records */
 int		zmodem_requested = FALSE;
 static int	no_unixmode;
-struct timeval  starttime, endtime;
-struct timezone	tz;
+static struct timeval  starttime, endtime;
+static struct timezone	tz;
 int		skipsize;
 
 

@@ -48,8 +48,8 @@ static off_t rxbytes;
 static int Eofseen;		/* indicates cpm eof (^Z) has been received */
 static int errors;
 static int sbytes;
-struct timeval starttime, endtime;
-struct timezone tz;
+static struct timeval starttime, endtime;
+static struct timezone tz;
 
 #define DEFBYTL 2000000000L	/* default rx file size */
 static int Bytesleft;		/* number of bytes of incoming file left */

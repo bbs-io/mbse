@@ -59,10 +59,10 @@ typedef	struct	_TICrec {
 } TICrec;
 
 
-TICrec			TIC;			/* Global .tic record	    */
-struct	_filerecord	T_File;			/* Global file handling rec.*/
+extern TICrec			TIC;			/* Global .tic record	    */
+extern struct	_filerecord	T_File;			/* Global file handling rec.*/
 
-int	CompileNL;
+extern int	CompileNL;
 
 
 int	Tic(void);

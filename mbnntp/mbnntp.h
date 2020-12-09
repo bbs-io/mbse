@@ -3,7 +3,7 @@
 
 /* $Id: mbnntp.h,v 1.5 2005/01/14 19:52:13 mbse Exp $ */
 
-int usercharset;
+extern int usercharset;
 
 void send_nntp(const char *, ...);
 

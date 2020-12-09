@@ -18,7 +18,7 @@
 /*  Globals exported  */
 
 #ifdef DIESEL_TRACE
-int tracing = TRUE;		      /* Trace macro evalution */
+extern int tracing;
 #endif
 
 /*  Local variables.  */

@@ -637,8 +637,8 @@ typedef	struct _sysconnect {
 } sysconnect;
 
 
-	int		Diw;			/* Day in week index	   */
-	int		Miy;			/* Month in year index	   */
+	extern int		Diw;			/* Day in week index	   */
+	extern int		Miy;			/* Month in year index	   */
 
 
 /*
@@ -2153,7 +2153,7 @@ char		*printablec(char);
 /*
  * From client.c
  */
-int		iNode;	    /* Current node number  */
+extern int		iNode;	    /* Current node number  */
 int		socket_connect(char *, char *, char *);
 int		socket_send(char *);
 char		*socket_receive(void);
@@ -2248,8 +2248,8 @@ extern struct _ftscprod {
 extern char SigName[32][16];
 
 
-int	ttyfd;				/* Filedescriptor for raw mode	*/
-struct	termios	tbufs, tbufsavs;	/* Structure for raw mode	*/
+extern int	ttyfd;				/* Filedescriptor for raw mode	*/
+extern struct	termios	tbufs, tbufsavs;	/* Structure for raw mode	*/
 
 
 
@@ -2652,87 +2652,75 @@ char	*chartran(char *);		/* Translate string		    */
  *  Records data
  */
 
-struct	servicehdr	servhdr;		/* Services database	   */
-struct	servicerec	servrec;
+#include "mbsedb.h"
 
-struct	sysrec		SYSINFO;		/* System info statistics  */
+extern struct	servicehdr	servhdr;		/* Services database	   */
+extern struct	servicerec	servrec;
 
-struct	prothdr		PROThdr;		/* Transfer protocols	   */
-struct	prot		PROT;
+extern struct	sysrec		SYSINFO;		/* System info statistics  */
 
-struct	onelinehdr	olhdr;			/* Oneliner database	   */
-struct	oneline		ol;
+extern struct	prothdr		PROThdr;		/* Transfer protocols	   */
+extern struct	prot		PROT;
 
-struct	fileareashdr	areahdr;		/* File areas		   */
-struct	fileareas	area;
-struct	OldFILERecord	oldfile;		/* Pre 0.51.2 structure	   */
-struct	FILE_recordhdr	fdbhdr;    		/* Files database          */
-struct	FILE_record	fdb;
-struct	_fgrouphdr	fgrouphdr;		/* File groups		   */
-struct	_fgroup		fgroup;
+extern struct	onelinehdr	olhdr;			/* Oneliner database	   */
+extern struct	oneline		ol;
 
-struct	_ngrouphdr	ngrouphdr;		/* Newfiles groups	   */
-struct	_ngroup		ngroup;	
+extern struct	fileareashdr	areahdr;		/* File areas		   */
+extern struct	fileareas	area;
+extern struct	OldFILERecord	oldfile;		/* Pre 0.51.2 structure	   */
+extern struct	FILE_recordhdr	fdbhdr;    		/* Files database          */
+extern struct	FILE_record	fdb;
 
-struct	bbslisthdr	bbshdr;			/* BBS list		   */
-struct	bbslist		bbs;
+extern struct	_ngrouphdr	ngrouphdr;		/* Newfiles groups	   */
+extern struct	_ngroup		ngroup;	
 
-struct	lastcallershdr	LCALLhdr;		/* Lastcallers info	   */
-struct	lastcallers	LCALL;
+extern struct	bbslisthdr	bbshdr;			/* BBS list		   */
+extern struct	bbslist		bbs;
 
-struct	sysconfig	CFG;			/* System configuration	   */
+extern struct	lastcallershdr	LCALLhdr;		/* Lastcallers info	   */
+extern struct	lastcallers	LCALL;
 
-struct	limitshdr	LIMIThdr;		/* User limits		   */
-struct	limits		LIMIT;
+extern struct	sysconfig	CFG;			/* System configuration	   */
 
-struct	menufile	menus;
+extern struct	limitshdr	LIMIThdr;		/* User limits		   */
+extern struct	limits		LIMIT;
 
-struct	msgareashdr	msgshdr;		/* Messages configuration  */
-struct	msgareas	msgs;
-struct	_mgrouphdr	mgrouphdr;		/* Message groups	   */
-struct	_mgroup		mgroup;
+extern struct	menufile	menus;
 
-struct	languagehdr	langhdr;		/* Language data	   */
-struct	language	lang;			  			  
-struct	langdata	ldata;
+extern struct	languagehdr	langhdr;		/* Language data	   */
+extern struct	language	lang;			  			  
+extern struct	langdata	ldata;
 
-struct	_fidonethdr	fidonethdr;		/* Fidonet structure	   */
-struct	_fidonet	fidonet;
-struct  domhdr		domainhdr;
-struct  domrec		domtrans;
+extern struct  domhdr		domainhdr;
+extern struct  domrec		domtrans;
 
-struct	_archiverhdr	archiverhdr;		/* Archivers		   */
-struct	_archiver	archiver;
+extern struct	_archiverhdr	archiverhdr;		/* Archivers		   */
+extern struct	_archiver	archiver;
 
-struct	_virscanhdr	virscanhdr;		/* Virus scanners	   */
-struct	_virscan	virscan;
+extern struct	_virscanhdr	virscanhdr;		/* Virus scanners	   */
+extern struct	_virscan	virscan;
 
-struct	_ttyinfohdr	ttyinfohdr;		/* TTY lines		   */
-struct	_ttyinfo	ttyinfo;
-struct	_modemhdr	modemhdr;		/* Modem models		   */
-struct	_modem		modem;
+extern struct	_ttyinfohdr	ttyinfohdr;		/* TTY lines		   */
+extern struct	_ttyinfo	ttyinfo;
+extern struct	_modemhdr	modemhdr;		/* Modem models		   */
+extern struct	_modem		modem;
 
-struct	_tichdr		tichdr;			/* TIC areas		   */
-struct	_tic		tic;
-struct	_hatchhdr	hatchhdr;		/* Hatch areas		   */
-struct	_hatch		hatch;
-struct	_magichdr	magichdr;		/* Magic areas		   */
-struct	_magic		magic;
+extern struct	_hatchhdr	hatchhdr;		/* Hatch areas		   */
+extern struct	_hatch		hatch;
+extern struct	_magichdr	magichdr;		/* Magic areas		   */
+extern struct	_magic		magic;
 
-struct	_nodeshdr	nodeshdr;		/* Fidonet nodes	   */
-struct	_nodes		nodes;
+extern struct	_newfileshdr	newfileshdr;		/* New file reports	   */
+extern struct	_newfiles	newfiles;
 
-struct	_newfileshdr	newfileshdr;		/* New file reports	   */
-struct	_newfiles	newfiles;
+extern struct	_scanmgrhdr	scanmgrhdr;		/* Filefind areas	   */
+extern struct	_scanmgr	scanmgr;
 
-struct	_scanmgrhdr	scanmgrhdr;		/* Filefind areas	   */
-struct	_scanmgr	scanmgr;
+extern struct	_routehdr	routehdr;		/* Routing file		    */
+extern struct	_route		route;
 
-struct	_routehdr	routehdr;		/* Routing file		    */
-struct	_route		route;
-
-struct	_ibcsrvhdr	ibcsrvhdr;		/* IBC servers		    */
-struct	_ibcsrv		ibcsrv;
+extern struct	_ibcsrvhdr	ibcsrvhdr;		/* IBC servers		    */
+extern struct	_ibcsrv		ibcsrv;
 
 
 #endif

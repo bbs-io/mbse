@@ -40,6 +40,7 @@ socklen_t		fromlen;
 static char		*myname='\0';	/* my program name		*/
 char			spath[108];     /* Server socket path           */
 char			cpath[108];     /* Client socket path           */
+int		iNode;	    /* Current node number  */
 
 
 /************************************************************************

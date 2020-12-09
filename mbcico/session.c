@@ -47,6 +47,7 @@
 extern int	tcp_mode;
 extern pid_t	mypid;
 
+struct	_history	history;	/* History record for sessions	*/
 
 node	*nlent = NULL;
 fa_list *remote = NULL;

@@ -69,6 +69,23 @@ static void garbitch(void);
 #include "zmmisc.h"
 
 
+/* Globals */
+int  Rxframeind;        /* ZBIN ZBIN32, or ZHEX type of frame */
+int  Rxtype;            /* Type of header received */
+int  Rxcount;           /* Count of data bytes received */
+int  Rxpos;		/* Received file position */
+int  Txpos;		/* Transmitted file position */
+int  Txfcs32;           /* TURE means send binary frames with 32 bit FCS */
+int  Crc32t;            /* Display flag indicating 32 bit CRC being sent */
+int  Crc32r;            /* Display flag indicating 32 bit CRC being received */
+int  Znulls;            /* Number of nulls to send at beginning of ZDATA hdr */
+char Rxhdr[ZMAXHLEN];	/* Received header */
+char Txhdr[ZMAXHLEN];	/* Transmitted header */
+char Attn[ZATTNLEN+1];  /* Attention string rx sends to tx on err */
+char *Altcan;           /* Alternate canit string */
+char Zsendmask[33];     /* Additional control characters to mask */
+int  Zctlesc;
+
 /* 
  * Original zm.c timing was in tenths of seconds, but our current ttyio driver
  * does timing in whole seconds.

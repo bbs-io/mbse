@@ -113,17 +113,17 @@ extern struct _pkey {
 
 
 
-nodelist_flag	    *nl_online;
-nodelist_flag	    *nl_request;
-nodelist_flag	    *nl_reqbits;
-nodelist_modem	    *nl_pots;
-nodelist_modem	    *nl_isdn;
-nodelist_modem	    *nl_tcpip;
-nodelist_array	    *nl_search;
-nodelist_array	    *nl_dialer;
-nodelist_array	    *nl_ipprefix;
-nodelist_domsuf	    *nl_domsuffix;
-nodelist_service    *nl_service;
+extern nodelist_flag	    *nl_online;
+extern nodelist_flag	    *nl_request;
+extern nodelist_flag	    *nl_reqbits;
+extern nodelist_modem	    *nl_pots;
+extern nodelist_modem	    *nl_isdn;
+extern nodelist_modem	    *nl_tcpip;
+extern nodelist_array	    *nl_search;
+extern nodelist_array	    *nl_dialer;
+extern nodelist_array	    *nl_ipprefix;
+extern nodelist_domsuf	    *nl_domsuffix;
+extern nodelist_service    *nl_service;
 
 
 /*

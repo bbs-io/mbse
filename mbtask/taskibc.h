@@ -34,7 +34,7 @@ typedef struct _ncs_rec {
     unsigned int	crc;		    /* CRC value of record	*/
 } _ncs_list;
 
-_ncs_list		ncs_list[MAXIBC_NCS];
+extern _ncs_list		ncs_list[MAXIBC_NCS];
 
 
 
@@ -52,7 +52,7 @@ typedef struct _srv_rec {
     int			users;		    /* Users in chat		*/
 } _srv_list;
 
-_srv_list		srv_list[MAXIBC_SRV];
+extern _srv_list		srv_list[MAXIBC_SRV];
 
 
 
@@ -71,7 +71,7 @@ typedef struct _usr_rec {
     int			pointer;	    /* Users message pointer	*/
 } _usr_list;
 
-_usr_list		usr_list[MAXIBC_USR];
+extern _usr_list		usr_list[MAXIBC_USR];
 
 
 
@@ -88,7 +88,7 @@ typedef struct _chn_rec {
     int			users;		    /* Users in channel		*/
 } _chn_list;
 
-_chn_list		chn_list[MAXIBC_CHN];
+extern _chn_list		chn_list[MAXIBC_CHN];
 
 
 

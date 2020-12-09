@@ -10,7 +10,7 @@ typedef struct _lData {
 
 
 
-unsigned short	Elements;
+extern unsigned short	Elements;
 
 unsigned short	MsgText_Add1(void * lpData);
 unsigned short	MsgText_Add2(char * lpData);

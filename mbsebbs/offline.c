@@ -51,7 +51,9 @@
 #include "openport.h"
 #include "transfer.h"
 
-
+/* Global */
+struct	_olrtagrec	olrtagrec;
+struct _qwkhdr	Qwk;
 
 int		Total, TotalPersonal, Current, Personal;
 unsigned int	TotalPack;
@@ -1919,7 +1921,7 @@ unsigned int BlueWave_PackArea(unsigned int ulLast, int Area)
 
 		if (BarWidth != (unsigned short)((Total * 61L) / TotalPack)) {
 		    BarWidth = (unsigned short)((Total * 61L) / TotalPack);
-		    snprintf(msg, 81, "\r%.*s", BarWidth, "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ");
+		    snprintf(msg, 81, "\r%.*s", BarWidth, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		    pout(CYAN, BLACK, msg);
 		}
 	    } while (Msg_Next(&Number));
@@ -2623,7 +2625,7 @@ unsigned int QWK_PackArea(unsigned int ulLast, int Area)
 		    if (BarWidth != (unsigned short)((Total * 61L) / TotalPack)) {
 			BarWidth = (unsigned short)((Total * 61L) / TotalPack);
 			PUTCHAR('\r');
-			snprintf(msg, 81, "%.*s", BarWidth, "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ");
+			snprintf(msg, 81, "%.*s", BarWidth, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			pout(CYAN, BLACK, msg);
 		    }
 		}
@@ -2978,7 +2980,7 @@ unsigned int ASCII_PackArea(unsigned int ulLast, int Area, char *Atag)
 		    if (BarWidth != (unsigned short)((Total * 61L) / TotalPack)) {
 			BarWidth = (unsigned short)((Total * 61L) / TotalPack);
 			PUTCHAR('\r');
-			snprintf(msg, 81, "%.*s", BarWidth, "ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ");
+			snprintf(msg, 81, "%.*s", BarWidth, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			pout(CYAN, BLACK, msg);
 		    }
 		}

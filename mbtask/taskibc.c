@@ -36,6 +36,11 @@
 #include "taskibc.h"
 
 
+/* Globals */
+_ncs_list		ncs_list[MAXIBC_NCS];
+_srv_list		srv_list[MAXIBC_SRV];
+_usr_list		usr_list[MAXIBC_USR];
+_chn_list		chn_list[MAXIBC_CHN];
 
 
 extern int		    internet;		    /* Internet status		*/

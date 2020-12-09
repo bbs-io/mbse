@@ -99,11 +99,11 @@ typedef struct _lastread {
 /*
  * Global variables
  */
-msgbuf		Msg;				/* Message buffer	    */
-msgbase		MsgBase;			/* Message Base buffer	    */
-msgbase		EmailBase;			/* Email Base buffer	    */
-lastread	LastRead;			/* LastRead pointer record  */
-char		szWrp[MAX_LINE_LENGTH + 1];
+extern msgbuf		Msg;				/* Message buffer	    */
+extern msgbase		MsgBase;			/* Message Base buffer	    */
+extern msgbase		EmailBase;			/* Email Base buffer	    */
+extern lastread	LastRead;			/* LastRead pointer record  */
+extern char		szWrp[MAX_LINE_LENGTH + 1];
 
 
 

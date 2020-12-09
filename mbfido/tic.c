@@ -53,6 +53,12 @@ extern	int do_quiet;
 extern	int tic_in;
 extern	int do_flush;
 
+TICrec			TIC;			/* Global .tic record	    */
+struct	_filerecord	T_File;			/* Global file handling rec.*/
+
+int	CompileNL;
+
+
 
 /*
  *  returns:	-1 = Errors.

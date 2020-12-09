@@ -166,7 +166,7 @@ extern char *rxbuf;
 
 /* End of ZMODEM.H */
 
-char Zsendmask[33];		/* Additional control characters to mask */
+extern char Zsendmask[33];		/* Additional control characters to mask */
 
 extern int  Effbaud;
 extern int  Zmodem;

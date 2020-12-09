@@ -51,10 +51,10 @@ void	CloseDupes(void);
 /*
  * Fidonet database
  */
-struct _fidonethdr  fidonethdr;		    /* Header record		    */
-struct _fidonet	    fidonet;		    /* Fidonet datarecord	    */
-int		    fidonet_cnt;	    /* Fidonet records in database  */
-char		    fidonet_fil[PATH_MAX];  /* Fidonet database filename    */
+extern struct _fidonethdr  fidonethdr;		    /* Header record		    */
+extern struct _fidonet	    fidonet;		    /* Fidonet datarecord	    */
+extern int		    fidonet_cnt;	    /* Fidonet records in database  */
+extern char		    fidonet_fil[PATH_MAX];  /* Fidonet database filename    */
 
 int	InitFidonet(void);		/* Initialize fidonet database	    */
 int	TestFidonet(unsigned short);	/* Test if zone is in memory	    */
@@ -65,10 +65,10 @@ char	*GetFidoDomain(unsigned short);	/* Search Fidonet domain name	    */
  * Domain alias database
  */
  
-struct _domaliashdr domaliashdr;            /* Header record                */
-struct _domalias    domalias;               /* Domain alias datarecord      */
-int                 domalias_cnt;           /* Domain alias records in db   */
-char                domalias_fil[PATH_MAX]; /* Domain alias db filename     */
+extern struct _domaliashdr domaliashdr;            /* Header record                */
+extern struct _domalias    domalias;               /* Domain alias datarecord      */
+extern int                 domalias_cnt;           /* Domain alias records in db   */
+extern char                domalias_fil[PATH_MAX]; /* Domain alias db filename     */
 
 void	InitDomAlias(void);		/* Initialize domain alias db       */
 char	*SearchDomAlias(char *alias);	/* Search alias db - returns string */
@@ -77,9 +77,9 @@ char	*SearchDomAlias(char *alias);	/* Search alias db - returns string */
 /*
  * Nodes database
  */
-struct	_nodeshdr	nodeshdr;	/* Header record		    */
-struct	_nodes		nodes;		/* Nodes datarecord		    */
-int			nodes_cnt;	/* Node records in database	    */
+extern struct	_nodeshdr	nodeshdr;	/* Header record		    */
+extern struct	_nodes		nodes;		/* Nodes datarecord		    */
+extern int			nodes_cnt;	/* Node records in database	    */
 
 int	InitNode(void);			/* Initialize nodes database	    */
 int	TestNode(fidoaddr);		/* Check if noderecord is loaded    */
@@ -95,11 +95,11 @@ char	*GetNodeFileGrp(int);		/* Get nodes filegroup record	    */
 /*
  * TIC area database
  */
-struct	_tichdr		tichdr;		/* Header record		    */
-struct	_tic		tic;		/* Tics datarecord		    */
-struct	_fgrouphdr	fgrouphdr;	/* Group header record		    */
-struct	_fgroup		fgroup;		/* Group record			    */
-int			tic_cnt;	/* Tic records in database	    */
+extern struct	_tichdr		tichdr;		/* Header record		    */
+extern struct	_tic		tic;		/* Tics datarecord		    */
+extern struct	_fgrouphdr	fgrouphdr;	/* Group header record		    */
+extern struct	_fgroup		fgroup;		/* Group record			    */
+extern int			tic_cnt;	/* Tic records in database	    */
 
 int	InitTic(void);			/* Initialize tic database	    */
 int	SearchTic(char *);		/* Search specified msg are	    */
@@ -113,10 +113,10 @@ void	UpdateTic(void);		/* Update current messages record   */
 /*
  * User records
  */
-struct	userhdr	    usrhdr;		/* Header record		    */
-struct	userrec	    usr;		/* User datarecord		    */
-int		    usr_cnt;		/* User records in database	    */
-char		    usr_fil[PATH_MAX];	/* User database filename	    */
+extern struct	userhdr	    usrhdr;		/* Header record		    */
+extern struct	userrec	    usr;		/* User datarecord		    */
+extern int		    usr_cnt;		/* User records in database	    */
+extern char		    usr_fil[PATH_MAX];	/* User database filename	    */
 
 int	InitUser(void);			/* Initialize user database	    */
 int	TestUser(char *);		/* Test if user is in memory	    */
@@ -127,11 +127,11 @@ int	SearchUser(char *);		/* Search specified user and load   */
 /*
  * Message areas database
  */
-struct  msgareashdr     msgshdr;        /* Header record                    */
-struct  msgareas        msgs;           /* Msgss datarecord                 */
-struct  _mgrouphdr      mgrouphdr;      /* Group header record              */
-struct  _mgroup         mgroup;         /* Group record                     */
-int                     msgs_cnt;       /* Msgs records in database         */
+extern struct  msgareashdr     msgshdr;        /* Header record                    */
+extern struct  msgareas        msgs;           /* Msgss datarecord                 */
+extern struct  _mgrouphdr      mgrouphdr;      /* Group header record              */
+extern struct  _mgroup         mgroup;         /* Group record                     */
+extern int                     msgs_cnt;       /* Msgs records in database         */
 
 int     InitMsgs(void);                 /* Initialize msgs database         */
 int     SearchMsgs(char *);             /* Search specified msg area        */

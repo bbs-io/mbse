@@ -78,8 +78,8 @@ static char Myattn[]={ 0 };
 static int skipsize;
 static jmp_buf intrjmp;	    /* For the interrupt on RX CAN */
 
-struct timeval	starttime, endtime;
-struct timezone	tz;
+static struct timeval	starttime, endtime;
+static struct timezone	tz;
 static int use8k = FALSE;
 extern unsigned int	sentbytes;
 extern int Rxhlen;

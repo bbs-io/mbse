@@ -38,12 +38,15 @@
 #include "commands.h"
 #include "mbnntp.h"
 
+/* Globals */
+int usercharset;
+
 time_t		    t_start;
 time_t		    t_end;
 char		    *envptr = NULL;
 struct sockaddr_in  peeraddr4;
 struct sockaddr_in6 peeraddr6;
-pid_t		    mypid;
+//pid_t		    mypid;
 unsigned int	    rcvdbytes = 0L;
 unsigned int	    sentbytes = 0L;
 int		    do_mailout = FALSE;
@@ -162,7 +165,7 @@ int main(int argc, char *argv[])
 	envptr = xstrcat(envptr, pw->pw_dir);
 	putenv(envptr);
     }
-    mypid = getpid();
+    //mypid = getpid();
 
     /*
      * Read the global configuration data, registrate connection

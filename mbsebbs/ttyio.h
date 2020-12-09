@@ -76,7 +76,7 @@
 #define YOOHOO 0xf1
 
 
-int	tty_status;
+extern int	tty_status;
 int	tty_check(void);
 int	tty_getc(int);
 int	tty_putc(int);

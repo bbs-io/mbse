@@ -9,11 +9,11 @@ int	Fs_Edit(void);	/* The fullscreen message editor	*/
 extern	int	Line;		/* Number of lines + 1			*/
 extern	char	*Message[];	/* TEXTBUFSIZE lines of MAX_LINE_LENGTH chars	*/
 
-int		Row;		/* Current row on screen		*/
-int		Col;		/* Current column in text and on screen	*/
-int		TopVisible;	/* First visible line of text		*/
-int		InsMode;	/* Insert mode				*/
-int		CurRow;		/* Current row in buffer		*/
+extern int		Row;		/* Current row on screen		*/
+extern int		Col;		/* Current column in text and on screen	*/
+extern int		TopVisible;	/* First visible line of text		*/
+extern int		InsMode;	/* Insert mode				*/
+extern int		CurRow;		/* Current row in buffer		*/
 
 void Show_Ins(void);
 void Top_Help(void);
