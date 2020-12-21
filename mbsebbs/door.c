@@ -106,7 +106,6 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 
     temp1 = calloc(PATH_MAX, sizeof(char));
     temp2 = calloc(PATH_MAX, sizeof(char));
-    temp3 = calloc(PATH_MAX, sizeof(char));
     String = calloc(81, sizeof(char));
 
     Start = TRUE;
@@ -376,7 +375,6 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 
     free(temp1);
     free(temp2);
-    free(temp3);
     Enter(2);
 
     if (!NoPrompt)
