@@ -375,6 +375,8 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
     Syslog('+', "Door end, rc=%d", rc);
 
     free(temp1);
+    free(temp2);
+    free(temp3);
     Enter(2);
 
     if (!NoPrompt)

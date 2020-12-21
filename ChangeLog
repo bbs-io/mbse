@@ -1,3 +1,16 @@
+v1.0.7.21	21-Dec-2020 - Andrew Leary/Michael Dillon
+
+		1.  Fixed a memory leak in the external door support.
+
+		2.  Applied a patch from Niels Haedecke addressing possible
+		security leaks with NetMail on the BBS.
+
+		3.  Moved extern global variable definitions out of header
+		files to resolve linker errors when compiling with GCC 10.2.
+
+		4.  Updated AUTHORS file with the new members of the MBSE
+		Development Team.
+
 v1.0.7.20       30-Nov-2020 - Andrew Leary
 
                 1.  Added support for sending back an error message when an
