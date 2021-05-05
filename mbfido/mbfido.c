@@ -750,7 +750,7 @@ int TossMail(void)
      * Skip tossing netmail packets again if we already did them.
      */
 
-    if (do_unprot & CFG.PKTunp) {
+    if (!do_unprot & CFG.PKTunp) {
     	Syslog('+', "Pass: toss netmail (%s)", inbound);
 
 	if (chdir(inbound) == -1) {
