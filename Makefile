@@ -10,7 +10,7 @@ OTHER		= AUTHORS ChangeLog COPYING DEBUG CRON.sh FILE_ID.DIZ.in \
 		  ChangeLog_2006 ChangeLog_2007 ChangeLog_2008 ChangeLog_2009 \
 		  ChangeLog_2010 ChangeLog_2011 ChangeLog_2012 ChangeLog_2013 \
 		  ChangeLog_2014 ChangeLog_2015 ChangeLog_2016 ChangeLog_2017 \
-		  ChangeLog_2018 ChangeLog_2019 README SETUP.sh \
+		  ChangeLog_2018 ChangeLog_2019 ChangeLog_2020 README SETUP.sh \
 		  TODO UPGRADE aclocal.m4 checkbasic config.h.in configure \
 		  configure.ac \
 		  paths.h.in README.Gentoo README.Ubuntu docs/mbse-1.odt \

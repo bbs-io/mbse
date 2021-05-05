@@ -776,14 +776,15 @@ void s_fidomailcfg(void)
     mbse_mvprintw(17, 1, "11. Max systems");
     mbse_mvprintw(18, 1, "12. Max groups");
     
-    mbse_mvprintw(11,42, "13. 4d address");
-    mbse_mvprintw(12,42, "14. Split at");
-    mbse_mvprintw(13,42, "15. Force at");
-    mbse_mvprintw(14,42, "16. Allow +*");
-    mbse_mvprintw(15,42, "17. Notify");
-    mbse_mvprintw(16,42, "18. Passwd");
-    mbse_mvprintw(17,42, "19. Pause");
-    mbse_mvprintw(18,42, "20. SB strip");
+    mbse_mvprintw(10,42, "13. 4d address");
+    mbse_mvprintw(11,42, "14. Split at");
+    mbse_mvprintw(12,42, "15. Force at");
+    mbse_mvprintw(13,42, "16. Allow +*");
+    mbse_mvprintw(14,42, "17. Notify");
+    mbse_mvprintw(15,42, "18. Passwd");
+    mbse_mvprintw(16,42, "19. Pause");
+    mbse_mvprintw(17,42, "20. SB strip");
+    mbse_mvprintw(18,42, "21. Unp. .PKTs");
 
     set_color(WHITE, BLACK);
     show_str( 7,16,64, CFG.badboard);
@@ -799,14 +800,15 @@ void s_fidomailcfg(void)
     show_int( 17,16, CFG.toss_systems);
     show_int( 18,16, CFG.toss_groups);
         
-    show_bool(11,58, CFG.addr4d);
-    show_int( 12,58, CFG.new_split);
-    show_int( 13,58, CFG.new_force);
-    show_bool(14,58, CFG.ca_PlusAll);
-    show_bool(15,58, CFG.ca_Notify);
-    show_bool(16,58, CFG.ca_Passwd);
-    show_bool(17,58, CFG.ca_Pause);
-    show_bool(18,58, CFG.ca_SBstrip);
+    show_bool(10,58, CFG.addr4d);
+    show_int( 11,58, CFG.new_split);
+    show_int( 12,58, CFG.new_force);
+    show_bool(13,58, CFG.ca_PlusAll);
+    show_bool(14,58, CFG.ca_Notify);
+    show_bool(15,58, CFG.ca_Passwd);
+    show_bool(16,58, CFG.ca_Pause);
+    show_bool(17,58, CFG.ca_SBstrip);
+    show_bool(18,58, CFG.PKTunp);
 }
 
 
@@ -817,7 +819,7 @@ void e_fidomailcfg(void)
 
     s_fidomailcfg();
     for (;;) { 
-	switch(select_menu(20)) {
+	switch(select_menu(21)) {
 	    case 0: return;
 	    case 1: E_JAM(  7,16,64, CFG.badboard,     "The path to the ^bad echomail^ board.")
 	    case 2: E_JAM(  8,16,64, CFG.dupboard,     "The path to the ^dupe echomail^ board.")
@@ -853,14 +855,15 @@ void e_fidomailcfg(void)
 			    CloseNoderec(TRUE);
 		    }
 		    break;
-	    case 13:E_BOOL(11,58, CFG.addr4d,            "Use ^4d^ addressing instead of ^5d^ addressing.")
-	    case 14:E_IRC( 12,58, CFG.new_split, 12, 60, "Gently ^split^ newfiles reports after n kilobytes (12..60).")
-	    case 15:E_IRC( 13,58, CFG.new_force, 16, 64, "Force ^split^ of newfiles reports after n kilobytes (16..64).")
-	    case 16:E_BOOL(14,58, CFG.ca_PlusAll,        "Allow ^+%*^ (Plus all) in AreaMgr requests.")
-	    case 17:E_BOOL(15,58, CFG.ca_Notify,         "Allow turning ^Notify^ messages on or off.")
-	    case 18:E_BOOL(16,58, CFG.ca_Passwd,         "Allow changing the AreaMgr/FileMgr ^password^.")
-	    case 19:E_BOOL(17,58, CFG.ca_Pause,          "Allow the ^Pause^ AreaMgr command.")
-	    case 20:E_BOOL(18,58, CFG.ca_SBstrip,        "Strip SEEN-BYs across zones.")
+	    case 13:E_BOOL(10,58, CFG.addr4d,            "Use ^4d^ addressing instead of ^5d^ addressing.")
+	    case 14:E_IRC( 11,58, CFG.new_split, 12, 60, "Gently ^split^ newfiles reports after n kilobytes (12..60).")
+	    case 15:E_IRC( 12,58, CFG.new_force, 16, 64, "Force ^split^ of newfiles reports after n kilobytes (16..64).")
+	    case 16:E_BOOL(13,58, CFG.ca_PlusAll,        "Allow ^+%*^ (Plus all) in AreaMgr requests.")
+	    case 17:E_BOOL(14,58, CFG.ca_Notify,         "Allow turning ^Notify^ messages on or off.")
+	    case 18:E_BOOL(15,58, CFG.ca_Passwd,         "Allow changing the AreaMgr/FileMgr ^password^.")
+	    case 19:E_BOOL(16,58, CFG.ca_Pause,          "Allow the ^Pause^ AreaMgr command.")
+	    case 20:E_BOOL(17,58, CFG.ca_SBstrip,        "Strip SEEN-BYs across zones.")
+	    case 21:E_BOOL(18,58, CFG.PKTunp,            "Always toss .PKTs from unp. inbound.")
 	}
     }
 }

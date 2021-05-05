@@ -171,6 +171,7 @@ void load_maincfg(void)
         snprintf(CFG.inbound, 65, "%s/var/unknown", getenv("MBSE_ROOT"));
         snprintf(CFG.pinbound, 65, "%s/var/inbound", getenv("MBSE_ROOT"));
         snprintf(CFG.outbound, 65, "%s/var/bso/outbound", getenv("MBSE_ROOT"));
+	snprintf(CFG.externaleditor, 65, "%s/bin/editor", getenv("MBSE_ROOT"));
 	snprintf(CFG.msgs_path, 65, "%s/var/msgs", getenv("MBSE_ROOT"));
         snprintf(CFG.uxpath, 65, "%s", getenv("MBSE_ROOT"));
         snprintf(CFG.badtic, 65, "%s/var/badtic", getenv("MBSE_ROOT"));
@@ -314,6 +315,7 @@ void load_maincfg(void)
 	CFG.ca_Passwd = TRUE;
 	CFG.ca_Pause = TRUE;
         CFG.ca_SBstrip = TRUE;
+	CFG.PKTunp = FALSE;
 	CFG.ca_Check = TRUE;
 
         for (i = 0; i < 32; i++) {

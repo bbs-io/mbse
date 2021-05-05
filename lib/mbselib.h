@@ -1276,7 +1276,8 @@ struct	sysconfig {
 	unsigned	ca_Pause	: 1;	/* Areamgr: Allow Pause     */
 	unsigned	ca_SBstrip	: 1;    /* Strip SB out-of-zone     */
 	unsigned	ca_Check	: 1;	/* Flag for upgrade check   */
-
+        unsigned        PKTunp		: 1;	/* Always toss .PKTs from
+                                                   unprotected inbound      */
 	char		rulesdir[65];		/* Area rules directory	    */
 	char		debuglog[15];		/* Debug logfile	    */
 	char		tmailshort[65];		/* T-Mail short filebox base*/

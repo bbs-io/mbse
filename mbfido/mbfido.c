@@ -724,23 +724,47 @@ int TossMail(void)
     int		    files = 0, files_ok = 0, rc = 0, maxrc = 0;
     fd_list	    *fdl = NULL;
 
+    if (CFG.PKTunp) {
+    	inbound = xstrcpy(CFG.inbound); 
+    
+	Syslog('+', "Pass: toss netmail (%s)", inbound);
+    
+	if (chdir(inbound) == -1) {
+	    WriteError("$Can't chdir(%s)", inbound);
+   	    die(MBERR_INIT_ERROR);
+   	}
+
+	/*
+	 * First toss any netmail packets in the unprotected inbound.
+	 */
+	
+	 maxrc = rc = TossPkts();
+    }
+    
     if (do_unprot)
 	inbound = xstrcpy(CFG.inbound);
     else
 	inbound = xstrcpy(CFG.pinbound);
 
-    Syslog('+', "Pass: toss netmail (%s)", inbound);
+    /*
+     * Skip tossing netmail packets again if we already did them.
+     */
 
-    if (chdir(inbound) == -1) {
-	WriteError("$Can't chdir(%s)", inbound);
-	die(MBERR_INIT_ERROR);
-    }
+    if (do_unprot & CFG.PKTunp) {
+    	Syslog('+', "Pass: toss netmail (%s)", inbound);
+
+	if (chdir(inbound) == -1) {
+	    WriteError("$Can't chdir(%s)", inbound);
+	    die(MBERR_INIT_ERROR);
+	}
 
     /*
      * First toss any netmail packets.
      */
     maxrc = rc = TossPkts();
     (void)chdir(inbound);
+    
+    }
 
     /*
      * Scan the directory for ARCmail archives. The archive extension

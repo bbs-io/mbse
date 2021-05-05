@@ -1,0 +1,66 @@
+v1.0.7.21	21-Dec-2020 - Andrew Leary/Michael Dillon
+
+		1.  Fixed a memory leak in the external door support.
+
+		2.  Applied a patch from Niels Haedecke addressing possible
+		security leaks with NetMail on the BBS.
+
+		3.  Moved extern global variable definitions out of header
+		files to resolve linker errors when compiling with GCC 10.2.
+
+		4.  Updated AUTHORS file with the new members of the MBSE
+		Development Team.
+
+v1.0.7.20       30-Nov-2020 - Andrew Leary
+
+                1.  Added support for sending back an error message when an
+                incoming AreaMgr or FileMgr request does not include the
+                correct password.
+
+                2.  Added support for installing on openSuSE.
+
+v1.0.7.19       19-Oct-2020 - Andrew Leary
+
+		1.  Corrected a typo in mbsebbs/input.c for 230400 bps.
+
+		2.  Applied Michael Dillon's patches addressing build warnings
+		with newer versions of GCC.
+
+v1.0.7.18	15-Aug-2020 - Andrew Leary
+
+		1.  Added support for installing on Devuan Linux.
+
+		2.  Fixed the default telnet server entry in /etc/xinetd.d/
+                mbsebbs to call /usr/sbin/in.telnetd vs. /usr/sbin/telnetd.
+
+v1.0.7.17       31-May-2020 - Andrew Leary
+
+                1.  Applied Niels Haedecke's correction to the German textfiles
+                in the examples directory.
+
+                2.  Fixed a bug that could prevent a user from reading his own
+                private messages if the user's handle was in the message
+                header.  Thanks to Niels Haedecke for the report and a patch.
+
+		3.  Fixed a bug that could prevent a user from exporting his
+                own private messages if the user's handle was in the message
+                header.
+
+v1.0.7.16       30-May-2020 - Andrew Leary
+
+                1.  Fixed bug that resulted in the QuickScan messages function
+                "leaking" information about Private messages not sent by or
+                addressed to the online user.
+
+v1.0.7.15	01-May-2020 - Andrew Leary
+
+		1.  Fixed a bug in MBFIDO that could cause new ARCmail bundles
+                to be created without file attaches when the archive extension
+                resets to 0 after exhausting all extensions for the day.
+
+		2.  Updated copyright notices to 2020.
+
+v1.0.7.14       22-Jan-2020 - Andrew Leary
+
+                1.  This was a development version only; it was never uploaded
+                to SourceForge or made available to others.
