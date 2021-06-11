@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 
     if (lockprogram((char *)"mbuser")) {
 	if (!do_quiet)
-	    printf("Can't lock mbuser, abort.\n");
+	    printf("Can't lock mbuser.  Aborting.\n");
 	ExitClient(MBERR_NO_PROGLOCK);
     }
 
@@ -153,12 +153,12 @@ void Help(void)
     mbse_colour(LIGHTBLUE, BLACK);
     printf("	Commands are:\n\n");
     mbse_colour(CYAN, BLACK);
-    printf("	kill [n] [l]	Kill users not called in \"n\" days below level \"l\"\n");
+    printf("	kill [n] [l]	Kill users who have not called in \"n\" days and are below level \"l\"\n");
     printf("	pack		Pack the userbase\n");
     mbse_colour(LIGHTBLUE, BLACK);
     printf("\n	Options are:\n\n");
     mbse_colour(CYAN, BLACK);
-    printf("	-quiet		Quiet mode, (no screen output)\n\n");
+    printf("	-quiet		Quiet mode (no screen output)\n\n");
 
     mbse_colour(LIGHTGRAY, BLACK);
     printf("\n");
@@ -217,17 +217,17 @@ void UserPack(int days, int level, int pack)
 	}
     }
     if (highest != delete) {
-	Syslog('+', "Blank records at the end, truncating userbase");
+	Syslog('+', "Blank records at the end.  Truncating userbase.");
 	updated = TRUE;
     }
     if (!sysop)
-	WriteError("No valid Sysop Fidoname and/or Unixname found in userbase, check setup!");
+	WriteError("No valid sysop Fidoname and/or *nixname found in userbase.  Check setup!");
 
     fseek(fin, usrhdr.hdrsize, SEEK_SET);
 
     if (oldsize != sizeof(usr)) {
 	updated = TRUE;
-	Syslog('+', "Userbase recordsize is changed, making update");
+	Syslog('+', "Userbase record size is changed.  Making update.");
     }
 
     usrhdr.hdrsize = sizeof(usrhdr);
@@ -269,7 +269,7 @@ void UserPack(int days, int level, int pack)
 		Last = usr.tLastLoginDate;
 
 	    /*
-	     * Wow, killing on the second exact!. Don't kill the guest accounts.
+	     * Wow, killing on the second exact!  Don't kill the guest accounts.
 	     */
 	    if ((((t_start - Last) / 86400) > days) && (usr.Security.level < level) && (!usr.Guest) &&
 			    (usr.sUserName[0] != '\0') && (!usr.NeverDelete)) {
@@ -290,14 +290,14 @@ void UserPack(int days, int level, int pack)
 	    if (CFG.slow_util && do_quiet)
 		msleep(1);
 	}
-	Syslog('+', "Marked %d users to delete", delete);
+	Syslog('+', "Marked %d users to delete.", delete);
     }
 
     /*
      * Pack the userbase if told so
      */
     if (pack) {
-	Syslog('+', "Packing userbase");
+	Syslog('+', "Packing userbase.");
 	delete = 0;
 	fseek(fout, sizeof(usrhdr), SEEK_SET);
 	while (fread(&usr, sizeof(usr), 1, fout) == 1) {
@@ -313,7 +313,7 @@ void UserPack(int days, int level, int pack)
 		if (usr.Name[0] != '\0') {
 		    if ((setuid(0) == -1) || (setgid(0) == -1)) {
 			WriteError("Cannot setuid(root) or setgid(root)");
-			WriteError("Cannot delete unix account %s", usr.Name);
+			WriteError("Cannot delete *nix account %s", usr.Name);
 		    } else {
 #ifndef __FreeBSD__
 			execute_str((char *)"/usr/sbin/userdel ", usr.Name, NULL,
@@ -351,7 +351,7 @@ void UserPack(int days, int level, int pack)
 		updated = TRUE;
 	    }
 	}
-	Syslog('+', "Deleted %d records", delete);
+	Syslog('+', "Deleted %d records.", delete);
     }
 
     if (updated) {
@@ -380,7 +380,7 @@ void UserPack(int days, int level, int pack)
 	fclose(fin);
 	fclose(fout);
 	chmod(fnin, 0660);
-	Syslog('+', "Userbase is updated, written %d records", record);
+	Syslog('+', "Userbase has been updated.  %d records written.", record);
     } else {
 	fclose(fout);
     }

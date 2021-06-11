@@ -201,7 +201,7 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 	} else {
 	    if (Comport) {
 		fprintf(fp, "COM1:\r\n"); /* COM port             */
-		fprintf(fp, "19200\r\n");/* Effective baudrate   */
+		fprintf(fp, "57600\r\n");/* Effective baudrate   */
 	    } else {
 		fprintf(fp, "COM0:\r\n");/* COM port		*/
 		fprintf(fp, "0\r\n");	/* Effective baudrate	*/
@@ -209,7 +209,7 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 	    fprintf(fp, "8\r\n");		/* Databits		*/
 	    fprintf(fp, "%d\r\n", iNode);	/* Node number		*/
 	    if (Comport)
-		fprintf(fp, "19200\r\n");/* Locked baudrate	*/
+		fprintf(fp, "57600\r\n");/* Locked baudrate	*/
 	    else
 		fprintf(fp, "%d\r\n", ttyinfo.portspeed); /* Locked baudrate */
 	    fprintf(fp, "Y\r\n");		/* Screen snoop		*/
@@ -279,7 +279,7 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
 	    if (Comport) {
 		fprintf(fp, "1\r\n");			    /* COM type, 1=serial, 2=telnet	*/
 		fprintf(fp, "1\r\n");			    /* COM port number			*/
-		fprintf(fp, "19200\r\n");		    /* Effective baudrate		*/
+		fprintf(fp, "57600\r\n");		    /* Effective baudrate		*/
 	    } else {
 		fprintf(fp, "0\r\n");			    /* COM type, 0=local		*/
 		fprintf(fp, "0\r\n");			    /* COM port				*/
@@ -323,7 +323,7 @@ void ExtDoor(char *Program, int NoDoorsys, int Y2Kdoorsys, int Comport, int NoSu
             }
             if (Comport) {
                 fprintf(fp, "COM1\r\n");
-                fprintf(fp, "19200 BAUD,N,8,1\r\n");
+                fprintf(fp, "57600 BAUD,N,8,1\r\n");
             } else {
                 fprintf(fp, "COM0\r\n");
                 fprintf(fp, "0 BAUD,N,8,1\r\n");

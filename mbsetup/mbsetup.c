@@ -95,7 +95,7 @@ static void die(int onsig)
 	 */
 	snprintf(temp, PATH_MAX, "%s/etc/msg.txt", getenv("MBSE_ROOT"));
 	if ((fp = fopen(temp, "w")) != NULL) {
-	    fprintf(fp, "; msg.txt -- Automatic created by mbsetup %s -- Do not edit!\n;\n", VERSION);
+	    fprintf(fp, "; MSG.TXT -- Automatically created by mbsetup %s -- do not edit!\n;\n", VERSION);
 	    fprintf(fp, "; Mail areas for MsgEd.\n;\n");
 	    msged_areas(fp);
 	    fclose(fp);
@@ -109,7 +109,7 @@ static void die(int onsig)
 	 */
 	snprintf(temp, PATH_MAX, "%s/etc/golded.inc", getenv("MBSE_ROOT"));
 	if ((fp = fopen(temp, "w")) != NULL) {
-	    fprintf(fp, "; GoldED.inc -- Automatic created by mbsetup %s -- Do not edit!\n\n", VERSION);
+	    fprintf(fp, "; GOLDED.INCc -- Automatically created by mbsetup %s -- do not edit!\n\n", VERSION);
 	    fprintf(fp, "; Basic information.\n;\n");
 	    if (strlen(CFG.sysop_name) && CFG.akavalid[0] && CFG.aka[0].zone) {
 		fprintf(fp, "USERNAME %s\n\n", CFG.sysop_name);
@@ -163,7 +163,8 @@ void soft_info(void)
 	set_color(WHITE, BLACK);
 	center_addstr( 8, (char *)COPYRIGHT);
 	set_color(YELLOW, BLACK);
-	center_addstr(10, (char *)"Created in the Netherlands");
+	center_addstr(10, (char *)"Created in the Netherlands and");
+	center_addstr(11, (char *)"developed worldwide");
 	set_color(WHITE, BLACK);
 #ifdef __GLIBC__
 	snprintf(temp, 81, "Compiled on glibc v%d.%d", __GLIBC__, __GLIBC_MINOR__);
@@ -174,11 +175,11 @@ void soft_info(void)
 	snprintf(temp, 81, "Compiled on unknown library");
 #endif
 #endif
-	center_addstr(12, temp);
+	center_addstr(13, temp);
 	set_color(LIGHTCYAN, BLACK);
-	center_addstr(14, (char *)"https://sourceforge.net/projects/mbsebbs/");
+	center_addstr(15, (char *)"https://sourceforge.net/projects/mbsebbs/");
 	set_color(LIGHTGREEN, BLACK);
-	center_addstr(LINES -7, (char *)"This is free software; released under the terms of the GNU General");
+	center_addstr(LINES -7, (char *)"This is free software released under the terms of the GNU General");
 	center_addstr(LINES -6, (char *)"Public License as published by the Free Software Foundation.");
 	set_color(CYAN, BLACK);
 	free(temp);
@@ -226,12 +227,12 @@ void site_docs(void)
     if ((hp = open_webdoc((char *)"index.html", (char *)"BBS Site Documentation", NULL))) {
 	fprintf(hp, "<UL>\n");
 	fprintf(hp, " <LI><A HREF=\"global.html\">Global Configuration</A></LI>\n");
-	fprintf(hp, " <LI><A HREF=\"fidonet.html\">Fido Networks</A></LI>\n");
+	fprintf(hp, " <LI><A HREF=\"fidonet.html\">FTN Networks</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"archivers.html\">Archivers</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"virscan.html\">Virus Scanners</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"modem.html\">Modem Types</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"ttyinfo.html\">TTY Lines Info</A></LI>\n");
-	fprintf(hp, " <LI><A HREF=\"nodes.html\">Fidonet Nodes</A></LI>\n");
+	fprintf(hp, " <LI><A HREF=\"nodes.html\">FTN Nodes</A></LI>\n");
 	fprintf(hp, " <LI>BBS: <A HREF=\"limits.html\">Security Limits</A></LI>\n");
 	fprintf(hp, " <LI>BBS: <A HREF=\"language.html\">Language Setup</A></LI>\n");
 	fprintf(hp, " <LI>BBS: <A HREF=\"menus.html\">BBS Menus</A></LI>\n");
@@ -240,8 +241,8 @@ void site_docs(void)
 	fprintf(hp, " <LI>BBS: <A HREF=\"oneliners.html\">Oneliners</A></LI>\n");
 	fprintf(hp, " <LI>Mail: <A HREF=\"msggroup.html\">Echomail Groups</A></LI>\n");
 	fprintf(hp, " <LI>Mail: <A HREF=\"msgareas.html\">Echomail Areas</A></LI>\n");
-	fprintf(hp, " <LI>TIC: <A HREF=\"filegroup.html\">FileEcho Groups</A></LI>\n");
-	fprintf(hp, " <LI>TIC: <A HREF=\"ticareas.html\">Fileecho Areas</A></LI>\n");
+	fprintf(hp, " <LI>TIC: <A HREF=\"filegroup.html\">File Echo Groups</A></LI>\n");
+	fprintf(hp, " <LI>TIC: <A HREF=\"ticareas.html\">File Echo Areas</A></LI>\n");
 	fprintf(hp, " <LI>TIC: <A HREF=\"hatch.html\">Hatch Manager</A></LI>\n");
 	fprintf(hp, " <LI>TIC: <A HREF=\"magic.html\">Magic Files</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"newgroup.html\">Newfiles Groups</A></LI>\n");
@@ -249,17 +250,17 @@ void site_docs(void)
 	fprintf(hp, " <LI><A HREF=\"filefind.html\">Filefind Setup</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"users.html\">BBS Users</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"service.html\">Mail Service Manager</A></LI>\n");
-	fprintf(hp, " <LI><A HREF=\"domain.html\">Domain translation</A></LI>\n");
+	fprintf(hp, " <LI><A HREF=\"domain.html\">Domain Translation</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"task.html\">Task Manager</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"route.html\">Network Routing</A></LI>\n");
 	fprintf(hp, " <LI><A HREF=\"ibcsrv.html\">Internet BBS Chat</A></LI>\n");
         fprintf(hp, "</UL>\n");
         close_webdoc(hp);
     } else {
-        Syslog('+', "Can't create html documentation");
+        Syslog('+', "Can't create HTML documentation!");
     }
 
-    mbse_mvprintw(8,11, (char *)"Creating site documents");
+    mbse_mvprintw(8,11, (char *)"Creating site documents ...");
     fflush(stdout);
     horiz = 35;
     page = global_doc(fp, toc, page);
@@ -328,7 +329,7 @@ void site_docs(void)
     fclose(toc);
     unlink(temp1);
 
-    Syslog('+', "Sitedocs created");
+    Syslog('+', "Site documentation created");
 
     /*
      * Remove obsolete documents
@@ -342,7 +343,7 @@ void site_docs(void)
     readkey(LINES -4, COLS / 2 + 8, LIGHTGRAY, BLACK);
     return;
 }
-
+\
 
 
 void initdatabases(void)
@@ -401,7 +402,7 @@ int main(int argc, char *argv[])
      */
     pw = getpwuid(geteuid());
     if (strcmp(pw->pw_name, (char *)"mbse")) {
-	printf("ERROR: only user \"mbse\" may use this program\n");
+	printf("ERROR: only user \"mbse\" may use this program!\n");
         exit(MBERR_INIT_ERROR);
     }
 
@@ -436,10 +437,10 @@ int main(int argc, char *argv[])
     if ((argc == 2) && (strncmp(tl(argv[1]), "i", 1) == 0))
 	init = TRUE;
     else
-	screen_start((char *)"MBsetup");
+	screen_start((char *)"mbsetup");
     
     if (lockprogram((char *)"mbsetup")) {
-	printf("\n\7Another mbsetup is already running, abort.\n\n");
+	printf("\n\7Another instance of mbsetup is already running.  Aborting.\n\n");
 	die(MBERR_NO_PROGLOCK);
     }
 
@@ -453,18 +454,18 @@ int main(int argc, char *argv[])
 	    set_color(WHITE, BLACK);
 	    mbse_mvprintw( 5, 6, "0.    MAIN SETUP");
 	    set_color(CYAN, BLACK);
-	    mbse_mvprintw( 7, 6, "1.    Edit Global configuration");
+	    mbse_mvprintw( 7, 6, "1.    Edit Global Configuration");
 	    mbse_mvprintw( 8, 6, "2.    Edit Fido Networks");
 	    mbse_mvprintw( 9, 6, "3.    Edit Archiver Programs");
 	    mbse_mvprintw(10, 6, "4.    Edit Virus Scanners");
-	    mbse_mvprintw(11, 6, "5.    Edit Modem types");
-	    mbse_mvprintw(12, 6, "6.    Edit TTY lines info");
-	    mbse_mvprintw(13, 6, "7.    Edit Fidonet Nodes");
+	    mbse_mvprintw(11, 6, "5.    Edit Modem Types");
+	    mbse_mvprintw(12, 6, "6.    Edit TTY Lines Info");
+	    mbse_mvprintw(13, 6, "7.    Edit FTN Nodes");
 	    mbse_mvprintw(14, 6, "8.    Edit BBS Setup");
 	    mbse_mvprintw(15, 6, "9.    Edit Mail Setup");
-	    mbse_mvprintw(16, 6, "10.   Edit File Echo's setup");
-	    mbse_mvprintw(17, 6, "11.   Edit Newfiles Groups");
-	    mbse_mvprintw(18, 6, "12.   Edit Newfiles Reports");
+	    mbse_mvprintw(16, 6, "10.   Edit File Echoes setup");
+	    mbse_mvprintw(17, 6, "11.   Edit NEWFILES Groups");
+	    mbse_mvprintw(18, 6, "12.   Edit NEWFILES Reports");
 	    mbse_mvprintw( 7,46, "13.   Edit FileFind Setup");
 	    mbse_mvprintw( 8,46, "14.   Edit Files Database");
 	    mbse_mvprintw( 9,46, "15.   Edit BBS Users");
@@ -473,8 +474,8 @@ int main(int argc, char *argv[])
 	    mbse_mvprintw(12,46, "18.   Edit Task Manager");
 	    mbse_mvprintw(13,46, "19.   Edit Routing Table");
 	    mbse_mvprintw(14,46, "20.   Edit Internet BBS Chat");
-	    mbse_mvprintw(15,46, "21.   Show software information");
-	    mbse_mvprintw(16,46, "22.   Create site documents");
+	    mbse_mvprintw(15,46, "21.   Show Software Information");
+	    mbse_mvprintw(16,46, "22.   Create Site Documents");
 	    mbse_mvprintw(17,46, "23.   Edit FTN Domain Aliases");
  
 	    switch(select_menu(23)) {

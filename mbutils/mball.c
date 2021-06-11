@@ -118,7 +118,7 @@ void Help()
     printf("\n	Options are:\n\n");
     mbse_colour(CYAN, BLACK);
     printf("	-q -quiet	Quiet mode\n");
-    printf("	-z -zip		Create .zip archives\n");
+    printf("	-z -zip		Create -ZIP archives\n");
     mbse_colour(LIGHTGRAY, BLACK);
     printf("\n");
     die(MBERR_COMMANDLINE);
@@ -187,7 +187,7 @@ int main(int argc, char **argv)
 
     if (lockprogram((char *)"mball")) {
 	if (!do_quiet)
-	    printf("Can't lock mball, abort.\n");
+	    printf("Can't lock mball.  Aborting.\n");
 	die(MBERR_NO_PROGLOCK);
     }
 
@@ -295,37 +295,37 @@ void Masterlist()
 
     sAreas	= calloc(PATH_MAX, sizeof(char));
 
-    IsDoing("Create Allfiles list");
+    IsDoing("Create ALLFILES list");
 
     snprintf(sAreas, PATH_MAX, "%s/etc/fareas.data", getenv("MBSE_ROOT"));
 
     if(( pAreas = fopen (sAreas, "r")) == NULL) {
-	WriteError("Can't open File Areas File: %s", sAreas);
+	WriteError("Can't open file areas file: %s", sAreas);
 	mbse_colour(LIGHTGRAY, BLACK);
 	die(MBERR_GENERAL);
     }
     fread(&areahdr, sizeof(areahdr), 1, pAreas);
 
     if (!do_quiet)
-	printf("Processing file areas\n");
+	printf("Processing file areas ...\n");
 
     if ((fp = fopen("allfiles.tmp", "a+")) == NULL) {
- 	WriteError("$Can't open allfiles.tmp");
+ 	WriteError("$Can't open ALLFILES.TMP!");
 	die(MBERR_GENERAL);
     }
     if ((np = fopen("newfiles.tmp", "a+")) == NULL) {
-	WriteError("$Can't open newfiles.tmp");
+	WriteError("$Can't open NEWFILES.TMP!");
 	fclose(fp);
 	die(MBERR_GENERAL);
     }
     if ((fu = fopen("allfiles.ump", "a+")) == NULL) {
-	WriteError("$Can't open allfiles.ump");
+	WriteError("$Can't open ALLFILES.UMP!");
 	fclose(fp);
 	fclose(np);
 	die(MBERR_GENERAL);
     }
     if ((nu = fopen("newfiles.ump", "a+")) == NULL) {
-	WriteError("$Can't open newfiles.ump");
+	WriteError("$Can't open NEWFILES.UMP");
 	fclose(fp);
 	fclose(np);
 	fclose(fu);
@@ -336,9 +336,9 @@ void Masterlist()
 
     TopBox(fp, fu, TRUE);
     TopBox(np, nu, TRUE);
-    snprintf(temp, 81, "All available files at %s", CFG.bbs_name);
+    snprintf(temp, 81, "All files available at %s", CFG.bbs_name);
     MidLine(temp, fp, fu, TRUE);
-    snprintf(temp, 81, "New available files since %d days at %s", CFG.newdays, CFG.bbs_name);
+    snprintf(temp, 81, "New files available for the last %d days at %s", CFG.newdays, CFG.bbs_name);
     MidLine(temp, np, nu, TRUE);
     BotBox(fp, fu, TRUE);
     BotBox(np, nu, TRUE);
@@ -369,7 +369,7 @@ void Masterlist()
 	    Nopper();
 
 	    if ((fdb_area = mbsedb_OpenFDB(AreaNr, 30)) == 0) {
-		WriteError("Can't open Area %d (%s)! Skipping ...", AreaNr, area.Name);
+		WriteError("Can't open area %d (%s)!  Skipping ...", AreaNr, area.Name);
 	    } else {
 		popdown = 0;
 		while (fread(&fdb, fdbhdr.recsize, 1, fdb_area->fp) == 1) {
@@ -410,16 +410,16 @@ void Masterlist()
 		    MidLine(temp, fp, fu, TRUE);
 		    MidLine(temp, np, nu, NewAreaFiles);
 
-		    snprintf(temp, 81, "File Requests allowed");
+		    snprintf(temp, 81, "File requests allowed");
 		    MidLine(temp, fp, fu, area.FileReq);
 		    MidLine(temp, np, nu, area.FileReq && NewAreaFiles);
 
-		    snprintf(temp, 81, "%d KBytes in %d files", AllAreaBytes / 1024, AllAreaFiles);
+		    snprintf(temp, 81, "%d KB in %d files", AllAreaBytes / 1024, AllAreaFiles);
 		    MidLine(temp, fp, fu, TRUE);
-		    snprintf(temp, 81, "%d KBytes in %d files", NewAreaBytes / 1024, NewAreaFiles);
+		    snprintf(temp, 81, "%d KB in %d files", NewAreaBytes / 1024, NewAreaFiles);
 		    MidLine(temp, np, nu, NewAreaFiles);
 		    if (popdown) {
-			snprintf(temp, 81, "Most popular file is %s", pop);
+			snprintf(temp, 81, "The ost popular file is: %s", pop);
 			MidLine(temp, fp, fu, TRUE);
 		    }
 
@@ -434,7 +434,7 @@ void Masterlist()
 			    snprintf(temp, 81, "%s", fdb.LName);
 			    WriteFiles(fp, fu, np, nu, New, temp);
 
-			    snprintf(temp, 81, "%-12s%10u K %s [%04d] Uploader: %s", 
+			    snprintf(temp, 81, "%-12s%10u K %s [%04d]  Uploader: %s", 
 				fdb.Name, (int)(fdb.Size / 1024), StrDateDMY(fdb.UploadDate), fdb.TimesDL, 	 
 				strlen(fdb.Uploader)?fdb.Uploader:"");
 			    WriteFiles(fp, fu, np, nu, New, temp);
@@ -451,7 +451,7 @@ void Masterlist()
 			    }
 
 			    if (strlen(fdb.Magic)) {
-				snprintf(temp, 81, "                         Magic filerequest: %s", fdb.Magic);
+				snprintf(temp, 81, "                         Magic name: %s", fdb.Magic);
 				WriteFiles(fp, fu, np, nu, New, temp);
 			    }
 			    WriteFiles(fp, fu, np, nu, New, (char *)"");
@@ -467,9 +467,9 @@ void Masterlist()
 
     TopBox(fp, fu, TRUE);
     TopBox(np, nu, TRUE);
-    snprintf(temp, 81, "Total %d files, %d KBytes", AllFiles, AllKBytes);
+    snprintf(temp, 81, "Total %d files: %d KB", AllFiles, AllKBytes);
     MidLine(temp, fp, fu, TRUE);
-    snprintf(temp, 81, "Total %d files, %d KBytes", NewFiles, NewKBytes);
+    snprintf(temp, 81, "Total %d files: %d KB", NewFiles, NewKBytes);
     MidLine(temp, np, nu, TRUE);
 
     MidLine((char *)"", fp, fu, TRUE);
@@ -511,8 +511,8 @@ void Masterlist()
     if ((rename("newfiles.ump", "newfiles.utf")) == 0)
 	unlink("newfiles.ump");
 
-    Syslog('+', "Allfiles: %ld, %ld MBytes", AllFiles, AllKBytes / 1024);
-    Syslog('+', "Newfiles: %ld, %ld MBytes", NewFiles, NewKBytes / 1024);
+    Syslog('+', "ALLFILES: %ld, %ld MB", AllFiles, AllKBytes / 1024);
+    Syslog('+', "NEWFILES: %ld, %ld MB", NewFiles, NewKBytes / 1024);
     free(sAreas);
 }
 
@@ -523,30 +523,30 @@ void MakeArc()
     char    *cmd;
 
     if (!getarchiver((char *)"ZIP")) {
-	WriteError("ZIP Archiver not available");
+	WriteError("ZIP archiver not available!");
 	return;
     }
 
     cmd = xstrcpy(archiver.farc);
 
     if (cmd == NULL) {
-	WriteError("ZIP archive command not available");
+	WriteError("ZIP archive command not available!");
 	return;
     }
 
     Nopper();
     if (!do_quiet)
-	printf("Creating allfiles.zip\n");
+	printf("Creating ALLFILES.ZIP ...\n");
     if (!execute_str(cmd, (char *)"allfiles.zip allfiles.txt allfiles.utf", (char *)NULL, (char *)"/dev/null", 
 			(char *)"/dev/null", (char *)"/dev/null") == 0)
-	WriteError("Create allfiles.zip failed");
+	WriteError("ALLFILES.ZIP creation failed!");
 
     Nopper();
     if (!do_quiet)
-	printf("Creating newfiles.zip\n");
+	printf("Creating NEWFILES.ZIP ...\n");
     if (!execute_str(cmd, (char *)"newfiles.zip newfiles.txt newfiles.utf", (char *)NULL, (char *)"/dev/null", 
 			(char *)"/dev/null", (char  *)"/dev/null") == 0)
-	WriteError("Create newfiles.zip failed");
+	WriteError("NEWFILES.ZIP creation failed!");
 
     free(cmd);
     cmd = NULL;

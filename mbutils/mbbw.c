@@ -66,15 +66,15 @@ int main(int argc, char **argv)
 		    printf("Display file %d           %s\n", i+1, Inf.readerfiles[i]);
 	    printf("Registration number      %s\n", Inf.regnum);
 	    printf("Login name               %s\n", Inf.loginname);
-	    printf("Aliasname                %s\n", Inf.aliasname);
+	    printf("Alias                    %s\n", Inf.aliasname);
 	    printf("Password type            %d\n", Inf.passtype);
 	    printf("Network address          %d:%d/%d.%d\n", Inf.zone, Inf.net, Inf.node, Inf.point);
 	    printf("Sysop                    %s\n", Inf.sysop);
 	    printf("Control                  %sConfig %sFreq\n", (Inf.ctrl_flags & INF_NO_CONFIG) ? "No":"",
 						       (Inf.ctrl_flags & INF_NO_FREQ) ? "No":"");
 	    printf("System name              %s\n", Inf.systemname);
-	    printf("Max freqs                %d\n", Inf.maxfreqs);
-	    printf("Is QWK                   %s\n", Inf.is_QWK ? "Yes":"No");
+	    printf("Max FREQs                %d\n", Inf.maxfreqs);
+	    printf("Is QWK?                  %s\n", Inf.is_QWK ? "Yes":"No");
 	    printf("User flags               %s%s%s%s%s%s\n", (Inf.uflags & INF_HOTKEYS)     ? "Hotkeys ":"",
 						    (Inf.uflags & INF_XPERT)       ? "Expert ":"",
 						    (Inf.uflags & INF_GRAPHICS)    ? "ANSI ":"",
@@ -120,23 +120,23 @@ int main(int argc, char **argv)
 		printf("Area flags               %s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", 
 							(AreaInf.area_flags & INF_SCANNING)      ? "Active ":"",
 							(AreaInf.area_flags & INF_ALIAS_NAME)    ? "Aliases ":"",
-							(AreaInf.area_flags & INF_ANY_NAME)      ? "Any-name ":"",
+							(AreaInf.area_flags & INF_ANY_NAME)      ? "Any name ":"",
 							(AreaInf.area_flags & INF_ECHO)          ? "Echo ":"",
 							(AreaInf.area_flags & INF_NETMAIL)       ? "Netmail ":"",
 							(AreaInf.area_flags & INF_POST)          ? "Post ":"",
-							(AreaInf.area_flags & INF_NO_PRIVATE)    ? "No-private ":"",
-							(AreaInf.area_flags & INF_NO_PUBLIC)     ? "No-public ":"",
-							(AreaInf.area_flags & INF_NO_TAGLINE)    ? "No-tagline ":"",
+							(AreaInf.area_flags & INF_NO_PRIVATE)    ? "No private ":"",
+							(AreaInf.area_flags & INF_NO_PUBLIC)     ? "No public ":"",
+							(AreaInf.area_flags & INF_NO_TAGLINE)    ? "No tagline ":"",
 							(AreaInf.area_flags & INF_NO_HIGHBIT)    ? "No-highbit ":"",
-							(AreaInf.area_flags & INF_NOECHO)        ? "No-echo ":"",
-							(AreaInf.area_flags & INF_HASFILE)       ? "Hasfile ":"",
+							(AreaInf.area_flags & INF_NOECHO)        ? "No echo ":"",
+							(AreaInf.area_flags & INF_HASFILE)       ? "Has file ":"",
 							(AreaInf.area_flags & INF_PERSONAL)      ? "Personal ":"",
-							(AreaInf.area_flags & INF_TO_ALL)        ? "To-all ":"");
+							(AreaInf.area_flags & INF_TO_ALL)        ? "To all ":"");
 		printf("Network type             %s\n", AreaInf.network_type ? "Internet":"Fidonet");
 	    }
 	    printf("\n");
 	} else {
-	    printf("Cannot read info header\n");
+	    printf("Cannot read info header!\n");
 	}
 	fclose(fp);
     }
