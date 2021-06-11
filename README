@@ -1,5 +1,24 @@
-        MBSE BBS Packages.
+Thank you for your interest in MBSE BBS!  We sincerely hope that MBSE BBS
+will suit your BBSing needs now and in the future.
 
+Some of the features MBSE has:
+
+* Open source, written in C, and available for UNIX, Linux, and BSD.
+* Fully Fidonet capable with these features: built-in mail tosser, TIC
+  handler, front-end mailer, areafix, filefix, and more.
+* Uses JAM for its message base format
+* Able to run DOS doors using DOSemu
+* Able to run Linux-native BBS and programs as doors
+* Newsgroup and email support for both hosting and gating
+* QWK and Blue Wave offline mail support
+* Built-in "filefind" feature
+* Works with ProFTPD to serve files via FTP
+* Works with httpd (Apache) to share BBS statistics and share files
+  automatically
+
+For first time installing, see the INSTALL file. After a manual
+installation, the HTML documentation is in /opt/mbse/html.  We are
+working on providing documentation in other formats such as PDF.
 
 Distribution naming scheme:
 
@@ -10,17 +29,22 @@ mbsebbs-1.0.6.tar.bz2
   |     +------------- major version
   +------------------- package name
 
-For fidonet distribution, the tar archive and FILE_ID.DIZ are
-zipped together in a file like MBSE-106.ZIP
+For FTN-style distribution, the tar archive and FILE_ID.DIZ are
+zipped together in a file with an 8.3-style filename like MBSE-106.ZIP.
 
-For first time installing, see the file INSTALL. After a manual installation,
-the html guide is installed in /opt/mbse/html.
+If you need support, we support MBSE in Fidonet's MBSE echo (this is
+our preferred method of support).
+
+A note from MBSE's original author:
+
+"Since 1 August 2013 I (Michiel Broek) stopped developing this package. But
+this is a GPL2 licensed open source package so feel free to continue to
+improve it.  I only ask to make it clear to others that it is a modified
+package. You can do that by changing the version numbers and messages in
+the file configure.ac and then run autoconf to update the configure scripts."
+
+-- The MBSE Development Team
 
 
-Since 1 August 2013 I (Michiel Broek) stopped developing this package. But this
-is a GPL2 licensed open source package so feel free to continue to improve it.
-I only ask to make it clear to others that it is a modified package. You can do
-that by changing the version numbers and messages in the file configure.ac and
-then run autoconf to update the configure scripts.
 
 

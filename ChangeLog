@@ -1,8 +1,8 @@
 v1.0.7.22	05-May-2021 - Andrew Leary
 
 		1.  Added a switch to mbsetup for force tossing of NetMail
-                packets only from the unprotected inbound.  The default is off.
-		ARCmail packets in the unprotected inbound will still only be
-		tossed if mbfido is called with the -unp switch.
+            packets only from the unprotected inbound.  The default is off.
+		    ARCmail packets in the unprotected inbound will still only be
+		    tossed if mbfido is called with the -unp switch.
 
 		2.  Updated copyright notices to 2021.

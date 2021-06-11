@@ -49,19 +49,19 @@ void Help(void)
     mbse_colour(LIGHTBLUE, BLACK);
     printf("	Commands are:\n\n");
     mbse_colour(CYAN, BLACK);
-    printf("	c  close	Close the BBS for users\n");
-    printf("	o  open		Open the BBS for users\n");
-    printf("	s  set semafore Set named semafore\n");
-    printf("	w  wait		Wait until the BBS is free\n\n");
+    printf("	c  close	 Close the BBS for users\n");
+    printf("	o  open	         Open the BBS for users\n");
+    printf("	s  set semaphore Set named semaphore\n");
+    printf("	w  wait		 Wait until the BBS is free\n\n");
     mbse_colour(LIGHTBLUE, BLACK);
-    printf("	Semafore's are:\n\n");
+    printf("	Semaphores are:\n\n");
     mbse_colour(CYAN, BLACK);
     printf("			mailout mailin mbindex newnews msglink\n");
     printf("			reqindex upsalarm upsdown do_inet\n\n");
     mbse_colour(LIGHTBLUE, BLACK);
     printf("	Options are:\n\n");
     mbse_colour(CYAN, BLACK);
-    printf("	-q -quiet	Quiet, no screen output\n");
+    printf("	-q -quiet	Quiet (no screen output)\n");
     mbse_colour(LIGHTGRAY, BLACK);
     die(MBERR_COMMANDLINE);
 }
@@ -197,13 +197,13 @@ int Semafore(char *semafore)
 
     strcpy(buf, SockR("SECR:1,%s;", semafore));
     if (strncmp(buf, "100:0;", 6) == 0) {
-        Syslog('+', "Semafore \"%s\" is set", semafore);
+        Syslog('+', "Semaphore \"%s\" is set.", semafore);
         if (!do_quiet)
-            printf("Semafore \"%s\" is set\n", semafore);
+            printf("Semaphore \"%s\" is set.\n", semafore);
         return TRUE;
     } else {
-	Syslog('+', "Failed to set \"%s\" semafore", semafore);
-        printf("Failed to set \"%s\" semafore\n", semafore);
+	Syslog('+', "Failed to set \"%s\" semaphore.", semafore);
+        printf("Failed to set \"%s\" semaphore.\n", semafore);
 	return FALSE;
     }
 }
@@ -216,12 +216,12 @@ int Close(void)
 
     strcpy(buf, SockR("SCLO:0;"));
     if (strncmp(buf, "100:0;", 6) == 0) {
-	Syslog('+', "The BBS is closed");
+	Syslog('+', "The BBS is closed.");
 	if (!do_quiet)
-	    printf("The BBS is closed\n");
+	    printf("The BBS is closed.\n");
 	return TRUE;
     } else {
-	printf("Failed to close the BBS\n");
+	printf("Failed to close the BBS.\n");
 	return FALSE;
     }
 }
@@ -234,12 +234,12 @@ int Open(void)
 
     strcpy(buf, SockR("SOPE:0;"));
     if (strncmp(buf, "100:0;", 6) == 0) {
-	Syslog('+', "The BBS is open");
+	Syslog('+', "The BBS is open.");
 	if (!do_quiet)
-	    printf("The BBS is open\n");
+	    printf("The BBS is open.\n");
 	return TRUE;
     } else {
-	printf("Failed to open the BBS\n");
+	printf("Failed to open the BBS.\n");
 	return FALSE;
     }
 }
@@ -254,11 +254,11 @@ int Wait(void)
     if (IsSema((char *)"upsdown"))
 	Waiting = 30;
 
-    Syslog('+', "Waiting for the BBS to become free, timeout %d seconds", Waiting);
+    Syslog('+', "Waiting for the BBS to become free (timeout %d seconds)", Waiting);
     while (Waiting) {
 	strcpy(buf, SockR("SFRE:0;"));
 	if (strncmp(buf, "100:0;", 6) == 0) {
-	    Syslog('+', "The BBS is free");
+	    Syslog('+', "The BBS is free.");
 	    if (!do_quiet)
 		printf("The BBS is free.                             \n");
 	    return TRUE;
@@ -272,7 +272,7 @@ int Wait(void)
 	Waiting--;
     }
 
-    WriteError("Wait for BBS free timeout, aborting");
+    WriteError("Wait for BBS free timeout ... aborting!");
     return FALSE;
 }
 

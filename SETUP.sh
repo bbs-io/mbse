@@ -280,32 +280,34 @@ fi
 
 
 cat << EOF
-    Basic checks done.
+    Basic checks completed.
 
-    The detected $OSTYPE distribution is $DISTNAME $DISTVERS
+    The detected $OSTYPE distribution is $DISTNAME $DISTVERS.
 
-    Everything looks allright to start the installation now.
-    Next the script will install a new group 'bbs' and two new
-    users, 'mbse' which is the bbs system account, and 'bbs' which
+    Everything looks alright to start the installation now.
+    Next, the script will install a new group 'bbs' and two new
+    users: 'mbse' which is the bbs system account and 'bbs' which
     is the login account for bbs users. This account will have no
-    password! The shell for this account is the main bbs program.
+    password!  The shell for this account is the main bbs program.
 
     One final important note: This script will make changes to some
-    of your system files. Because I don't have access to all kinds of
-    distributions and configurations there is no garantee that this
-    script is perfect. Please make sure you have a recent system backup.
-    Also make sure you have resque boot disks and know how to repair
-    your system. It might also be wise to login as root on another
-    virtual console incase something goes wrong with system login.
+    of your system files.  Because we don't have access to all kinds of
+    distributions and configurations there is no guarantee that this
+    script is perfect.  Please make sure you have a recent system 
+    backup.
+
+    Make sure you have rescue boot disks and know how to repair
+    your system.  It might also be wise to login as root on another
+    virtual console in case something goes wrong with system login.
 
     Darwin (OS X) Users must install the .dmg image of user utils
     available on Version Tracker and within this archive prior
     to continuing the installation.
 
-    If you are not sure, or forgot something, hit Control-C now or
+    If you are not sure or forgot something, hit Control-C now or
 EOF
 
-echo -n "    press Enter to start the installation "
+echo -n "    press <Enter> to start the installation."
 read junk
 clear
 
@@ -316,7 +318,7 @@ clear
 log "+" "Starting installation"
 echo "Installing MBSE BBS for the first time..."
 echo ""
-echo -n "Adding group 'bbs'"
+echo -n "Adding group 'bbs'..."
 $PW groupadd bbs
 log "+" "[$?] Added group bbs"
 
