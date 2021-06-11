@@ -1,0 +1,46 @@
+# Compile-time configuration for MBSE FidoNet/Internet BBS
+# $Id: Makefile.global.in,v 1.16 2007/05/27 14:12:52 mbse Exp $
+
+MAJOR		= 1
+MINOR		= 0
+REVISION	= 7.22
+VERSION		= 1.0.7.22
+PACKAGE		= mbsebbs
+
+# for make install, where to put binaries and what owner to set
+SUBDIRS		= lib mbcico mbfido mbmon mbsebbs mbutils mbnntp mbtask mbsetup unix lang examples html script
+PREFIX		= /opt/mbse
+BINDIR		= /opt/mbse/bin
+ETCDIR		= /opt/mbse/etc
+DOCDIR		= /opt/mbse/doc
+VARDIR		= /opt/mbse/var
+INTDIR		= /opt/mbse/share/int
+OWNER		= mbse
+GROUP		= bbs
+ROWNER		= root
+RGROUP		= root
+MODE		= 0711
+SMODE		= 6711
+
+CHOWN		= /bin/chown
+INSTALL		= ginstall
+RANLIB		= ranlib
+LN_S		= ln -s
+SHELL		= /bin/sh
+ECHO		= echo -e
+CC		= gcc
+AWK		= gawk
+TAR		= /usr/bin/tar
+ZIP		= /usr/bin/zip
+MAKE		= gmake
+
+# joe editor
+JOEBIN		= /usr/bin
+JOELIB		= /etc/joe
+
+CFLAGS		= -O2 -fno-strict-aliasing -Wall -Wshadow -Wwrite-strings -Wstrict-prototypes -D_REENTRANT -I/usr/local/include
+LIBS		=  -lcrypt -lutil -lz -lbz2 -lGeoIP
+DEFS		= -DHAVE_CONFIG_H
+LDFLAGS		= -L/usr/local/lib
+CPPFLAGS	= -I/usr/local/include
+
